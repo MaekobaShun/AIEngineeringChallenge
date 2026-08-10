@@ -12,5 +12,6 @@ wheels/
 # Derived/cache data (regenerable from the share drive) and secrets
 /cache/
 /logs/
+/submit/
 .env
 
