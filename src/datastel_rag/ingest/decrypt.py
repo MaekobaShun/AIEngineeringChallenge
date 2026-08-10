@@ -1,22 +1,33 @@
 """Generic password derivation/decryption for MS-CFB-encrypted Office files.
 
-Rule (from 社内管理/データアステル社内規定_パスワード導出規則.docx):
+Two independent schemes have been observed in the wild data, and a given
+project can mix both across its files -- so passwords are cached and tried
+per *file*, not per project:
 
-    DA-[案件略号]-[開始年月日8桁]-[拡張子コード]
+1. The documented rule (社内管理/データアステル社内規定_パスワード導出規則.docx):
 
-- 案件略号: the project's 主略称 from the glossary (catalog.glossary).
-- 開始年月日8桁: the project's contract start date, YYYYMMDD. Not every
-  project states this in an obviously-labeled field, so we harvest date
-  candidates from every *readable* sibling file in the same project folder
-  (filenames + text content) and try them all.
-- 拡張子コード: assumed to be the file extension, but we don't know the
-  exact casing/format the puzzle wants, so several variants are tried.
+       DA-[案件略号]-[開始年月日8桁]-[拡張子コード]
+
+   - 案件略号: the project's 主略称 from the glossary (catalog.glossary).
+   - 開始年月日8桁: the project's contract start date, YYYYMMDD. Not every
+     project states this in an obviously-labeled field, so we harvest date
+     candidates from every *readable* sibling file in the same project
+     folder (filenames + text content) and try them all.
+   - 拡張子コード: assumed to be the file extension; several casings tried.
+   Verified against 医療法人社団 恒一会 かえで総合病院's スケジュール.xlsx
+   (password `DA-KAEDE-20250902-xlsx`).
+
+2. A filename-embedded hint: some files are named `..._pw-<hint>.ext`, and
+   `<hint>` (lowercased, no other prefix/suffix) *is* the password directly
+   -- no "DA-" wrapper, no extension code. Verified against the same
+   project's 契約書_pw-kaede20250902.docx (password `kaede20250902`, i.e.
+   the "pw-" prefix stripped from the filename).
 
 Never hardcode a specific project's password. This module only encodes the
-*algorithm*; candidates are always derived at runtime from the glossary and
-sibling documents, and it degrades gracefully (returns None) when nothing
-in the candidate space works -- callers (including the agent, via a tool)
-can then extend the candidate list with their own guesses.
+*algorithms*; candidates are always derived at runtime from the filename,
+glossary, and sibling documents, and it degrades gracefully (returns None)
+when nothing in the candidate space works -- callers (including the agent,
+via a tool) can then extend the candidate list with their own guesses.
 """
 
 from __future__ import annotations
@@ -37,6 +48,7 @@ from datastel_rag.catalog.scanner import Catalog, FileEntry
 from datastel_rag.ingest.fileformats import sniff_is_ole
 
 _DATE_RE = re.compile(r"(20\d{2})[年/\-.](\d{1,2})[月/\-.](\d{1,2})")
+_FILENAME_HINT_RE = re.compile(r"pw-([A-Za-z0-9]+)", re.IGNORECASE)
 
 _PASSWORD_CACHE_PATH = config.CACHE_DIR / "decrypt_passwords.json"
 
@@ -84,6 +96,19 @@ def harvest_date_candidates(project_files: list[FileEntry]) -> list[str]:
             except ValueError:
                 continue
     return sorted(candidates)
+
+
+def harvest_filename_hint_passwords(filename: str) -> list[str]:
+    """Some files embed their own password in the filename as
+    `..._pw-<hint>.ext` (e.g. 契約書_pw-kaede20250902.docx -> password
+    'kaede20250902', i.e. the matched hint verbatim with no "pw-" prefix,
+    no "DA-" wrapper, no extension code). Not every encrypted file has
+    this; when present it's tried before the documented DA-rule."""
+    m = _FILENAME_HINT_RE.search(filename)
+    if not m:
+        return []
+    hint = m.group(1)
+    return list(dict.fromkeys([hint, hint.lower(), hint.upper()]))
 
 
 def generate_candidate_passwords(
@@ -145,11 +170,15 @@ def decrypt_entry(entry: FileEntry, catalog: Catalog, glossary: Glossary, extra_
         with open(entry.abs_path, "rb") as f:
             return DecryptResult(True, f.read(), None, 0)
 
+    # cached per file, not per project: different files in the same project
+    # have been observed to use different password schemes
     cache = _load_password_cache()
-    cache_key = entry.project_key
+    cache_key = entry.rel_path
     passwords: list[str] = []
     if cache_key in cache:
         passwords.append(cache[cache_key])
+
+    passwords.extend(harvest_filename_hint_passwords(entry.name))
 
     project = next((p for p in catalog.projects if p.key == entry.project_key), None)
     alias = next((p for p in glossary.projects if p.full_name == entry.project_key), None)

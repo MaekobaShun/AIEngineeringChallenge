@@ -29,12 +29,20 @@ Data is expected one level up, at `../share/` (as distributed).
   parsed documents.
 - `src/datastel_rag/agent/` -- Claude Agent SDK orchestration and tools.
 
-## Known open issue
+## Password-protected files
 
-`ingest/decrypt.py` implements the documented password rule
-(`DA-[案件略号]-[開始年月日8桁]-[拡張子コード]`) with date candidates
-harvested from sibling files. It reliably cracks some files (verified against
-かえで's `スケジュール.xlsx`) but not all (かえで's `契約書*.docx` resists
-every extension-code variant tried so far, despite the abbreviation and date
-being independently confirmed). Treat this as an agent-callable tool with
-extra candidate passwords, not a guaranteed pre-processing step.
+`ingest/decrypt.py` handles two independent schemes observed in the data,
+tried per file (a single project can mix both):
+
+1. The documented rule (`DA-[案件略号]-[開始年月日8桁]-[拡張子コード]`),
+   with date candidates harvested from sibling files. Verified against
+   かえで's `スケジュール.xlsx` (`DA-KAEDE-20250902-xlsx`).
+2. A filename-embedded hint (`..._pw-<hint>.ext`) where `<hint>` *is* the
+   password verbatim, no wrapper. Verified against かえで's
+   `契約書_pw-kaede20250902.docx` (password `kaede20250902`).
+
+All 403 files in the current share drive now parse with zero errors. Since
+future/unknown data could use a scheme neither of these covers, `decrypt.py`
+degrades gracefully (returns failure rather than raising) so it can also be
+exposed as an agent-callable tool that tries extra candidate passwords at
+question-answering time.
