@@ -31,8 +31,8 @@ def parse_args():
     p.add_argument("--log", default=None, help="JSONL run log path (default: logs/run_<timestamp>.jsonl)")
     p.add_argument("--limit", type=int, default=None, help="only answer the first N rows (smoke testing)")
     p.add_argument("--concurrency", type=int, default=3)
-    p.add_argument("--max-turns", type=int, default=40)
-    p.add_argument("--max-budget-usd", type=float, default=1.0)
+    p.add_argument("--max-turns", type=int, default=50)
+    p.add_argument("--max-budget-usd", type=float, default=1.5)
     p.add_argument("--model", default=None)
     p.add_argument("--refresh-index", action="store_true", help="force re-parse everything instead of using the cache")
     return p.parse_args()
@@ -90,7 +90,12 @@ async def main_async(args):
         ]
         results = await asyncio.gather(*tasks)
 
-    out_df = pd.DataFrame(sorted(results, key=lambda t: t[0]), columns=["index", "answer"])
+    # evaluation/src/validator.py pre-checks the file line-by-line before any
+    # real CSV parsing, so an embedded newline (breaking one row across two
+    # physical lines) is fatal even though it'd be valid CSV -- collapse to
+    # single-line answers defensively (the prompt already asks for this).
+    sanitized = [(i, " / ".join(a.replace("\r\n", "\n").split("\n")).strip()) for i, a in results]
+    out_df = pd.DataFrame(sorted(sanitized, key=lambda t: t[0]), columns=["index", "answer"])
     out_path = Path(args.out)
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_df.to_csv(out_path, header=False, index=False)

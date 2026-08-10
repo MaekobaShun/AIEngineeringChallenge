@@ -18,7 +18,8 @@ import fitz  # pymupdf
 
 from datastel_rag.ingest.models import Block, ImageAsset, ParsedDocument
 
-_RENDER_ZOOM = 2.0  # ~144 DPI
+_RENDER_ZOOM = 1.5  # ~108 DPI -- kept modest so a page render stays well under
+# the agent transport's message-size limit once base64-encoded for the Read tool
 
 
 def parse_pdf(abs_path: str, source_rel_path: str, project_key: str, image_cache_dir: Path) -> ParsedDocument:

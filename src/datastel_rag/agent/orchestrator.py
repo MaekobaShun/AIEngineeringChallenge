@@ -49,6 +49,9 @@ def _build_options(model: str, max_turns: int, max_budget_usd: float, tools: lis
         model=model,
         max_turns=max_turns,
         max_budget_usd=max_budget_usd,
+        # default (1MB) is too small once the Read tool pulls in a base64-encoded
+        # rendered PDF page / embedded image in a single transport message
+        max_buffer_size=20 * 1024 * 1024,
         setting_sources=[],
     )
 
