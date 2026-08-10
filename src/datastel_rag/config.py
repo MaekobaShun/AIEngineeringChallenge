@@ -28,5 +28,6 @@ LOG_DIR = PIPELINE_ROOT / "logs"
 for d in (CACHE_DIR, LOG_DIR):
     d.mkdir(parents=True, exist_ok=True)
 
-ANTHROPIC_MODEL = os.environ.get("DATASTEL_ANTHROPIC_MODEL", "claude-opus-4-5")
+ANTHROPIC_MODEL = os.environ.get("DATASTEL_ANTHROPIC_MODEL", "claude-sonnet-5")
+GEMINI_DEV_MODEL = os.environ.get("DATASTEL_GEMINI_MODEL", "gemini-flash-latest")
 MAX_ANSWER_TOKENS = 1000

@@ -59,6 +59,16 @@ class Catalog:
         for p in self.projects:
             yield from p.files
 
+    def find_by_rel_path(self, rel_path: str) -> FileEntry | None:
+        rel_path = to_nfc(rel_path)
+        for f in self.iter_files():
+            if f.rel_path == rel_path:
+                return f
+        return None
+
+    def find_project(self, project_key: str) -> ProjectEntry | None:
+        return next((p for p in self.projects if p.key == project_key), None)
+
 
 def _walk_files(root, project_key: str, share_root) -> list[FileEntry]:
     out: list[FileEntry] = []
