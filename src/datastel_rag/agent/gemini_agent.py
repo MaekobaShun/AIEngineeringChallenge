@@ -157,21 +157,37 @@ _MAX_RETRIES = 6
 _DEFAULT_BACKOFF_S = 20.0
 
 
-def _retry_delay_seconds(e: errors.ClientError) -> float | None:
-    """Google's free-tier RPM limits are tight enough (e.g. 5 req/min) that
-    a single question's multi-turn loop routinely hits 429s -- this isn't
-    an edge case to fail fast on. The error response includes a RetryInfo
-    with the server's own suggested wait; prefer that over guessing."""
+def _quota_details(e: errors.ClientError) -> tuple[float | None, bool]:
+    """Returns (suggested_retry_delay_seconds, is_per_day_quota).
+
+    Free-tier quota comes in at least two shapes we've hit in practice: a
+    per-minute RPM cap (worth waiting out -- routinely triggered mid-question
+    by a multi-turn tool-calling loop) and a per-day request cap (500/day
+    seen on gemini-3.5-flash-lite). Retrying a per-day exhaustion is
+    pointless -- the suggested delay is short (seconds) but the quota won't
+    actually refill for hours, so it's better to fail this question fast
+    than burn max_turns retrying a wait that won't help.
+    """
     try:
         details = e.response_json.get("error", {}).get("details", [])
+        delay = None
+        is_per_day = False
         for d in details:
             if d.get("@type", "").endswith("RetryInfo"):
                 m = re.match(r"([\d.]+)s", d.get("retryDelay", ""))
                 if m:
-                    return float(m.group(1))
+                    delay = float(m.group(1))
+            if d.get("@type", "").endswith("QuotaFailure"):
+                for v in d.get("violations", []):
+                    if "PerDay" in v.get("quotaId", ""):
+                        is_per_day = True
+        return delay, is_per_day
     except Exception:
-        pass
-    return None
+        return None, False
+
+
+class DailyQuotaExhausted(Exception):
+    pass
 
 
 async def _generate_with_retry(client, model_name, contents, gen_config):
@@ -183,8 +199,10 @@ async def _generate_with_retry(client, model_name, contents, gen_config):
             last_err = e
             if e.status != "RESOURCE_EXHAUSTED" and getattr(e, "code", None) != 429:
                 raise
-            delay = _retry_delay_seconds(e) or _DEFAULT_BACKOFF_S * (attempt + 1)
-            await asyncio.sleep(delay + 1)
+            delay, is_per_day = _quota_details(e)
+            if is_per_day:
+                raise DailyQuotaExhausted(str(e)) from e
+            await asyncio.sleep((delay or _DEFAULT_BACKOFF_S * (attempt + 1)) + 1)
     raise last_err
 
 
