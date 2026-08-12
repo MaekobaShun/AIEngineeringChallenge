@@ -18,27 +18,42 @@ from pathlib import Path
 import pandas as pd
 
 from datastel_rag import config
-from datastel_rag.agent.orchestrator import answer_question_async
 from datastel_rag.catalog.glossary import load_or_build_glossary
 from datastel_rag.catalog.scanner import load_or_build_catalog
 from datastel_rag.index.store import SearchIndex
+
+_PROVIDERS = {}
+
+
+def _get_provider(name: str):
+    if name not in _PROVIDERS:
+        if name == "claude":
+            from datastel_rag.agent.orchestrator import answer_question_async
+        elif name == "gemini":
+            from datastel_rag.agent.gemini_agent import answer_question_async
+        else:
+            raise ValueError(f"unknown provider: {name}")
+        _PROVIDERS[name] = answer_question_async
+    return _PROVIDERS[name]
 
 
 def parse_args():
     p = argparse.ArgumentParser()
     p.add_argument("--questions", required=True, help="questions CSV path (columns: index,question)")
     p.add_argument("--out", required=True, help="output predictions.csv path")
+    p.add_argument("--provider", choices=["gemini", "claude"], default="gemini")
     p.add_argument("--log", default=None, help="JSONL run log path (default: logs/run_<timestamp>.jsonl)")
     p.add_argument("--limit", type=int, default=None, help="only answer the first N rows (smoke testing)")
     p.add_argument("--concurrency", type=int, default=3)
     p.add_argument("--max-turns", type=int, default=50)
-    p.add_argument("--max-budget-usd", type=float, default=1.5)
+    p.add_argument("--max-budget-usd", type=float, default=1.5, help="Claude only; Gemini has no per-call cost API")
     p.add_argument("--model", default=None)
     p.add_argument("--refresh-index", action="store_true", help="force re-parse everything instead of using the cache")
     return p.parse_args()
 
 
 async def _run_one(sem, idx_num, question, index, catalog, glossary, args, log_f):
+    answer_question_async = _get_provider(args.provider)
     async with sem:
         start = time.time()
         result = await answer_question_async(
@@ -51,17 +66,19 @@ async def _run_one(sem, idx_num, question, index, catalog, glossary, args, log_f
             model=args.model,
         )
         elapsed = time.time() - start
+        default_model = config.GEMINI_MODEL if args.provider == "gemini" else config.ANTHROPIC_MODEL
         record = {
             "index": idx_num,
             "question": question,
             "answer": result.answer,
+            "provider": args.provider,
             "num_turns": result.num_turns,
             "cost_usd": result.cost_usd,
             "elapsed_s": round(elapsed, 1),
             "is_error": result.is_error,
             "error_detail": result.error_detail,
             "session_id": result.session_id,
-            "model": args.model or config.ANTHROPIC_MODEL,
+            "model": args.model or default_model,
         }
         log_f.write(json.dumps(record, ensure_ascii=False) + "\n")
         log_f.flush()

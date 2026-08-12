@@ -1,56 +1,36 @@
-"""In-process MCP tools exposed to the agent.
+"""In-process MCP tools exposed to the Claude Agent SDK. Thin wrappers
+around agent/tool_core.py -- see that module for what each tool actually
+does; this module only adapts return values to the SDK's
+{"content": [{"type": "text", ...}]} shape.
 
-Design: the agent gets exactly the surface it needs to answer a question
-from the raw share drive --
-
-- search_documents / get_document: BM25 retrieval + full-document read,
-  including paths to extracted/rendered images. The agent opens those
-  paths with the built-in Read tool (which handles images/PDFs natively)
-  for anything that needs actual vision -- charts, embedded pictures,
-  scanned/watermarked PDF pages, the seating chart. No separate
-  image-passing plumbing needed.
-- resolve_project / expand_terms / list_projects: 社内用語集-backed lookups,
-  so the agent expands abbreviations instead of guessing.
-- list_project_files: browse a project's raw file tree.
-- run_python: pandas/numpy computation over a project's raw tables, for
-  aggregation questions -- this is how "programmatic computation, not
-  hardcoded" is satisfied for numeric/filter questions.
-- attempt_decrypt: retry hook for the rare file neither password scheme
-  in ingest/decrypt.py cracks automatically.
-- submit_answer: the only way the agent's final answer is captured; this
-  avoids scraping free-text assistant messages for the "real" answer.
+Only the built-in Read tool is additionally allowed (see orchestrator.py):
+get_document returns paths to extracted/rendered images, and the agent
+opens those with Read (which handles images/PDFs natively) for anything
+needing actual vision -- no separate image-passing plumbing needed here,
+unlike the Gemini path (gemini_agent.py) which has no built-in file reader.
 """
 
 from __future__ import annotations
 
-import contextlib
-import io
-
-import numpy as np
-import pandas as pd
 from claude_agent_sdk import SdkMcpTool, tool
 
+from datastel_rag.agent import tool_core as core
+from datastel_rag.agent.tool_core import ToolContext
 from datastel_rag.catalog.glossary import Glossary
 from datastel_rag.catalog.scanner import Catalog
-from datastel_rag.ingest import decrypt
-from datastel_rag.ingest.dispatch import parse_entry
 from datastel_rag.index.store import SearchIndex
 
-_MAX_DOC_CHARS = 60_000
-_MAX_SNIPPET_CHARS = 350
 
-
-def _resolve_project_key(glossary: Glossary, text: str | None) -> str | None:
-    if not text:
-        return None
-    alias = next((p for p in glossary.projects if p.code == text or p.full_name == text), None)
-    if alias:
-        return alias.full_name
-    resolved = glossary.find_project(text)
-    return resolved.full_name if resolved else text
+def _text(s: str, is_error: bool = False) -> dict:
+    result = {"content": [{"type": "text", "text": s}]}
+    if is_error:
+        result["is_error"] = True
+    return result
 
 
 def build_tools(index: SearchIndex, catalog: Catalog, glossary: Glossary, capture: dict) -> list[SdkMcpTool]:
+    ctx = ToolContext(index=index, catalog=catalog, glossary=glossary, capture=capture)
+
     @tool(
         "search_documents",
         "共有ドライブ全体または特定案件内をBM25全文検索する。案件名・略称・キーワードで絞り込み可能。まず案件を特定してから検索するのが基本。",
@@ -61,17 +41,7 @@ def build_tools(index: SearchIndex, catalog: Catalog, glossary: Glossary, captur
         },
     )
     async def search_documents(args):
-        query = args["query"]
-        project_key = _resolve_project_key(glossary, args.get("project"))
-        top_k = int(args.get("top_k") or 8)
-        hits = index.search(query, project_key=project_key, top_k=top_k)
-        if not hits:
-            return {"content": [{"type": "text", "text": "該当する結果が見つかりませんでした。project指定を外す、またはクエリを変えて再検索してください。"}]}
-        lines = []
-        for h in hits:
-            snippet = h.text[:_MAX_SNIPPET_CHARS]
-            lines.append(f"[score={h.score:.1f}] {h.rel_path}\n  block={h.block_id} kind={h.kind} location={h.location}\n  {snippet}")
-        return {"content": [{"type": "text", "text": "\n\n".join(lines)}]}
+        return _text(core.search_documents_impl(ctx, args["query"], args.get("project"), int(args.get("top_k") or 8)))
 
     @tool(
         "get_document",
@@ -79,41 +49,8 @@ def build_tools(index: SearchIndex, catalog: Catalog, glossary: Glossary, captur
         {"rel_path": "search_documentsの結果に出てくるrel_path(共有ドライブルートからの相対パス)"},
     )
     async def get_document(args):
-        rel_path = args["rel_path"]
-        doc = index.get_document(rel_path)
-        if doc is None:
-            entry = catalog.find_by_rel_path(rel_path)
-            if entry is None:
-                return {"content": [{"type": "text", "text": f"ファイルが見つかりません: {rel_path}"}], "is_error": True}
-            doc = parse_entry(entry, catalog, glossary)
-
-        lines = [f"=== {rel_path} (.{doc.ext}) ==="]
-        if doc.parse_errors:
-            lines.append(f"[注意: 解析時の問題: {doc.parse_errors}]")
-        for b in doc.blocks:
-            flags = []
-            for r in b.runs:
-                if r.bold:
-                    flags.append("太字")
-                if r.italic:
-                    flags.append("イタリック")
-                if r.underline:
-                    flags.append("下線")
-                if r.highlight:
-                    flags.append(f"ハイライト:{r.highlight}")
-                if r.font_color:
-                    flags.append(f"文字色:{r.font_color}")
-            flag_str = f" <{'/'.join(sorted(set(flags)))}>" if flags else ""
-            lines.append(f"[{b.block_id} {b.kind} {b.location}]{flag_str} {b.text}")
-        if doc.images:
-            lines.append("\n--- 画像/レンダリング済みページ(視覚的な読解が必要な場合はReadツールでこのパスを開く) ---")
-            for img in doc.images:
-                lines.append(f"  {img.location} -> {img.cache_path}")
-
-        text = "\n".join(lines)
-        if len(text) > _MAX_DOC_CHARS:
-            text = text[:_MAX_DOC_CHARS] + f"\n... [切り詰め: 全{len(lines)}ブロック中一部のみ表示。必要ならsearch_documentsで該当箇所に絞り込むこと]"
-        return {"content": [{"type": "text", "text": text}]}
+        text, _image_paths = core.get_document_impl(ctx, args["rel_path"])
+        return _text(text)
 
     @tool(
         "resolve_project",
@@ -121,15 +58,11 @@ def build_tools(index: SearchIndex, catalog: Catalog, glossary: Glossary, captur
         {"text": "質問文またはその一部(案件名・略称を含む文字列)"},
     )
     async def resolve_project(args):
-        p = glossary.find_project(args["text"])
-        if p is None:
-            return {"content": [{"type": "text", "text": "一致する案件が見つかりませんでした。list_projectsで一覧を確認してください。"}]}
-        return {"content": [{"type": "text", "text": f"正式名称: {p.full_name}\n主略称: {p.code}\n別名候補: {p.aliases}\n補足: {p.note}"}]}
+        return _text(core.resolve_project_impl(ctx, args["text"]))
 
     @tool("list_projects", "全案件の正式名称・主略称・別名の一覧を返す。", {})
     async def list_projects(_args):
-        lines = [f"{p.code}: {p.full_name} (別名: {', '.join(p.aliases)})" for p in glossary.projects]
-        return {"content": [{"type": "text", "text": "\n".join(lines)}]}
+        return _text(core.list_projects_impl(ctx))
 
     @tool(
         "expand_glossary_terms",
@@ -137,11 +70,7 @@ def build_tools(index: SearchIndex, catalog: Catalog, glossary: Glossary, captur
         {"text": "略称・社内用語を含む可能性のあるテキスト"},
     )
     async def expand_glossary_terms(args):
-        hits = glossary.expand_term(args["text"])
-        if not hits:
-            return {"content": [{"type": "text", "text": "該当する社内用語は見つかりませんでした。"}]}
-        lines = [f"{h.code} = {h.canonical}" + (f" ({h.note})" if h.note else "") for h in hits]
-        return {"content": [{"type": "text", "text": "\n".join(lines)}]}
+        return _text(core.expand_glossary_terms_impl(ctx, args["text"]))
 
     @tool(
         "list_project_files",
@@ -149,52 +78,17 @@ def build_tools(index: SearchIndex, catalog: Catalog, glossary: Glossary, captur
         {"project": "案件の主略称または正式名称"},
     )
     async def list_project_files(args):
-        project_key = _resolve_project_key(glossary, args["project"])
-        proj = catalog.find_project(project_key) if project_key else None
-        if proj is None:
-            return {"content": [{"type": "text", "text": f"案件が見つかりません: {args['project']}"}], "is_error": True}
-        lines = [f"{f.rel_path}  (ext={f.ext}, phase={f.phase}, encrypted={f.is_encrypted})" for f in proj.files]
-        return {"content": [{"type": "text", "text": "\n".join(lines)}]}
+        return _text(core.list_project_files_impl(ctx, args["project"]))
 
     @tool(
         "run_python",
         "案件の生データ(csv/tsv/xlsx)に対してpandas/numpyで集計・計算を行う。"
-        "read_table(rel_path, sheet=None)でDataFrameを読み込める。print()の出力、または`result`変数の値が結果として返る。",
+        "read_table(rel_path, sheet=None)でDataFrameを読み込める。print()の出力、または`result`変数の値が結果として返る。"
+        "画像の切り出し等でファイルを保存したい場合はSCRATCH_DIR配下のパスに書き込むこと(それ以外への書き込みは拒否される)。",
         {"code": "実行するPythonコード"},
     )
     async def run_python(args):
-        code = args["code"]
-
-        def read_table(rel_path: str, sheet=None):
-            entry = catalog.find_by_rel_path(rel_path)
-            if entry is None:
-                raise FileNotFoundError(rel_path)
-            if entry.ext == "csv":
-                return pd.read_csv(entry.abs_path, encoding="utf-8-sig")
-            if entry.ext == "tsv":
-                return pd.read_csv(entry.abs_path, sep="\t", encoding="utf-8-sig")
-            if entry.ext == "xlsx":
-                return pd.read_excel(entry.abs_path, sheet_name=sheet if sheet is not None else 0)
-            raise ValueError(f"read_tableが対応していない拡張子です: {entry.ext}")
-
-        global_ns = {"pd": pd, "np": np, "read_table": read_table, "__builtins__": __builtins__}
-        local_ns: dict = {}
-        buf = io.StringIO()
-        try:
-            with contextlib.redirect_stdout(buf):
-                exec(code, global_ns, local_ns)
-        except Exception as e:
-            return {
-                "content": [{"type": "text", "text": f"実行エラー: {type(e).__name__}: {e}\n\n--- stdout ---\n{buf.getvalue()}"}],
-                "is_error": True,
-            }
-
-        out = buf.getvalue()
-        if "result" in local_ns:
-            out += f"\nresult = {local_ns['result']!r}"
-        if not out.strip():
-            out = "(出力なし。print()するか`result`変数に代入してください)"
-        return {"content": [{"type": "text", "text": out}]}
+        return _text(core.run_python_impl(ctx, args["code"]))
 
     @tool(
         "attempt_decrypt",
@@ -202,16 +96,7 @@ def build_tools(index: SearchIndex, catalog: Catalog, glossary: Glossary, captur
         {"rel_path": "対象ファイルのrel_path", "extra_passwords": "試すパスワード候補のリスト(任意)"},
     )
     async def attempt_decrypt(args):
-        entry = catalog.find_by_rel_path(args["rel_path"])
-        if entry is None:
-            return {"content": [{"type": "text", "text": f"見つかりません: {args['rel_path']}"}], "is_error": True}
-        result = decrypt.decrypt_entry(entry, catalog, glossary, extra_passwords=args.get("extra_passwords") or [])
-        if result.success:
-            return {"content": [{"type": "text", "text": f"復号成功(password={result.password})。get_documentツールで内容を取得してください。"}]}
-        return {
-            "content": [{"type": "text", "text": f"復号失敗({result.candidates_tried}件試行)。extra_passwordsに別の候補を指定して再試行できます。"}],
-            "is_error": True,
-        }
+        return _text(core.attempt_decrypt_impl(ctx, args["rel_path"], args.get("extra_passwords")))
 
     @tool(
         "submit_answer",
@@ -219,8 +104,7 @@ def build_tools(index: SearchIndex, catalog: Catalog, glossary: Glossary, captur
         {"answer": "日本語での最終回答。指定された形式・単位・丸め方・順序規則に従うこと。"},
     )
     async def submit_answer(args):
-        capture["answer"] = args["answer"]
-        return {"content": [{"type": "text", "text": "回答を受け付けました。"}]}
+        return _text(core.submit_answer_impl(ctx, args["answer"]))
 
     return [
         search_documents,
