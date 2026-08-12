@@ -32,6 +32,7 @@ from datastel_rag.catalog.scanner import Catalog
 from datastel_rag.ingest import decrypt
 from datastel_rag.ingest.dispatch import parse_entry
 from datastel_rag.index.store import SearchIndex
+from datastel_rag.skill_tree.tree import SkillTree
 
 SCRATCH_DIR = config.CACHE_DIR / "scratch"
 
@@ -45,6 +46,8 @@ class ToolContext:
     catalog: Catalog
     glossary: Glossary
     capture: dict = field(default_factory=dict)
+    skill_tree: SkillTree | None = None
+    retrieval_mode: str = "bm25"  # bm25 | skill_nav
 
 
 def resolve_project_key(glossary: Glossary, text: str | None) -> str | None:
@@ -110,6 +113,12 @@ def get_document_impl(ctx: ToolContext, rel_path: str) -> tuple[str, list[str]]:
             return f"ファイルが見つかりません: {rel_path}", []
         doc = parse_entry(entry, ctx.catalog, ctx.glossary)
     return _format_document(rel_path, doc)
+
+
+def list_children_impl(ctx: ToolContext, node_id: str | None = None) -> str:
+    if ctx.skill_tree is None:
+        return "skill tree が読み込まれていません。retrieval_mode=skill_nav で起動してください。"
+    return ctx.skill_tree.list_children(node_id or "root")
 
 
 def resolve_project_impl(ctx: ToolContext, text: str) -> str:

@@ -15,8 +15,9 @@ from dotenv import load_dotenv
 from datastel_rag.paths import resolve_child
 
 # Every entrypoint imports config sooner or later, so load .env here once --
-# google-genai (unlike the claude CLI subprocess) reads GEMINI_API_KEY
-# straight from os.environ and won't pick up an unloaded .env on its own.
+# google-genai (unlike the claude CLI subprocess) reads auth from os.environ
+# (GEMINI_API_KEY, or GOOGLE_CLOUD_PROJECT + ADC in enterprise/Vertex mode)
+# and won't pick up an unloaded .env on its own.
 load_dotenv()
 
 # repo root = .../AI Engineering Challenge/pipeline ; data root = .../AI Engineering Challenge
@@ -36,11 +37,9 @@ for d in (CACHE_DIR, LOG_DIR):
     d.mkdir(parents=True, exist_ok=True)
 
 ANTHROPIC_MODEL = os.environ.get("DATASTEL_ANTHROPIC_MODEL", "claude-sonnet-5")
-# "gemini-flash-latest" (Gemini 3.6 Flash) scored 0.733 on questions_valid.csv
-# (92% Perfect on the questions it completed) vs. "gemini-flash-lite-latest"'s
-# 0.533 -- meaningfully more capable at this task's multi-hop/vision/precise-
-# extraction demands. Requires a paid (prepay-funded) project: the free tier's
-# 5 req/min quota makes it impractical for a multi-turn tool-calling agent.
-# Flash-Lite remains a cheap fallback if quota/budget gets tight.
-GEMINI_MODEL = os.environ.get("DATASTEL_GEMINI_MODEL", "gemini-flash-latest")
+# gemini-3.6-flash scored 0.733 on questions_valid.csv (as gemini-flash-latest
+# on the Developer API) vs. Flash-Lite's 0.533 -- meaningfully more capable at
+# this task's multi-hop/vision/precise-extraction demands. Pin the Vertex /
+# Enterprise model id rather than the Developer API "-latest" alias.
+GEMINI_MODEL = os.environ.get("DATASTEL_GEMINI_MODEL", "gemini-3.6-flash")
 MAX_ANSWER_TOKENS = 1000

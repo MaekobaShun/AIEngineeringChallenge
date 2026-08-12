@@ -3,15 +3,14 @@ SYSTEM_PROMPT_TEMPLATE = """\
 社内から寄せられる質問に対し、共有ドライブ内の案件資料(文書・表・画像・コード)を根拠に回答してください。
 
 # 厳守事項
-- 回答の根拠は、必ずツール(search_documents / get_document / list_project_files / run_python / {image_tool} など)経由で
+- 回答の根拠は、必ずツール({retrieval_tools} / run_python / {image_tool} など)経由で
   実際に取得した資料の内容とすること。あなた自身の一般知識・推測・Web検索由来の情報を根拠にしてはいけない。
 - 数値の集計・比較・フィルタ処理はrun_pythonツールで実際に計算すること。暗算や推測で数値を出さない。
 - 質問文に社内用語・略称(例: KAEDE, AYM, PP, CT, PL, M01, YL など)が含まれる場合、
   expand_glossary_terms / resolve_project ツールで正式な意味に展開してから調査すること。
   ただし資料内で定義されているタスクID・アクションID・マイルストーンID・列名・パラメータ名などの識別子は、
   資料上の表記どおりに回答すること(勝手に展開・意訳しない)。
-- 単一資料で完結しない質問(複数資料・複数案件の照合、比較、集計)には、
-  必要な数だけsearch_documents/get_documentを繰り返して裏を取ること。
+{retrieval_policy}
 - 画像・グラフ・スキャンPDF・埋め込み画像など視覚的な読解が必要な場合は、
   get_documentの結果に含まれる画像パスを{image_tool}ツールで開いて確認すること。
   マーカー・ハイライト・色など画像内の視覚的特徴を問う質問では、必ず実際に画像を開いて目視確認した要素だけを答える。
@@ -51,10 +50,54 @@ SYSTEM_PROMPT_TEMPLATE = """\
 - submit_answerを呼ぶ前に、他のテキストで回答を書き散らかさないこと。
 """
 
+_BM25_POLICY = """\
+- 単一資料で完結しない質問(複数資料・複数案件の照合、比較、集計)には、
+  必要な数だけsearch_documents/get_documentを繰り返して裏を取ること。
+"""
+
+_SKILL_NAV_POLICY = """\
+# 文書探索モード (retrieval_mode=skill_nav / route_forced)
+- BM25検索(search_documents)は本モードでは使えない。文書の特定は list_children による階層ナビのみ。
+- 必ず最初に list_children(node_id=\"root\") を呼び、案件→フェーズ→ファイルと段階的に降りること。
+- 各ノードの summary / title / phase を読んで関連しそうな child の id を選ぶ。
+- 行き止まり・無関係だったら parent_id に戻って別の枝を選ぶ(バックトラック)。
+- リーフで rel_path が分かったら get_document で本文を読む。推測で中身を埋めない。
+- これは実験用の強制ルートであり、ツールを自律選択した結果ではない。
+"""
+
+_HYBRID_POLICY = """\
+- 単一資料で完結しない質問(複数資料・複数案件の照合、比較、集計)には、
+  必要な数だけsearch_documents/get_documentを繰り返して裏を取ること。
+- search_documentsはキーワード一致に基づく検索であり、質問文と資料本文で言い回しが違う場合
+  (言い換え・要約的な表現など)は関連箇所を取りこぼすことがある。
+  検索結果が薄い・的外れ・「見つからない」場合は、諦めて「わかりません」と答える前に、
+  list_children(node_id=\"root\")から案件→フェーズ→ファイルを辿って該当ファイルを直接探すこと。
+  特に「最終報告書」「残余リスク」のように資料内の見出し語が質問文と一致しにくいテーマは、
+  ナビゲーションの方が確実に見つかる。
+"""
+
+
+def build_system_prompt(*, image_tool: str, retrieval_mode: str = "bm25") -> str:
+    if retrieval_mode == "skill_nav":
+        retrieval_tools = "list_children / get_document"
+        retrieval_policy = _SKILL_NAV_POLICY
+    elif retrieval_mode == "hybrid":
+        retrieval_tools = "search_documents / get_document / list_project_files / list_children"
+        retrieval_policy = _HYBRID_POLICY
+    else:
+        retrieval_tools = "search_documents / get_document / list_project_files"
+        retrieval_policy = _BM25_POLICY
+    return SYSTEM_PROMPT_TEMPLATE.format(
+        image_tool=image_tool,
+        retrieval_tools=retrieval_tools,
+        retrieval_policy=retrieval_policy,
+    )
+
+
 # Claude Agent SDK path: built-in Read tool opens any path directly (images/PDFs).
-SYSTEM_PROMPT = SYSTEM_PROMPT_TEMPLATE.format(image_tool="Read")
+SYSTEM_PROMPT = build_system_prompt(image_tool="Read", retrieval_mode="bm25")
 # Gemini path: no built-in file reader, so a dedicated view_image tool is exposed instead.
-SYSTEM_PROMPT_GEMINI = SYSTEM_PROMPT_TEMPLATE.format(image_tool="view_image")
+SYSTEM_PROMPT_GEMINI = build_system_prompt(image_tool="view_image", retrieval_mode="hybrid")
 
 
 def user_prompt(question: str) -> str:
