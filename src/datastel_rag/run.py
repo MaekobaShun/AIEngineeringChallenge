@@ -45,7 +45,7 @@ def parse_args():
     p.add_argument("--log", default=None, help="JSONL run log path (default: logs/run_<timestamp>.jsonl)")
     p.add_argument("--limit", type=int, default=None, help="only answer the first N rows (smoke testing)")
     p.add_argument("--concurrency", type=int, default=3)
-    p.add_argument("--max-turns", type=int, default=50)
+    p.add_argument("--max-turns", type=int, default=60)
     p.add_argument("--max-budget-usd", type=float, default=1.5, help="Claude only; Gemini has no per-call cost API")
     p.add_argument("--model", default=None)
     p.add_argument("--refresh-index", action="store_true", help="force re-parse everything instead of using the cache")

@@ -138,12 +138,20 @@ def list_project_files_impl(ctx: ToolContext, project: str) -> str:
     return "\n".join(f"{f.rel_path}  (ext={f.ext}, phase={f.phase}, encrypted={f.is_encrypted})" for f in proj.files)
 
 
-def _make_restricted_open(scratch_dir: Path):
+def _make_restricted_open(scratch_dir: Path, real_open):
     """run_python is meant for read-only pandas/numpy computation over the
-    share drive's raw tables. It's still plain exec() with real builtins
-    (an agent has legitimately used it to crop an image with PIL for a
-    closer look), so writes are confined to a scratch dir under cache/
-    instead of landing wherever the process cwd happens to be."""
+    share drive's raw tables. It's still plain exec(), and an agent has
+    legitimately used it to crop an image with PIL for a closer look, so
+    writes are confined to a scratch dir under cache/ instead of landing
+    wherever the process cwd happens to be.
+
+    Shadowing `open` only in the exec namespace's __builtins__ does NOT
+    catch writes made by library code the exec'd script calls into (e.g.
+    PIL.Image.save(), pandas.DataFrame.to_csv()) -- those resolve `open`
+    through the real `builtins` module, not the caller's local namespace.
+    So this patches `builtins.open` itself for the duration of the call
+    (see the try/finally in run_python_impl) to actually catch every path.
+    """
 
     def restricted_open(file, mode="r", *args, **kwargs):
         if any(m in mode for m in ("w", "a", "x", "+")):
@@ -154,8 +162,8 @@ def _make_restricted_open(scratch_dir: Path):
             if p != scratch_resolved and scratch_resolved not in p.parents:
                 raise PermissionError(f"run_pythonからの書き込みは{scratch_dir}配下のみ許可されています: {file}")
             p.parent.mkdir(parents=True, exist_ok=True)
-            return builtins.open(p, mode, *args, **kwargs)
-        return builtins.open(file, mode, *args, **kwargs)
+            return real_open(p, mode, *args, **kwargs)
+        return real_open(file, mode, *args, **kwargs)
 
     return restricted_open
 
@@ -174,23 +182,24 @@ def run_python_impl(ctx: ToolContext, code: str) -> str:
         raise ValueError(f"read_tableが対応していない拡張子です: {entry.ext}")
 
     SCRATCH_DIR.mkdir(parents=True, exist_ok=True)
-    restricted_builtins = dict(vars(builtins))
-    restricted_builtins["open"] = _make_restricted_open(SCRATCH_DIR)
 
     global_ns = {
         "pd": pd,
         "np": np,
         "read_table": read_table,
         "SCRATCH_DIR": str(SCRATCH_DIR),
-        "__builtins__": restricted_builtins,
     }
     local_ns: dict = {}
     buf = io.StringIO()
+    real_open = builtins.open
+    builtins.open = _make_restricted_open(SCRATCH_DIR, real_open)
     try:
         with contextlib.redirect_stdout(buf):
             exec(code, global_ns, local_ns)
     except Exception as e:
         return f"実行エラー: {type(e).__name__}: {e}\n\n--- stdout ---\n{buf.getvalue()}"
+    finally:
+        builtins.open = real_open
 
     out = buf.getvalue()
     if "result" in local_ns:

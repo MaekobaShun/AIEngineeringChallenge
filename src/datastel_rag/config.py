@@ -36,9 +36,11 @@ for d in (CACHE_DIR, LOG_DIR):
     d.mkdir(parents=True, exist_ok=True)
 
 ANTHROPIC_MODEL = os.environ.get("DATASTEL_ANTHROPIC_MODEL", "claude-sonnet-5")
-# "gemini-flash-latest" resolves to a preview-ish model with a 5 req/min
-# free-tier quota -- far too tight for a multi-turn tool-calling agent (one
-# question took over an hour of backoff waiting before we switched this).
-# The "-lite" variant's free tier tolerates rapid consecutive calls.
-GEMINI_MODEL = os.environ.get("DATASTEL_GEMINI_MODEL", "gemini-flash-lite-latest")
+# "gemini-flash-latest" (Gemini 3.6 Flash) scored 0.733 on questions_valid.csv
+# (92% Perfect on the questions it completed) vs. "gemini-flash-lite-latest"'s
+# 0.533 -- meaningfully more capable at this task's multi-hop/vision/precise-
+# extraction demands. Requires a paid (prepay-funded) project: the free tier's
+# 5 req/min quota makes it impractical for a multi-turn tool-calling agent.
+# Flash-Lite remains a cheap fallback if quota/budget gets tight.
+GEMINI_MODEL = os.environ.get("DATASTEL_GEMINI_MODEL", "gemini-flash-latest")
 MAX_ANSWER_TOKENS = 1000
