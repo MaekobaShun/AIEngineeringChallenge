@@ -309,7 +309,7 @@ async def answer_question_async(
     catalog: Catalog,
     glossary: Glossary,
     max_turns: int = 50,
-    max_budget_usd: float = 1.5,  # unused for Gemini (no per-call cost API); kept for interface parity
+    max_budget_usd: float = 4.0,  # enforced from real usage_metadata-derived cost (see below); 0/None disables
     model: str | None = None,
     retrieval_mode: str = "hybrid",
     skill_tree: SkillTree | None = None,
@@ -350,6 +350,16 @@ async def answer_question_async(
                 result.output_tokens += out_tok
                 in_price, out_price = _price_for_model(response.model_version or model_name)
                 result.cost_usd += (in_tok / 1_000_000) * in_price + (out_tok / 1_000_000) * out_price
+
+            if max_budget_usd and result.cost_usd >= max_budget_usd:
+                # No prompt caching on this path: every turn resends the whole
+                # accumulated conversation, so cost grows roughly with turns^2
+                # once context gets large (one questions_valid.csv question hit
+                # $15.87 across 27 turns). A stuck/looping question should fail
+                # cheaply, not silently burn the budget meant for the other 99.
+                result.is_error = True
+                result.error_detail = f"max_budget_usd (${max_budget_usd:.2f}) exceeded (spent ${result.cost_usd:.2f} over {result.num_turns} turns)"
+                break
 
             if not response.candidates:
                 result.is_error = True

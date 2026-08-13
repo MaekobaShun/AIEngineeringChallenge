@@ -2,6 +2,15 @@
 the agent, and writes predictions.csv (index,answer -- no header, matching
 evaluation/src/validator.py's expected format).
 
+--out is written after every single completed question (atomic replace), not
+once at the end -- for a 100-question batch that can run over an hour, only
+finishing on success would mean a crash on question 87 loses the API spend on
+the other 86 that already succeeded. Re-running the exact same command
+resumes automatically: existing rows in --out are loaded first and skipped,
+so nothing already paid for gets redone. Pass --indices to force specific
+rows to run regardless of what's already in --out (e.g. retrying ones that
+came back as errors/"わかりません").
+
 Usage:
     uv run python -m datastel_rag.run --questions ../share/質問回答/questions_valid.csv --out submit/predictions.csv
     uv run python -m datastel_rag.run --questions ... --out ... --limit 5   # smoke test on the first 5 rows
@@ -65,13 +74,48 @@ def parse_args():
     )
     p.add_argument("--concurrency", type=int, default=3)
     p.add_argument("--max-turns", type=int, default=60)
-    p.add_argument("--max-budget-usd", type=float, default=1.5, help="Claude only; Gemini has no per-call cost API")
+    p.add_argument(
+        "--max-budget-usd",
+        type=float,
+        default=4.0,
+        help="per-question cost circuit breaker (no prompt caching means cost can grow ~quadratically with turns on a stuck question)",
+    )
     p.add_argument("--model", default=None)
     p.add_argument("--refresh-index", action="store_true", help="force re-parse everything instead of using the cache")
     return p.parse_args()
 
 
-async def _run_one(sem, idx_num, question, index, catalog, glossary, args, log_f, skill_tree):
+def _sanitize_answer(a: str) -> str:
+    # evaluation/src/validator.py pre-checks the file line-by-line before any
+    # real CSV parsing, so an embedded newline (breaking one row across two
+    # physical lines) is fatal even though it'd be valid CSV -- collapse to
+    # single-line answers defensively (the prompt already asks for this).
+    return " / ".join(a.replace("\r\n", "\n").split("\n")).strip()
+
+
+def _write_predictions(out_path: Path, answers: dict[int, str]) -> None:
+    """Rewrites the whole (small, <=100-row) file on every completed question.
+    Cheap at this scale, and means a crash mid-batch loses at most the one
+    in-flight question instead of the entire run's API spend."""
+    out_df = pd.DataFrame(sorted(answers.items()), columns=["index", "answer"])
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = out_path.with_suffix(out_path.suffix + ".tmp")
+    out_df.to_csv(tmp_path, header=False, index=False)
+    tmp_path.replace(out_path)  # atomic on both POSIX and Windows (same filesystem)
+
+
+def _load_existing_answers(out_path: Path) -> dict[int, str]:
+    if not out_path.exists():
+        return {}
+    try:
+        df = pd.read_csv(out_path, header=None, names=["index", "answer"], dtype={"index": int})
+        return dict(zip(df["index"], df["answer"].astype(str)))
+    except Exception as e:
+        print(f"warning: could not parse existing {out_path} for resume ({e}); starting fresh")
+        return {}
+
+
+async def _run_one(sem, idx_num, question, index, catalog, glossary, args, log_f, skill_tree, answers, out_path):
     answer_question_async = _get_provider(args.provider)
     async with sem:
         start = time.time()
@@ -124,6 +168,13 @@ async def _run_one(sem, idx_num, question, index, catalog, glossary, args, log_f
         log_f.write(json.dumps(record, ensure_ascii=False) + "\n")
         log_f.flush()
         print(f"[{idx_num}] turns={result.num_turns} cost=${result.cost_usd:.3f} err={result.is_error} :: {result.answer[:80]!r}")
+
+        # Persist immediately (not just log) so a crash mid-batch only loses the
+        # in-flight question, not every answer computed before it -- main_async
+        # only builds a task for indices not already in `answers`, so this never
+        # overwrites a resumed answer with this run's own placeholder.
+        answers[idx_num] = _sanitize_answer(result.answer)
+        _write_predictions(out_path, answers)
         return idx_num, result.answer
 
 
@@ -134,6 +185,19 @@ async def main_async(args):
         questions_df = questions_df[questions_df["index"].isin(wanted)]
     if args.limit:
         questions_df = questions_df.head(args.limit)
+
+    out_path = Path(args.out)
+    answers = _load_existing_answers(out_path)
+    if answers and not args.indices:
+        # --indices means "run exactly these" (e.g. retrying specific failures) --
+        # only auto-skip already-answered rows for the general full-batch case.
+        before = len(questions_df)
+        questions_df = questions_df[~questions_df["index"].isin(answers.keys())]
+        print(f"resume: {out_path} already has {len(answers)} answers -- skipping those, {len(questions_df)}/{before} remaining")
+
+    if questions_df.empty:
+        print("nothing left to do")
+        return
 
     catalog = load_or_build_catalog(refresh=args.refresh_index)
     glossary = load_or_build_glossary(refresh=args.refresh_index)
@@ -151,21 +215,12 @@ async def main_async(args):
     sem = asyncio.Semaphore(args.concurrency)
     with open(log_path, "w", encoding="utf-8") as log_f:
         tasks = [
-            _run_one(sem, int(row["index"]), row["question"], index, catalog, glossary, args, log_f, skill_tree)
+            _run_one(sem, int(row["index"]), row["question"], index, catalog, glossary, args, log_f, skill_tree, answers, out_path)
             for _, row in questions_df.iterrows()
         ]
-        results = await asyncio.gather(*tasks)
+        await asyncio.gather(*tasks)
 
-    # evaluation/src/validator.py pre-checks the file line-by-line before any
-    # real CSV parsing, so an embedded newline (breaking one row across two
-    # physical lines) is fatal even though it'd be valid CSV -- collapse to
-    # single-line answers defensively (the prompt already asks for this).
-    sanitized = [(i, " / ".join(a.replace("\r\n", "\n").split("\n")).strip()) for i, a in results]
-    out_df = pd.DataFrame(sorted(sanitized, key=lambda t: t[0]), columns=["index", "answer"])
-    out_path = Path(args.out)
-    out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_df.to_csv(out_path, header=False, index=False)
-    print(f"\nwrote {len(out_df)} rows to {out_path}")
+    print(f"\nwrote {len(answers)} rows to {out_path}")
     print(f"log: {log_path}")
 
 
