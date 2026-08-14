@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import builtins
 import contextlib
+import difflib
 import io
 import mimetypes
 import os
@@ -105,15 +106,51 @@ def _format_document(rel_path: str, doc) -> tuple[str, list[str]]:
     return text, image_paths
 
 
+def _get_parsed_document(ctx: ToolContext, rel_path: str):
+    doc = ctx.index.get_document(rel_path)
+    if doc is not None:
+        return doc
+    entry = ctx.catalog.find_by_rel_path(rel_path)
+    if entry is None:
+        return None
+    return parse_entry(entry, ctx.catalog, ctx.glossary)
+
+
 def get_document_impl(ctx: ToolContext, rel_path: str) -> tuple[str, list[str]]:
     """Returns (formatted_text, image_cache_paths)."""
-    doc = ctx.index.get_document(rel_path)
+    doc = _get_parsed_document(ctx, rel_path)
     if doc is None:
-        entry = ctx.catalog.find_by_rel_path(rel_path)
-        if entry is None:
-            return f"ファイルが見つかりません: {rel_path}", []
-        doc = parse_entry(entry, ctx.catalog, ctx.glossary)
+        return f"ファイルが見つかりません: {rel_path}", []
     return _format_document(rel_path, doc)
+
+
+def diff_documents_impl(ctx: ToolContext, rel_path_a: str, rel_path_b: str) -> str:
+    """Line-level diff between two documents' extracted text blocks (e.g. an
+    old vs new version of the same file). Deterministic (difflib), not the
+    model eyeballing two long documents itself -- confirmed in practice that
+    approach misses whole added sections (an entire new subsection in a
+    proposal deck was overlooked this way and answered "no changes")."""
+    doc_a = _get_parsed_document(ctx, rel_path_a)
+    if doc_a is None:
+        return f"ファイルが見つかりません: {rel_path_a}"
+    doc_b = _get_parsed_document(ctx, rel_path_b)
+    if doc_b is None:
+        return f"ファイルが見つかりません: {rel_path_b}"
+
+    texts_a = [b.text for b in doc_a.blocks if b.text.strip()]
+    texts_b = [b.text for b in doc_b.blocks if b.text.strip()]
+    diff_lines = list(difflib.unified_diff(texts_a, texts_b, fromfile=rel_path_a, tofile=rel_path_b, lineterm=""))
+    if not diff_lines:
+        return "テキストブロックの構成に差分はありません(内容は同一)。"
+
+    text = "\n".join(diff_lines)
+    if len(text) > _MAX_DOC_CHARS:
+        text = text[:_MAX_DOC_CHARS] + "\n...[切り詰め: 差分が大きいため一部のみ表示]"
+    return (
+        "行頭 '-' は旧版のみ、'+' は新版のみに存在する行(=追加/削除された内容)。"
+        "レイアウト変更で同じ内容がブロックの区切り方だけ変わった箇所もノイズとして出るため、"
+        "本当に内容が変わった箇所かを見極めること。\n\n" + text
+    )
 
 
 def list_children_impl(ctx: ToolContext, node_id: str | None = None) -> str:

@@ -74,6 +74,15 @@ _FD_VIEW_IMAGE = types.FunctionDeclaration(
     description="画像ファイル、またはget_documentが返すレンダリング済みページ(PDFページ等)のキャッシュパスを開いて視覚的に確認する。",
     parameters_json_schema=_schema({"path": _STR}, ["path"]),
 )
+_FD_DIFF_DOCUMENTS = types.FunctionDeclaration(
+    name="diff_documents",
+    description=(
+        "2つのファイル(旧版と新版など)のテキストをdifflibで機械的に比較し、行単位の差分を返す。"
+        "「新旧版で実質的な変更点を挙げよ」系の質問では、目視比較だけに頼らず必ずこれを使うこと"
+        "(2つの長い文書を読み比べるだけでは、丸ごと追加されたセクションを見落とすことがある)。"
+    ),
+    parameters_json_schema=_schema({"rel_path_a": _STR, "rel_path_b": _STR}, ["rel_path_a", "rel_path_b"]),
+)
 _FD_RESOLVE_PROJECT = types.FunctionDeclaration(
     name="resolve_project",
     description="質問文に出てくる案件名・略称・別名から、社内用語集で定義されている正式な案件名と主略称を解決する。",
@@ -129,6 +138,7 @@ def _tools_for_mode(retrieval_mode: str) -> list[types.Tool]:
     common_tail = [
         _FD_GET_DOCUMENT,
         _FD_VIEW_IMAGE,
+        _FD_DIFF_DOCUMENTS,
         _FD_RESOLVE_PROJECT,
         _FD_LIST_PROJECTS,
         _FD_EXPAND,
@@ -157,6 +167,8 @@ def _dispatch(ctx: ToolContext, name: str, args: dict) -> tuple[dict, bytes | No
         if name == "get_document":
             text, _image_paths = core.get_document_impl(ctx, args["rel_path"])
             return {"result": text}, None, None
+        if name == "diff_documents":
+            return {"result": core.diff_documents_impl(ctx, args["rel_path_a"], args["rel_path_b"])}, None, None
         if name == "view_image":
             data, mime = core.view_image_impl(args["path"])
             return {"result": "画像を添付しました。"}, data, mime

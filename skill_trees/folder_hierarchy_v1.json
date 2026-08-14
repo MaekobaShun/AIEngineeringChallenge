@@ -2,7 +2,7 @@
   "meta": {
     "version": "folder_hierarchy_v1",
     "source": "share-drive catalog phases (not Corpus2Skill clustering)",
-    "note": "Generic phase-level leaf summaries only, derived from the folder structure -- no per-file or per-question hand-tuning. Used as a navigation fallback (list_children) alongside BM25 search_documents in retrieval_mode=hybrid; retrieval_mode=skill_nav disables search entirely for isolated ablation testing."
+    "note": "Leaf summaries are deterministic structural pointers (sheet/column names, headings, function names, ...) computed from each file's parsed content -- not LLM-generated gist summaries, and no per-file/per-question hand-tuning. Used as a navigation fallback (list_children) alongside BM25 search_documents in retrieval_mode=hybrid; retrieval_mode=skill_nav disables search entirely for isolated ablation testing."
   },
   "nodes": {
     "root": {
@@ -60,7 +60,7 @@
       "code": "AOBM",
       "phase": "00.提案",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/00.提案/提案書.pdf",
-      "summary": "提案書.pdf（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書.pdf（00.提案）。15ページ / 各ページ冒頭=p1:株式会社データアステル | p2:1 | p3:2 | p4:3 | p5:4 | p6:5 | p7:6 | p8:7 | p9:8 | p10:9 | p11:10 | p12:11 | p13:12 | p14:13 | p15:14 / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:AOBM:00.提案"
     },
@@ -84,7 +84,7 @@
       "code": "AOBM",
       "phase": "01.契約",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/01.契約/契約書.docx",
-      "summary": "契約書.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
+      "summary": "契約書.docx（01.契約）。見出し=['データ分析業務委託契約書', '1. 当事者', '（1）甲', '（2）乙', '2. 目的', '3. 業務範囲', '4. 成果物および検収', '5. 契約期間', '6. 報酬および支払条件', '7. 知的財産権', '8. 秘密保持', '9. 再委託', '10. 解除', '11. 責任範囲', '12. 準拠法および裁判管轄', '13. 署名欄', '甲', '乙', '14. 特約事項（追加対応の扱い）'] / 表(2行分)。",
       "children": [],
       "parent_id": "phase:AOBM:01.契約"
     },
@@ -95,7 +95,7 @@
       "code": "AOBM",
       "phase": "01.契約",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/01.契約/契約書_draft.docx",
-      "summary": "契約書_draft.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
+      "summary": "契約書_draft.docx（01.契約）。見出し=['データ分析業務委託契約書', '1. 当事者', '（1）甲', '（2）乙', '2. 目的', '3. 業務範囲', '4. 成果物および検収', '5. 契約期間', '6. 報酬および支払条件', '7. 知的財産権', '8. 秘密保持', '9. 再委託', '10. 解除', '11. 責任範囲', '12. 準拠法および裁判管轄', '13. 署名欄', '甲', '乙', '14. 特約事項（追加対応の扱い）'] / 表(2行分)。",
       "children": [],
       "parent_id": "phase:AOBM:01.契約"
     },
@@ -118,7 +118,7 @@
       "code": "AOBM",
       "phase": "02.計画",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/02.計画/スケジュール.xlsx",
-      "summary": "スケジュール.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
+      "summary": "スケジュール.xlsx（02.計画）。シート=['WBS', 'マイルストーン・CP', 'リソース配分']。",
       "children": [],
       "parent_id": "phase:AOBM:02.計画"
     },
@@ -143,7 +143,7 @@
       "code": "AOBM",
       "phase": "03.データ",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/03.データ/train.csv",
-      "summary": "train.csv（03.データ）。学習データ・カラム説明。",
+      "summary": "train.csv（03.データ）。列=['id', 'Age', 'Attrition', 'BusinessTravel', 'DailyRate', 'Department', 'DistanceFromHome', 'Education', 'EducationField', 'EnvironmentSatisfaction', 'Gender', 'HourlyRate', 'JobInvolvement', 'JobLevel', 'JobRole', 'JobSatisfaction', 'MaritalStatus', 'MonthlyIncome', 'NumCompaniesWorked', 'Over18', 'OverTime', 'PercentSalaryHike', 'PerformanceRating', 'RelationshipSatisfaction', 'StandardHours'] (+8)(735行)。",
       "children": [],
       "parent_id": "phase:AOBM:03.データ"
     },
@@ -154,7 +154,7 @@
       "code": "AOBM",
       "phase": "03.データ",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/03.データ/train.xlsx",
-      "summary": "train.xlsx（03.データ）。学習データ・カラム説明。",
+      "summary": "train.xlsx（03.データ）。シート=['Pivot', 'train'] / [train]列=['id', 'Age', 'Attrition', 'BusinessTravel', 'DailyRate', 'Department', 'DistanceFromHome', 'Education', 'EducationField', 'EnvironmentSatisfaction', 'Gender', 'HourlyRate', 'JobInvolvement', 'JobLevel', 'JobRole'] (+18)(736行) / [Pivot]グループ化=['Attrition', 'Gender', 'MaritalStatus', 'EducationField'] 集計=['平均 / MonthlyIncome']。",
       "children": [],
       "parent_id": "phase:AOBM:03.データ"
     },
@@ -165,7 +165,7 @@
       "code": "AOBM",
       "phase": "03.データ",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/03.データ/カラム説明.md",
-      "summary": "カラム説明.md（03.データ）。学習データ・カラム説明。",
+      "summary": "カラム説明.md（03.データ）。見出し=['### train.csv']。",
       "children": [],
       "parent_id": "phase:AOBM:03.データ"
     },
@@ -207,7 +207,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_outputs/experiments/leaderboard.csv",
-      "summary": "leaderboard.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "leaderboard.csv（04.分析）。列=['trial_index', 'trial_role', 'planner_stage', 'improves_on', 'trial_goal', 'selection_reason', 'change_summary', 'status', 'model_type', 'use_date_features', 'use_cyclical_time_features', 'random_state', 'test_size', 'split_strategy', 'transform_target', 'task_type', 'primary_metric', 'primary_value', 'secondary_metric', 'secondary_value'](10行)。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -218,7 +218,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_outputs/metrics.json",
-      "summary": "metrics.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "metrics.json（04.分析）。トップレベルキー=['task_type', 'encoding', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'drop_original_categorical_after_target_encoding', 'tune_class_decision_weights', 'scale_numeric_features', 'model_type', 'model_params', 'split_strategy', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'row_count', 'feature_count', 'train_rows', 'validation_rows', 'test_rows', 'split_ordering_basis', 'accuracy', 'f1_macro', 'auc_roc', 'brier_score', 'precision_at_top10pct', 'train_metrics', 'validation_metrics', 'eda_summary', 'feature_selection', 'ordered_feature_columns', 'selected_feature_count', 'excluded_feature_count']。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -229,7 +229,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_outputs/run_summary.json",
-      "summary": "run_summary.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_summary.json（04.分析）。トップレベルキー=['target_column', 'date_column', 'task_type', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'class_target_encoding_min_unique', 'class_target_encoding_max_unique', 'class_target_encoding_smoothing', 'drop_original_categorical_after_target_encoding', 'tune_class_decision_weights', 'scale_numeric_features', 'model_type', 'model_params', 'split_strategy', 'split_ordering_basis', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'output_dir', 'selected_feature_count', 'excluded_feature_columns', 'categorical_unique_limit', 'ordered_feature_columns', 'class_target_encoding', 'class_decision_tuning']。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -240,7 +240,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/README.md",
-      "summary": "README.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "README.md（04.分析）。見出し=['# analysis_project', '## Project structure', '## Setup', '### Option A: Python-only setu', '### Option B: uv setup', '## Run', '# Windows', '## Configuration summary']。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -251,7 +251,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/configs/project_config.json",
-      "summary": "project_config.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "project_config.json（04.分析）。トップレベルキー=['data_csv', 'column_doc', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'class_target_encoding_min_unique', 'class_target_encoding_max_unique', 'class_target_encoding_smoothing', 'drop_original_categorical_after_target_encoding', 'categorical_unique_limit_override', 'tune_class_decision_weights', 'scale_numeric_features', 'split_strategy', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'early_stopping_min_delta', 'model_type', 'model_params', 'output_dir', 'random_state', 'test_size', 'feature_plan', 'analysis_spec_path', 'task_type']。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -262,7 +262,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/data/train.csv",
-      "summary": "train.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "train.csv（04.分析）。列=['id', 'Age', 'Attrition', 'BusinessTravel', 'DailyRate', 'Department', 'DistanceFromHome', 'Education', 'EducationField', 'EnvironmentSatisfaction', 'Gender', 'HourlyRate', 'JobInvolvement', 'JobLevel', 'JobRole', 'JobSatisfaction', 'MaritalStatus', 'MonthlyIncome', 'NumCompaniesWorked', 'Over18', 'OverTime', 'PercentSalaryHike', 'PerformanceRating', 'RelationshipSatisfaction', 'StandardHours'] (+8)(735行)。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -273,7 +273,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/data/カラム説明.md",
-      "summary": "カラム説明.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "カラム説明.md（04.分析）。見出し=['### train.csv']。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -284,7 +284,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/notebooks/01_eda.ipynb",
-      "summary": "01_eda.ipynb（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "01_eda.ipynb（04.分析）。見出し=['# EDA Notebook'] / 関数/クラス=load_csv_auto。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -295,7 +295,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/pyproject.toml",
-      "summary": "pyproject.toml（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "pyproject.toml（04.分析）",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -306,7 +306,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/requirements.txt",
-      "summary": "requirements.txt（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "requirements.txt（04.分析）",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -317,7 +317,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/scripts/bootstrap_env.py",
-      "summary": "bootstrap_env.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "bootstrap_env.py（04.分析）。関数/クラス=_venv_python, _to_rel, _run, main。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -328,7 +328,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/scripts/run_train.py",
-      "summary": "run_train.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_train.py（04.分析）。関数/クラス=_metric_value, _is_metric_better, _model_classes, _predict_with_class_weights, _categorical_columns, _add_class_target_encoding, _tune_class_decision_weights, main。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -339,7 +339,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/src/__init__.py",
-      "summary": "__init__.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "__init__.py（04.分析）",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -350,7 +350,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/src/common.py",
-      "summary": "common.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "common.py（04.分析）。関数/クラス=load_json, save_json, to_rel, to_int, to_float, as_bool, load_csv_auto, infer_target_column, infer_date_column, _looks_like_date_text, _series_looks_date_like, infer_task_type, resolve_input_path, resolve_output_dir。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -361,7 +361,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/src/eda.py",
-      "summary": "eda.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "eda.py（04.分析）。関数/クラス=summarize_dataframe。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -372,7 +372,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/src/evaluate.py",
-      "summary": "evaluate.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "evaluate.py（04.分析）。関数/クラス=build_metrics_base, evaluate_predictions。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -383,7 +383,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/src/features.py",
-      "summary": "features.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "features.py（04.分析）。関数/クラス=is_pure_day_number_column, augment_date_features, augment_numeric_interactions, augment_cyclical_time_features, augment_ordered_category_features, is_identifier_like_column, _categorical_columns, group_rare_categories, add_categorical_frequency_features, select_feature_columns, build_preprocessor。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -394,7 +394,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/src/infer.py",
-      "summary": "infer.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "infer.py（04.分析）。関数/クラス=run_inference。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -405,7 +405,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/src/modeling.py",
-      "summary": "modeling.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "modeling.py（04.分析）。関数/クラス=build_pipeline。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -416,7 +416,7 @@
       "code": "AOBM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/04.分析/analysis_project/src/preprocess.py",
-      "summary": "preprocess.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "preprocess.py（04.分析）。関数/クラス=split_feature_target, train_test_holdout_split, train_valid_test_split。",
       "children": [],
       "parent_id": "phase:AOBM:04.分析"
     },
@@ -443,7 +443,7 @@
       "code": "AOBM",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/05.会議/会議録/会議録_2025-06-23.docx",
-      "summary": "会議録_2025-06-23.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-06-23.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. 次回会議計画'] / 表(7行分)。",
       "children": [],
       "parent_id": "phase:AOBM:05.会議"
     },
@@ -454,7 +454,7 @@
       "code": "AOBM",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/05.会議/会議録/会議録_2025-07-11.docx",
-      "summary": "会議録_2025-07-11.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-07-11.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. 次回会議計画'] / 表(10行分)。",
       "children": [],
       "parent_id": "phase:AOBM:05.会議"
     },
@@ -465,7 +465,7 @@
       "code": "AOBM",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/05.会議/会議録/会議録_2025-07-25.docx",
-      "summary": "会議録_2025-07-25.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-07-25.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. クロージング'] / 表(13行分)。",
       "children": [],
       "parent_id": "phase:AOBM:05.会議"
     },
@@ -476,7 +476,7 @@
       "code": "AOBM",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/05.会議/報告資料/報告資料_2025-06-23.docx",
-      "summary": "報告資料_2025-06-23.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-06-23.docx（05.会議）。見出し=['分析進捗報告書', '1. 報告サマリー', '2. 進捗状況', '2.1 現在位置', '2.2 スケジュールに対する進捗', '2.3 WBSトレース', '2.4 アクションアイテム状況', '3. 主要な分析結果', '3.1 キックオフ時点で確認できる分析上の前提', '3.2 現時点での初期ファインディング', '3.3 定量結果の扱い', '4. データ品質と実装状況', '4.1 データ品質の現時点評価', '4.2 実装状況', '4.3 実装上の補足', '5. リスクと対応策', '5.1 主要リスク', '5.2 直近で特に重要な未解決事項', '6. 次回までの実施事項', '6.1 直近実施事項'] (+2) / 表(32行分)。",
       "children": [],
       "parent_id": "phase:AOBM:05.会議"
     },
@@ -487,7 +487,7 @@
       "code": "AOBM",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/05.会議/報告資料/報告資料_2025-07-11.docx",
-      "summary": "報告資料_2025-07-11.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-07-11.docx（05.会議）。見出し=['分析進捗報告書', '1. 報告サマリー', '2. 進捗状況', '2.1 スケジュールに対する進捗', '2.2 WBS・マイルストンとのトレース', '2.3 アクションアイテム状況', '3. 主要な分析結果', '3.1 データ理解・EDAで確認した主要事項', '3.2 中間時点でのモデル試行結果', '3.3 中間時点での解釈', '3.4 業務的な示唆（中間時点）', '4. データ品質と実装状況', '4.1 データ品質の評価', '4.2 実装状況', '4.3 実装上の注意点', '5. リスクと対応策', '5.1 主要リスク', '5.2 現時点の未解決事項', '6. 次回までの実施事項', '6.1 計画済み実施事項'] (+7) / 表(64行分)。",
       "children": [],
       "parent_id": "phase:AOBM:05.会議"
     },
@@ -510,7 +510,7 @@
       "code": "AOBM",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/株式会社青葉バイオメディカル機器/06.報告書/株式会社青葉バイオメディカル機器_最終報告.pptx",
-      "summary": "株式会社青葉バイオメディカル機器_最終報告.pptx（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
+      "summary": "株式会社青葉バイオメディカル機器_最終報告.pptx（06.報告書）。21スライド / 各スライド冒頭=S0:最終分析報告書 | S1:対象データ | S2:業務成果 | S3:本成果は、人事施策の優先順位付け支援には有効である | S4:Attritionを目的変数として、従業員離職の主要因を定量 | S5:スコープ内 | S6:日付 | マイルストーン | 内容 | S7:データ行数 | S8:Extra Trees モデル構成 | S9:KPI分類 | 判定基準 | 結果 | 評価 | S10:指標 | 学習データ | 検証データ | S11:報酬水準 | S12:1 | S13:4 | S14:本案件は本番実装対象外。直近は分析成果物を用いた準運用を推奨。",
       "children": [],
       "parent_id": "phase:AOBM:06.報告書"
     },
@@ -552,7 +552,7 @@
       "code": "AOMINE",
       "phase": "00.提案",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/00.提案/old/提案書.pptx",
-      "summary": "提案書.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書.pptx（00.提案）。15スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:1. 背景 | S2:2. 目的 | S3:3. スコープ | S4:4. 分析アプローチ ― 全体フロー | S5:4. 分析アプローチ ― データ理解・前処理 | S6:4. 分析アプローチ ― 探索・モデリング・解釈 | S7:5. 実施体制 | S8:5. 会議運営 | S9:6. スケジュール案 | S10:7. 成果物定義 | S11:8. 費用見積 | S12:9. リスクと対応策 | S13:10. 前提条件と除外事項 | S14:11. 次アクション。",
       "children": [],
       "parent_id": "phase:AOMINE:00.提案"
     },
@@ -563,7 +563,7 @@
       "code": "AOMINE",
       "phase": "00.提案",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/00.提案/ニューヨーク不動産市場の最新動向調査.pdf",
-      "summary": "ニューヨーク不動産市場の最新動向調査.pdf（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "ニューヨーク不動産市場の最新動向調査.pdf（00.提案）。10ページ / 各ページ冒頭=p1:ニューヨークにおける不動産売買市場の多 | p2:住宅ローン金利の急騰と心理的影響  | p3:いても、売却に踏み切るオーナーが増加し始めている 10。  | p4:新規契約件数  | p5:クイーンズの最大の魅力はその相対的なアフォーダビリティにあり | p6:1,000 万ドル超 - 1,500 万ド | p7:遺産税 (Estate Tax) 免除額の激減案  | p8:住宅取得支援策とアフォーダビリティの追求  | p9:2026 年3 月のデータによれば、マンハッタンの賃貸在庫は | p10:チャンスを緻密に拾い上げていく適応力に他ならない。",
       "children": [],
       "parent_id": "phase:AOMINE:00.提案"
     },
@@ -574,7 +574,7 @@
       "code": "AOMINE",
       "phase": "00.提案",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/00.提案/提案書.pptx",
-      "summary": "提案書.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書.pptx（00.提案）。15スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:1. 背景 | S2:2. 目的 | S3:3. スコープ | S4:4. 分析アプローチ ― 全体フロー | S5:4. 分析アプローチ ― データ理解・前処理 | S6:4. 分析アプローチ ― 探索・モデリング・解釈 | S7:5. 実施体制 | S8:5. 会議運営 | S9:6. スケジュール案 | S10:7. 成果物定義 | S11:8. 費用見積 | S12:9. リスクと対応策 | S13:10. 前提条件と除外事項 | S14:11. 次アクション。",
       "children": [],
       "parent_id": "phase:AOMINE:00.提案"
     },
@@ -597,7 +597,7 @@
       "code": "AOMINE",
       "phase": "01.契約",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/01.契約/契約書.docx",
-      "summary": "契約書.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
+      "summary": "契約書.docx（01.契約）。見出し=['データ分析業務委託契約書', '1. 当事者', '1.1 甲', '1.2 乙', '1.3 実施体制', '2. 目的', '3. 業務範囲', '3.1 対象業務', '3.2 対象外業務', '3.3 推進方針', '4. 成果物および検収', '4.1 成果物', '4.2 成果物の内容', '4.3 検収', '5. 契約期間', '6. 報酬および支払条件', '6.1 課金方式', '6.2 商業条件', '6.3 工数記録および丸め', '6.4 精算方法'] (+13) / 表(25行分)。",
       "children": [],
       "parent_id": "phase:AOMINE:01.契約"
     },
@@ -621,7 +621,7 @@
       "code": "AOMINE",
       "phase": "02.計画",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/02.計画/スケジュール_r1.xlsx",
-      "summary": "スケジュール_r1.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
+      "summary": "スケジュール_r1.xlsx（02.計画）。シート=['スケジュール']。",
       "children": [],
       "parent_id": "phase:AOMINE:02.計画"
     },
@@ -632,7 +632,7 @@
       "code": "AOMINE",
       "phase": "02.計画",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/02.計画/スケジュール_r2.xlsx",
-      "summary": "スケジュール_r2.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
+      "summary": "スケジュール_r2.xlsx（02.計画）。シート=['スケジュール']。",
       "children": [],
       "parent_id": "phase:AOMINE:02.計画"
     },
@@ -657,7 +657,7 @@
       "code": "AOMINE",
       "phase": "03.データ",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/03.データ/train.csv",
-      "summary": "train.csv（03.データ）。学習データ・カラム説明。",
+      "summary": "train.csv（03.データ）。列=['id', 'BOROUGH', 'NEIGHBORHOOD', 'BUILDING CLASS CATEGORY', 'TAX CLASS AT PRESENT', 'BLOCK', 'LOT', 'BUILDING CLASS AT PRESENT', 'ZIP CODE', 'RESIDENTIAL UNITS', 'COMMERCIAL UNITS', 'TOTAL UNITS', 'LAND SQUARE FEET', 'GROSS SQUARE FEET', 'YEAR BUILT', 'TAX CLASS AT TIME OF SALE', 'BUILDING CLASS AT TIME OF SALE', 'SALE PRICE'](37751行)。",
       "children": [],
       "parent_id": "phase:AOMINE:03.データ"
     },
@@ -668,7 +668,7 @@
       "code": "AOMINE",
       "phase": "03.データ",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/03.データ/train.xlsx",
-      "summary": "train.xlsx（03.データ）。学習データ・カラム説明。",
+      "summary": "train.xlsx（03.データ）。シート=['Sheet2', 'Sheet1', 'train'] / [Sheet1]列=['id', 'BOROUGH', 'NEIGHBORHOOD', 'BUILDING CLASS CATEGORY', 'TAX CLASS AT PRESENT', 'BLOCK', 'LOT', 'BUILDING CLASS AT PRESENT', 'ZIP CODE', 'RESIDENTIAL UNITS', 'COMMERCIAL UNITS', 'TOTAL UNITS', 'LAND SQUARE FEET', 'GROSS SQUARE FEET', 'YEAR BUILT'] (+8)(37752行) / [train]列=['id', 'BOROUGH', 'NEIGHBORHOOD', 'BUILDING CLASS CATEGORY', 'TAX CLASS AT PRESENT', 'BLOCK', 'LOT', 'BUILDING CLASS AT PRESENT', 'ZIP CODE', 'RESIDENTIAL UNITS', 'COMMERCIAL UNITS', 'TOTAL UNITS', 'LAND SQUARE FEET', 'GROSS SQUARE FEET', 'YEAR BUILT'] (+3)(37752行)。",
       "children": [],
       "parent_id": "phase:AOMINE:03.データ"
     },
@@ -679,7 +679,7 @@
       "code": "AOMINE",
       "phase": "03.データ",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/03.データ/カラム説明.md",
-      "summary": "カラム説明.md（03.データ）。学習データ・カラム説明。",
+      "summary": "カラム説明.md（03.データ）",
       "children": [],
       "parent_id": "phase:AOMINE:03.データ"
     },
@@ -728,7 +728,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_outputs/experiments/leaderboard.csv",
-      "summary": "leaderboard.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "leaderboard.csv（04.分析）。列=['trial_index', 'trial_role', 'planner_stage', 'improves_on', 'trial_goal', 'selection_reason', 'change_summary', 'status', 'model_type', 'use_date_features', 'use_cyclical_time_features', 'random_state', 'test_size', 'split_strategy', 'transform_target', 'task_type', 'primary_metric', 'primary_value', 'secondary_metric', 'secondary_value'](10行)。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -739,7 +739,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_outputs/metrics.json",
-      "summary": "metrics.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "metrics.json（04.分析）。トップレベルキー=['task_type', 'encoding', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'drop_original_categorical_after_target_encoding', 'tune_class_decision_weights', 'model_type', 'model_params', 'split_strategy', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'row_count', 'feature_count', 'train_rows', 'validation_rows', 'test_rows', 'split_ordering_basis', 'rmse', 'mae', 'r2', 'train_metrics', 'validation_metrics', 'eda_summary', 'feature_selection', 'ordered_feature_columns', 'selected_feature_count', 'excluded_feature_count']。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -750,7 +750,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_outputs/run_summary.json",
-      "summary": "run_summary.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_summary.json（04.分析）。トップレベルキー=['target_column', 'date_column', 'task_type', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'class_target_encoding_min_unique', 'class_target_encoding_max_unique', 'class_target_encoding_smoothing', 'drop_original_categorical_after_target_encoding', 'tune_class_decision_weights', 'model_type', 'model_params', 'split_strategy', 'split_ordering_basis', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'output_dir', 'selected_feature_count', 'excluded_feature_columns', 'categorical_unique_limit', 'ordered_feature_columns', 'class_target_encoding', 'class_decision_tuning']。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -761,7 +761,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/README.md",
-      "summary": "README.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "README.md（04.分析）。見出し=['# analysis_project', '## Project structure', '## Setup', '### Option A: Python-only setu', '### Option B: uv setup', '## Run', '# Windows', '## Configuration summary']。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -772,7 +772,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/configs/project_config.json",
-      "summary": "project_config.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "project_config.json（04.分析）。トップレベルキー=['data_csv', 'column_doc', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'class_target_encoding_min_unique', 'class_target_encoding_max_unique', 'class_target_encoding_smoothing', 'drop_original_categorical_after_target_encoding', 'categorical_unique_limit_override', 'tune_class_decision_weights', 'split_strategy', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'early_stopping_min_delta', 'model_type', 'model_params', 'output_dir', 'random_state', 'test_size', 'feature_plan', 'analysis_spec_path', 'task_type']。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -783,7 +783,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/data/train.csv",
-      "summary": "train.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "train.csv（04.分析）。列=['id', 'BOROUGH', 'NEIGHBORHOOD', 'BUILDING CLASS CATEGORY', 'TAX CLASS AT PRESENT', 'BLOCK', 'LOT', 'BUILDING CLASS AT PRESENT', 'ZIP CODE', 'RESIDENTIAL UNITS', 'COMMERCIAL UNITS', 'TOTAL UNITS', 'LAND SQUARE FEET', 'GROSS SQUARE FEET', 'YEAR BUILT', 'TAX CLASS AT TIME OF SALE', 'BUILDING CLASS AT TIME OF SALE', 'SALE PRICE'](37751行)。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -794,7 +794,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/data/カラム説明.md",
-      "summary": "カラム説明.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "カラム説明.md（04.分析）",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -805,7 +805,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/notebooks/01_eda.ipynb",
-      "summary": "01_eda.ipynb（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "01_eda.ipynb（04.分析）。見出し=['# EDAノートブック', '## 固定EDA計画', '## 1. データ概要', '## 2. 欠損分析', '## 3. 数値特徴量の分布', '## 4. カテゴリ特徴量の分布', '## 5. 目的変数分析', '## 6. 相関分析', '## 7. 日付分析', '## 8. 観察結果サマリ'] / 関数/クラス=configure_japanese_font, load_csv_auto, is_pure_day_number_column, _to_numeric_series。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -816,7 +816,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/pyproject.toml",
-      "summary": "pyproject.toml（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "pyproject.toml（04.分析）",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -827,7 +827,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/reports/figures/categorical_distribution_top3.png",
-      "summary": "categorical_distribution_top3.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "categorical_distribution_top3.png（04.分析）",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -838,7 +838,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/reports/figures/date_feature_trend.png",
-      "summary": "date_feature_trend.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "date_feature_trend.png（04.分析）",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -849,7 +849,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/reports/figures/feature_correlation_heatmap.png",
-      "summary": "feature_correlation_heatmap.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "feature_correlation_heatmap.png（04.分析）",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -860,7 +860,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/reports/figures/missing_rate_top20.png",
-      "summary": "missing_rate_top20.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "missing_rate_top20.png（04.分析）",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -871,7 +871,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/reports/figures/numeric_distribution_top6.png",
-      "summary": "numeric_distribution_top6.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "numeric_distribution_top6.png（04.分析）",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -882,7 +882,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/reports/figures/target_distribution.png",
-      "summary": "target_distribution.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "target_distribution.png（04.分析）",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -893,7 +893,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/requirements.txt",
-      "summary": "requirements.txt（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "requirements.txt（04.分析）",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -904,7 +904,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/scripts/bootstrap_env.py",
-      "summary": "bootstrap_env.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "bootstrap_env.py（04.分析）。関数/クラス=_venv_python, _to_rel, _run, main。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -915,7 +915,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/scripts/run_train.py",
-      "summary": "run_train.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_train.py（04.分析）。関数/クラス=_metric_value, _is_metric_better, _model_classes, _predict_with_class_weights, _categorical_columns, _add_class_target_encoding, _tune_class_decision_weights, main。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -926,7 +926,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/src/__init__.py",
-      "summary": "__init__.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "__init__.py（04.分析）",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -937,7 +937,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/src/common.py",
-      "summary": "common.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "common.py（04.分析）。関数/クラス=load_json, save_json, to_rel, to_int, to_float, as_bool, load_csv_auto, infer_target_column, infer_date_column, infer_task_type, resolve_input_path, resolve_output_dir。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -948,7 +948,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/src/eda.py",
-      "summary": "eda.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "eda.py（04.分析）。関数/クラス=summarize_dataframe。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -959,7 +959,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/src/evaluate.py",
-      "summary": "evaluate.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "evaluate.py（04.分析）。関数/クラス=build_metrics_base, evaluate_predictions。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -970,7 +970,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/src/features.py",
-      "summary": "features.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "features.py（04.分析）。関数/クラス=is_pure_day_number_column, augment_date_features, augment_numeric_interactions, augment_cyclical_time_features, augment_ordered_category_features, is_identifier_like_column, _categorical_columns, group_rare_categories, add_categorical_frequency_features, select_feature_columns, build_preprocessor。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -981,7 +981,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/src/infer.py",
-      "summary": "infer.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "infer.py（04.分析）。関数/クラス=run_inference。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -992,7 +992,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/src/modeling.py",
-      "summary": "modeling.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "modeling.py（04.分析）。関数/クラス=build_pipeline。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -1003,7 +1003,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/src/preprocess.py",
-      "summary": "preprocess.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "preprocess.py（04.分析）。関数/クラス=split_feature_target, train_test_holdout_split, train_valid_test_split。",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -1014,7 +1014,7 @@
       "code": "AOMINE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/04.分析/analysis_project/uv.lock",
-      "summary": "uv.lock（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "uv.lock（04.分析）",
       "children": [],
       "parent_id": "phase:AOMINE:04.分析"
     },
@@ -1041,7 +1041,7 @@
       "code": "AOMINE",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/05.会議/会議録/会議録_2025-08-06.docx",
-      "summary": "会議録_2025-08-06.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-08-06.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. 次回会議計画'] / 表(9行分)。",
       "children": [],
       "parent_id": "phase:AOMINE:05.会議"
     },
@@ -1052,7 +1052,7 @@
       "code": "AOMINE",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/05.会議/会議録/会議録_2025-08-26.docx",
-      "summary": "会議録_2025-08-26.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-08-26.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. 次回会議計画'] / 表(13行分)。",
       "children": [],
       "parent_id": "phase:AOMINE:05.会議"
     },
@@ -1063,7 +1063,7 @@
       "code": "AOMINE",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/05.会議/会議録/会議録_2025-09-16.docx",
-      "summary": "会議録_2025-09-16.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-09-16.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. クロージング'] / 表(11行分)。",
       "children": [],
       "parent_id": "phase:AOMINE:05.会議"
     },
@@ -1074,7 +1074,7 @@
       "code": "AOMINE",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/05.会議/報告資料/報告資料_2025-08-06.pdf",
-      "summary": "報告資料_2025-08-06.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-08-06.pdf（05.会議）。5ページ / 各ページ冒頭=p1:分析進捗報告書  | p2:o 中間報告ゲート: MS4（中間報告承認）: 2025-0 | p3:▪  | p4:6. 次回までの実施事項  | p5:o 契約開始日: 2025-08-06（適用開始）。",
       "children": [],
       "parent_id": "phase:AOMINE:05.会議"
     },
@@ -1085,7 +1085,7 @@
       "code": "AOMINE",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/05.会議/報告資料/報告資料_2025-08-26.pdf",
-      "summary": "報告資料_2025-08-26.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-08-26.pdf（05.会議）。4ページ / 各ページ冒頭=p1:分析進捗報告書  | p2:▪  | p3:o  | p4:1. A03 の完了: date_column 実態の確定（。",
       "children": [],
       "parent_id": "phase:AOMINE:05.会議"
     },
@@ -1108,7 +1108,7 @@
       "code": "AOMINE",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/株式会社青嶺不動産アセットマネジメント/06.報告書/株式会社青嶺不動産アセットマネジメント_最終報告.pptx",
-      "summary": "株式会社青嶺不動産アセットマネジメント_最終報告.pptx（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
+      "summary": "株式会社青嶺不動産アセットマネジメント_最終報告.pptx（06.報告書）。17スライド / 各スライド冒頭=S0:最終分析報告書 | S1:目次 | S2:01  エグゼクティブサマリ | S3:02  プロジェクト目的とスコープ | S4:03  実施体制 | S5:03  主要工程（タイムライン） | S6:04  データ品質（確定事実） | S7:04  モデル評価結果 | S8:04  主要な説明因子と制約付き解釈 | S9:05  業務提言① データ品質改善 | S10:05  業務提言② モデル運用・ガバナンス・追加データ | S11:06  実装・運用計画 | S12:07  制約事項と残余リスク | S13:08  今後の拡張ロードマップ | S14:09  成果物サマリ。",
       "children": [],
       "parent_id": "phase:AOMINE:06.報告書"
     },
@@ -1148,7 +1148,7 @@
       "code": "AOSHIO",
       "phase": "00.提案",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/00.提案/提案書.pptx",
-      "summary": "提案書.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書.pptx（00.提案）。16スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:1. 背景 | S2:2. プロジェクト目的 | S3:3. スコープ ― 対象範囲 | S4:3. スコープ ― 対象外 | S5:4. 分析アプローチ ― 全体像 | S6:4.1-4.2 データ確認・前処理方針 | S7:4.3-4.4 特徴量設計・モデル構築 | S8:4.5 業務接続の進め方 | S9:5. 実施体制 | S10:6. スケジュール案 | S11:7. 成果物定義 | S12:8. 費用見積 | S13:9. リスクと対応策 | S14:10. 前提条件と除外事項。",
       "children": [],
       "parent_id": "phase:AOSHIO:00.提案"
     },
@@ -1171,7 +1171,7 @@
       "code": "AOSHIO",
       "phase": "01.契約",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/01.契約/契約書.docx",
-      "summary": "契約書.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
+      "summary": "契約書.docx（01.契約）。見出し=['データ分析業務委託契約書', '1. 当事者', '1.1 甲', '1.2 乙', '1.3 実施体制', '2. 目的', '3. 業務範囲', '3.1 対象業務', '3.2 前提条件', '3.3 対象外業務', '3.4 コミュニケーション', '4. 成果物および検収', '4.1 成果物', '4.2 提出時期', '4.3 検収', '5. 契約期間', '6. 報酬および支払条件', '6.1 契約形態', '6.2 単価および見込条件', '6.3 工数計上および丸め'] (+17) / 表(15行分)。",
       "children": [],
       "parent_id": "phase:AOSHIO:01.契約"
     },
@@ -1194,7 +1194,7 @@
       "code": "AOSHIO",
       "phase": "02.計画",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/02.計画/スケジュール.xlsx",
-      "summary": "スケジュール.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
+      "summary": "スケジュール.xlsx（02.計画）。シート=['WBSスケジュール_rev', 'WBSスケジュール']。",
       "children": [],
       "parent_id": "phase:AOSHIO:02.計画"
     },
@@ -1219,7 +1219,7 @@
       "code": "AOSHIO",
       "phase": "03.データ",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/03.データ/train.tsv",
-      "summary": "train.tsv（03.データ）。学習データ・カラム説明。",
+      "summary": "train.tsv（03.データ）。列=['id', 'dteday', 'season', 'yr', 'mnth', 'hr', 'holiday', 'weekday', 'workingday', 'weathersit', 'temp', 'atemp', 'hum', 'windspeed', 'cnt'](8645行)。",
       "children": [],
       "parent_id": "phase:AOSHIO:03.データ"
     },
@@ -1230,7 +1230,7 @@
       "code": "AOSHIO",
       "phase": "03.データ",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/03.データ/train.xlsx",
-      "summary": "train.xlsx（03.データ）。学習データ・カラム説明。",
+      "summary": "train.xlsx（03.データ）。シート=['Sheet1', 'Sheet2', 'Sheet3', 'train'] / [train]列=['id', 'dteday', 'season', 'yr', 'mnth', 'hr', 'holiday', 'weekday', 'workingday', 'weathersit', 'temp', 'atemp', 'hum', 'windspeed', 'cnt'](8646行) / [Pivot]グループ化=['weekday'] 集計=['平均 / temp', '平均 / atemp', '平均 / hum', '平均 / windspeed', '平均 / cnt'] / [Pivot]グループ化=['hr'] 集計=['カラム1', 'カラム2', 'カラム3']。",
       "children": [],
       "parent_id": "phase:AOSHIO:03.データ"
     },
@@ -1241,7 +1241,7 @@
       "code": "AOSHIO",
       "phase": "03.データ",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/03.データ/カラム説明.md",
-      "summary": "カラム説明.md（03.データ）。学習データ・カラム説明。",
+      "summary": "カラム説明.md（03.データ）。見出し=['### train.tsv']。",
       "children": [],
       "parent_id": "phase:AOSHIO:03.データ"
     },
@@ -1290,7 +1290,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_outputs/experiments/leaderboard.csv",
-      "summary": "leaderboard.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "leaderboard.csv（04.分析）。列=['trial_index', 'trial_role', 'planner_stage', 'improves_on', 'trial_goal', 'selection_reason', 'change_summary', 'status', 'model_type', 'use_date_features', 'use_cyclical_time_features', 'random_state', 'test_size', 'split_strategy', 'transform_target', 'task_type', 'primary_metric', 'primary_value', 'secondary_metric', 'secondary_value'](10行)。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1301,7 +1301,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_outputs/metrics.json",
-      "summary": "metrics.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "metrics.json（04.分析）。トップレベルキー=['task_type', 'encoding', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'model_type', 'model_params', 'split_strategy', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'row_count', 'feature_count', 'train_rows', 'validation_rows', 'test_rows', 'split_ordering_basis', 'rmse', 'mae', 'r2', 'train_metrics', 'validation_metrics', 'eda_summary', 'feature_selection', 'selected_feature_count', 'excluded_feature_count']。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1312,7 +1312,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_outputs/run_summary.json",
-      "summary": "run_summary.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_summary.json（04.分析）。トップレベルキー=['target_column', 'date_column', 'task_type', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'model_type', 'model_params', 'split_strategy', 'split_ordering_basis', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'output_dir', 'selected_feature_count', 'excluded_feature_columns', 'categorical_unique_limit']。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1323,7 +1323,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/README.md",
-      "summary": "README.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "README.md（04.分析）。見出し=['# analysis_project', '## Project structure', '## Setup', '### Option A: Python-only setu', '### Option B: uv setup', '## Run', '# Windows', '## Configuration summary']。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1334,7 +1334,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/configs/project_config.json",
-      "summary": "project_config.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "project_config.json（04.分析）。トップレベルキー=['data_csv', 'column_doc', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'split_strategy', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'early_stopping_min_delta', 'model_type', 'model_params', 'output_dir', 'random_state', 'test_size', 'feature_plan', 'analysis_spec_path', 'task_type']。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1345,7 +1345,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/data/train.tsv",
-      "summary": "train.tsv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "train.tsv（04.分析）。列=['id', 'dteday', 'season', 'yr', 'mnth', 'hr', 'holiday', 'weekday', 'workingday', 'weathersit', 'temp', 'atemp', 'hum', 'windspeed', 'cnt'](8645行)。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1356,7 +1356,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/data/カラム説明.md",
-      "summary": "カラム説明.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "カラム説明.md（04.分析）。見出し=['### train.tsv']。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1367,7 +1367,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/notebooks/01_eda.ipynb",
-      "summary": "01_eda.ipynb（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "01_eda.ipynb（04.分析）。見出し=['# EDAノートブック', '## 固定EDA計画', '## 1. データ概要', '## 2. 欠損分析', '## 3. 数値特徴量の分布', '## 4. カテゴリ特徴量の分布', '## 5. 目的変数分析', '## 6. 相関分析', '## 7. 日付分析', '## 8. 観察結果サマリ'] / 関数/クラス=configure_japanese_font, load_csv_auto, is_pure_day_number_column, _is_low_cardinality_numeric。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1378,7 +1378,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/pyproject.toml",
-      "summary": "pyproject.toml（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "pyproject.toml（04.分析）",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1389,7 +1389,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/reports/figures/categorical_distribution_top3.png",
-      "summary": "categorical_distribution_top3.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "categorical_distribution_top3.png（04.分析）",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1400,7 +1400,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/reports/figures/date_feature_trend.png",
-      "summary": "date_feature_trend.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "date_feature_trend.png（04.分析）",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1411,7 +1411,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/reports/figures/feature_correlation_heatmap.png",
-      "summary": "feature_correlation_heatmap.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "feature_correlation_heatmap.png（04.分析）",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1422,7 +1422,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/reports/figures/missing_rate_top20.png",
-      "summary": "missing_rate_top20.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "missing_rate_top20.png（04.分析）",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1433,7 +1433,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/reports/figures/numeric_distribution_top6.png",
-      "summary": "numeric_distribution_top6.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "numeric_distribution_top6.png（04.分析）",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1444,7 +1444,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/reports/figures/target_distribution.png",
-      "summary": "target_distribution.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "target_distribution.png（04.分析）",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1455,7 +1455,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/requirements.txt",
-      "summary": "requirements.txt（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "requirements.txt（04.分析）",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1466,7 +1466,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/scripts/bootstrap_env.py",
-      "summary": "bootstrap_env.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "bootstrap_env.py（04.分析）。関数/クラス=_venv_python, _to_rel, _run, main。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1477,7 +1477,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/scripts/run_train.py",
-      "summary": "run_train.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_train.py（04.分析）。関数/クラス=_metric_value, _is_metric_better, main。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1488,7 +1488,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/src/__init__.py",
-      "summary": "__init__.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "__init__.py（04.分析）",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1499,7 +1499,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/src/common.py",
-      "summary": "common.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "common.py（04.分析）。関数/クラス=load_json, save_json, to_rel, to_int, to_float, as_bool, load_csv_auto, infer_target_column, infer_date_column, infer_task_type, resolve_input_path, resolve_output_dir。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1510,7 +1510,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/src/eda.py",
-      "summary": "eda.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "eda.py（04.分析）。関数/クラス=summarize_dataframe。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1521,7 +1521,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/src/evaluate.py",
-      "summary": "evaluate.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "evaluate.py（04.分析）。関数/クラス=build_metrics_base, evaluate_predictions。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1532,7 +1532,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/src/features.py",
-      "summary": "features.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "features.py（04.分析）。関数/クラス=is_pure_day_number_column, augment_date_features, augment_numeric_interactions, augment_cyclical_time_features, is_identifier_like_column, select_feature_columns, build_preprocessor。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1543,7 +1543,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/src/infer.py",
-      "summary": "infer.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "infer.py（04.分析）。関数/クラス=run_inference。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1554,7 +1554,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/src/modeling.py",
-      "summary": "modeling.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "modeling.py（04.分析）。関数/クラス=build_pipeline。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1565,7 +1565,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/src/preprocess.py",
-      "summary": "preprocess.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "preprocess.py（04.分析）。関数/クラス=split_feature_target, train_test_holdout_split, train_valid_test_split。",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1576,7 +1576,7 @@
       "code": "AOSHIO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/04.分析/analysis_project/uv.lock",
-      "summary": "uv.lock（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "uv.lock（04.分析）",
       "children": [],
       "parent_id": "phase:AOSHIO:04.分析"
     },
@@ -1605,7 +1605,7 @@
       "code": "AOSHIO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/05.会議/会議録/会議録_2025-07-23.docx",
-      "summary": "会議録_2025-07-23.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-07-23.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. 次回会議計画'] / 表(9行分)。",
       "children": [],
       "parent_id": "phase:AOSHIO:05.会議"
     },
@@ -1616,7 +1616,7 @@
       "code": "AOSHIO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/05.会議/会議録/会議録_2025-08-06.docx",
-      "summary": "会議録_2025-08-06.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-08-06.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. 次回会議計画'] / 表(11行分)。",
       "children": [],
       "parent_id": "phase:AOSHIO:05.会議"
     },
@@ -1627,7 +1627,7 @@
       "code": "AOSHIO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/05.会議/会議録/会議録_2025-08-26.docx",
-      "summary": "会議録_2025-08-26.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-08-26.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. クロージング'] / 表(11行分)。",
       "children": [],
       "parent_id": "phase:AOSHIO:05.会議"
     },
@@ -1638,7 +1638,7 @@
       "code": "AOSHIO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/05.会議/報告資料/基礎分析.docx",
-      "summary": "基礎分析.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "基礎分析.docx（05.会議）",
       "children": [],
       "parent_id": "phase:AOSHIO:05.会議"
     },
@@ -1649,7 +1649,7 @@
       "code": "AOSHIO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/05.会議/報告資料/基礎分析.pptx",
-      "summary": "基礎分析.pptx（05.会議）。会議録・中間報告資料。",
+      "summary": "基礎分析.pptx（05.会議）。1スライド / 各スライド冒頭=S0:表1 / 埋め込み画像1件。",
       "children": [],
       "parent_id": "phase:AOSHIO:05.会議"
     },
@@ -1660,7 +1660,7 @@
       "code": "AOSHIO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/05.会議/報告資料/報告資料_2025-07-23.docx",
-      "summary": "報告資料_2025-07-23.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-07-23.docx（05.会議）。見出し=['分析進捗報告書', '1. 報告サマリー', '2. 進捗状況', '3. 主要な分析結果', '4. データ品質と実装状況', '5. リスクと対応策', '6. 次回までの実施事項', '7. 経営/PM向け補足']。",
       "children": [],
       "parent_id": "phase:AOSHIO:05.会議"
     },
@@ -1671,7 +1671,7 @@
       "code": "AOSHIO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/05.会議/報告資料/報告資料_2025-08-06.docx",
-      "summary": "報告資料_2025-08-06.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-08-06.docx（05.会議）。見出し=['分析進捗報告書', '1. 報告サマリー', '2. 進捗状況', '3. 主要な分析結果', '4. データ品質と実装状況', '5. リスクと対応策', '6. 次回までの実施事項', '7. 経営/PM向け補足']。",
       "children": [],
       "parent_id": "phase:AOSHIO:05.会議"
     },
@@ -1694,7 +1694,7 @@
       "code": "AOSHIO",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/株式会社青潮モビリティサービス/06.報告書/株式会社青潮モビリティサービス_最終報告.pdf",
-      "summary": "株式会社青潮モビリティサービス_最終報告.pdf（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
+      "summary": "株式会社青潮モビリティサービス_最終報告.pdf（06.報告書）。13ページ / 各ページ冒頭=p1:株式会社データアステル | p8:データアステル（検証） | p12:株式会社データアステル / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:AOSHIO:06.報告書"
     },
@@ -1736,7 +1736,7 @@
       "code": "AYM",
       "phase": "00.提案",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/00.提案/提案書_v1.pptx",
-      "summary": "提案書_v1.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書_v1.pptx（00.提案）。15スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:01 | S2:02 | S3:03 | S4:04 | S5:05 | S6:06 | S7:07 | S8:08 | S9:6. スケジュール案 | S10:7. 成果物定義 | S11:8. 費用見積 | S12:9. リスクと対応策 | S13:13 | S14:14。",
       "children": [],
       "parent_id": "phase:AYM:00.提案"
     },
@@ -1747,7 +1747,7 @@
       "code": "AYM",
       "phase": "00.提案",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/00.提案/提案書_v2.pptx",
-      "summary": "提案書_v2.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書_v2.pptx（00.提案）。15スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:01 | S2:02 | S3:03 | S4:04 | S5:05 | S6:06 | S7:07 | S8:08 | S9:6. スケジュール案 | S10:7. 成果物定義 | S11:8. 費用見積 | S12:9. リスクと対応策 | S13:13 | S14:14。",
       "children": [],
       "parent_id": "phase:AYM:00.提案"
     },
@@ -1758,7 +1758,7 @@
       "code": "AYM",
       "phase": "00.提案",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/00.提案/提案書_v3.pptx",
-      "summary": "提案書_v3.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書_v3.pptx（00.提案）。15スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:01 | S2:02 | S3:03 | S4:04 | S5:05 | S6:06 | S7:07 | S8:08 | S9:6. スケジュール案 | S10:7. 成果物定義 | S11:8. 費用見積 | S12:9. リスクと対応策 | S13:13 | S14:14。",
       "children": [],
       "parent_id": "phase:AYM:00.提案"
     },
@@ -1781,7 +1781,7 @@
       "code": "AYM",
       "phase": "01.契約",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/01.契約/契約書.docx",
-      "summary": "契約書.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
+      "summary": "契約書.docx（01.契約）。見出し=['データ分析業務委託契約書', '1. 当事者', '（1）発注者', '（2）受託者', '2. 目的', '3. 業務範囲', '4. 成果物および検収', '（1）成果物', '（2）成果物に含める内容', '（3）納品期限', '（4）検収', '5. 契約期間', '6. 報酬および支払条件', '7. 知的財産権', '8. 秘密保持', '9. 再委託', '10. 解除', '11. 責任範囲', '12. 準拠法および裁判管轄', '13. 署名欄'] (+3) / 表(3行分)。",
       "children": [],
       "parent_id": "phase:AYM:01.契約"
     },
@@ -1804,7 +1804,7 @@
       "code": "AYM",
       "phase": "02.計画",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/02.計画/スケジュール.xlsx",
-      "summary": "スケジュール.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
+      "summary": "スケジュール.xlsx（02.計画）。シート=['sheet1', 'Sheet2', 'Sheet3']。",
       "children": [],
       "parent_id": "phase:AYM:02.計画"
     },
@@ -1829,7 +1829,7 @@
       "code": "AYM",
       "phase": "03.データ",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/03.データ/train.csv",
-      "summary": "train.csv（03.データ）。学習データ・カラム説明。",
+      "summary": "train.csv（03.データ）。列=['id', 'loan_amnt', 'term', 'interest_rate', 'grade', 'employment_length', 'purpose', 'credit_score', 'application_type', 'loan_status'](17500行)。",
       "children": [],
       "parent_id": "phase:AYM:03.データ"
     },
@@ -1840,7 +1840,7 @@
       "code": "AYM",
       "phase": "03.データ",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/03.データ/train.xlsx",
-      "summary": "train.xlsx（03.データ）。学習データ・カラム説明。",
+      "summary": "train.xlsx（03.データ）。シート=['回帰分析', '標準化', '抽出', 'train'] / [標準化]列=['loan_amnt', 'interest_rate', 'credit_score', 'loan_status'](17501行) / [抽出]列=['loan_amnt', 'interest_rate', 'credit_score', 'loan_status'](17501行) / [train]列=['id', 'loan_amnt', 'term', 'interest_rate', 'grade', 'employment_length', 'purpose', 'credit_score', 'application_type', 'loan_status'](17501行)。",
       "children": [],
       "parent_id": "phase:AYM:03.データ"
     },
@@ -1851,7 +1851,7 @@
       "code": "AYM",
       "phase": "03.データ",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/03.データ/カラム説明.md",
-      "summary": "カラム説明.md（03.データ）。学習データ・カラム説明。",
+      "summary": "カラム説明.md（03.データ）",
       "children": [],
       "parent_id": "phase:AYM:03.データ"
     },
@@ -1902,7 +1902,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_outputs/experiments/leaderboard.csv",
-      "summary": "leaderboard.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "leaderboard.csv（04.分析）。列=['trial_index', 'status', 'model_type', 'n_estimators', 'use_date_features', 'random_state', 'test_size', 'task_type', 'primary_metric', 'primary_value', 'secondary_metric', 'secondary_value'](10行)。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -1913,7 +1913,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_outputs/metrics.json",
-      "summary": "metrics.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "metrics.json（04.分析）。トップレベルキー=['task_type', 'encoding', 'target_column', 'date_column', 'use_date_features', 'model_type', 'model_params', 'row_count', 'feature_count', 'train_rows', 'test_rows', 'accuracy', 'f1_macro', 'auc_roc', 'brier_score', 'precision_at_top10pct', 'eda_summary']。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -1924,7 +1924,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/README.md",
-      "summary": "README.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "README.md（04.分析）。見出し=['# analysis_project', '## Project structure', '## Setup', '### Option A: Python-only setu', '### Option B: uv setup', '## Run', '# Windows', '## Configuration summary']。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -1935,7 +1935,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/artifacts/analysis_outputs/metrics.json",
-      "summary": "metrics.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "metrics.json（04.分析）。トップレベルキー=['task_type', 'encoding', 'target_column', 'date_column', 'use_date_features', 'model_type', 'model_params', 'row_count', 'feature_count', 'train_rows', 'test_rows', 'accuracy', 'f1_macro', 'auc_roc', 'brier_score', 'precision_at_top10pct', 'eda_summary']。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -1946,7 +1946,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/artifacts/analysis_outputs/run_summary.json",
-      "summary": "run_summary.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_summary.json（04.分析）。トップレベルキー=['target_column', 'date_column', 'task_type', 'use_date_features', 'model_type', 'model_params', 'output_dir']。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -1957,7 +1957,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/artifacts/analysis_outputs/train_preview.csv",
-      "summary": "train_preview.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "train_preview.csv（04.分析）。列=['id', 'loan_amnt', 'term', 'interest_rate', 'grade', 'employment_length', 'purpose', 'credit_score', 'application_type', 'loan_status'](200行)。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -1968,7 +1968,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/configs/project_config.json",
-      "summary": "project_config.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "project_config.json（04.分析）。トップレベルキー=['data_csv', 'column_doc', 'target_column', 'date_column', 'use_date_features', 'model_type', 'model_params', 'output_dir', 'random_state', 'test_size', 'analysis_spec_path']。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -1979,7 +1979,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/data/train.csv",
-      "summary": "train.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "train.csv（04.分析）。列=['id', 'loan_amnt', 'term', 'interest_rate', 'grade', 'employment_length', 'purpose', 'credit_score', 'application_type', 'loan_status'](17500行)。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -1990,7 +1990,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/data/カラム説明.md",
-      "summary": "カラム説明.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "カラム説明.md（04.分析）",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2001,7 +2001,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/notebooks/01_eda.ipynb",
-      "summary": "01_eda.ipynb（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "01_eda.ipynb（04.分析）。見出し=['# EDAノートブック', '## 固定EDA計画', '## 1. データ概要', '## 2. 欠損分析', '## 3. 数値特徴量の分布', '## 4. カテゴリ特徴量の分布', '## 5. 目的変数分析', '## 6. 相関分析', '## 7. 日付分析', '## 8. 観察結果サマリ'] / 関数/クラス=configure_japanese_font, load_csv_auto, is_pure_day_number_column。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2012,7 +2012,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/pyproject.toml",
-      "summary": "pyproject.toml（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "pyproject.toml（04.分析）",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2023,7 +2023,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/reports/figures/categorical_distribution_top3.png",
-      "summary": "categorical_distribution_top3.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "categorical_distribution_top3.png（04.分析）",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2034,7 +2034,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/reports/figures/date_feature_trend.png",
-      "summary": "date_feature_trend.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "date_feature_trend.png（04.分析）",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2045,7 +2045,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/reports/figures/feature_correlation_heatmap.png",
-      "summary": "feature_correlation_heatmap.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "feature_correlation_heatmap.png（04.分析）",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2056,7 +2056,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/reports/figures/missing_rate_top20.png",
-      "summary": "missing_rate_top20.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "missing_rate_top20.png（04.分析）",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2067,7 +2067,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/reports/figures/numeric_distribution_top6.png",
-      "summary": "numeric_distribution_top6.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "numeric_distribution_top6.png（04.分析）",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2078,7 +2078,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/reports/figures/target_distribution.png",
-      "summary": "target_distribution.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "target_distribution.png（04.分析）",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2089,7 +2089,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/requirements.txt",
-      "summary": "requirements.txt（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "requirements.txt（04.分析）",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2100,7 +2100,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/scripts/bootstrap_env.py",
-      "summary": "bootstrap_env.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "bootstrap_env.py（04.分析）。関数/クラス=_venv_python, _to_rel, _run, main。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2111,7 +2111,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/scripts/run_train.py",
-      "summary": "run_train.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_train.py（04.分析）。関数/クラス=main。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2122,7 +2122,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/src/__init__.py",
-      "summary": "__init__.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "__init__.py（04.分析）",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2133,7 +2133,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/src/common.py",
-      "summary": "common.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "common.py（04.分析）。関数/クラス=load_json, save_json, to_rel, to_int, to_float, as_bool, load_csv_auto, infer_target_column, infer_date_column, infer_task_type, resolve_input_path, resolve_output_dir。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2144,7 +2144,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/src/eda.py",
-      "summary": "eda.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "eda.py（04.分析）。関数/クラス=summarize_dataframe。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2155,7 +2155,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/src/evaluate.py",
-      "summary": "evaluate.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "evaluate.py（04.分析）。関数/クラス=build_metrics_base, evaluate_predictions。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2166,7 +2166,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/src/features.py",
-      "summary": "features.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "features.py（04.分析）。関数/クラス=is_pure_day_number_column, augment_date_features, build_preprocessor。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2177,7 +2177,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/src/infer.py",
-      "summary": "infer.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "infer.py（04.分析）。関数/クラス=run_inference。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2188,7 +2188,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/src/modeling.py",
-      "summary": "modeling.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "modeling.py（04.分析）。関数/クラス=build_pipeline。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2199,7 +2199,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/src/preprocess.py",
-      "summary": "preprocess.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "preprocess.py（04.分析）。関数/クラス=split_feature_target, train_test_holdout_split。",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2210,7 +2210,7 @@
       "code": "AYM",
       "phase": "04.分析",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/04.分析/analysis_project/uv.lock",
-      "summary": "uv.lock（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "uv.lock（04.分析）",
       "children": [],
       "parent_id": "phase:AYM:04.分析"
     },
@@ -2237,7 +2237,7 @@
       "code": "AYM",
       "phase": "05.会議",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/05.会議/会議録/会議録_2025-04-09.pdf",
-      "summary": "会議録_2025-04-09.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-04-09.pdf（05.会議）。7ページ / 各ページ冒頭=p1:会議録  | p2:2. 議題  | p3:• 監査証跡の懸念（キックオフ議事録未登録）を共有。議事録ア | p4:▪ 利用不可または未回答：interest_rate/gra | p5:ID Action  | p6:ID Action  | p7:o 緩和策: A03（議事録登録）を速やかに実行し、版管理を。",
       "children": [],
       "parent_id": "phase:AYM:05.会議"
     },
@@ -2248,7 +2248,7 @@
       "code": "AYM",
       "phase": "05.会議",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/05.会議/会議録/会議録_2025-04-29.pdf",
-      "summary": "会議録_2025-04-29.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-04-29.pdf（05.会議）。10ページ / 各ページ冒頭=p1:会議録  | p2:3. 主要議論  | p3:o A01/A02/A03/A04 は未完（期限超過）で継続 | p4:する。  | p5:o 承認者: 中村 浩一（口頭合意）  | p6:ID  | p7:ID  | p8:ID  | p9:o 説明: 時間情報なし・期間外検証不可のため将来性能不確定 | p10:以上。 / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:AYM:05.会議"
     },
@@ -2259,7 +2259,7 @@
       "code": "AYM",
       "phase": "05.会議",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/05.会議/会議録/会議録_2025-05-27.pdf",
-      "summary": "会議録_2025-05-27.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-05-27.pdf（05.会議）。9ページ / 各ページ冒頭=p1:会議録  | p2:3. 業務活用上の留意点（特に interest_rate  | p3:4. 進捗サマリ  | p4:別途是正対応を行う。  | p5:ID  | p6:ID  | p7:ID  | p8:o 対策/Owner: 中村 浩一 による可用性確認（A02 | p9:o 発注者（運用側）問い合わせ先: 中村 浩一（青葉与信マネ。",
       "children": [],
       "parent_id": "phase:AYM:05.会議"
     },
@@ -2270,7 +2270,7 @@
       "code": "AYM",
       "phase": "05.会議",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/05.会議/報告資料/報告資料_2025-04-09.docx",
-      "summary": "報告資料_2025-04-09.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-04-09.docx（05.会議）。見出し=['分析進捗報告書', '1. 報告サマリー', '2. 進捗状況', '3. キックオフ時点の確認事項', '4. データ品質と実装状況', '5. リスクと対応策', '6. 次回までの実施事項（トレース付き）', '7. 経営/PM向け補足']。",
       "children": [],
       "parent_id": "phase:AYM:05.会議"
     },
@@ -2281,7 +2281,7 @@
       "code": "AYM",
       "phase": "05.会議",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/05.会議/報告資料/報告資料_2025-04-29.docx",
-      "summary": "報告資料_2025-04-29.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-04-29.docx（05.会議）。見出し=['分析進捗報告書', '1. 報告サマリー', '2. 進捗状況', '3. 主要な分析結果', '4. データ品質と実装状況', '5. リスクと対応策', '6. 次回までの実施事項（トレース: タスク/アクション）', '7. 経営/PM向け補足']。",
       "children": [],
       "parent_id": "phase:AYM:05.会議"
     },
@@ -2305,7 +2305,7 @@
       "code": "AYM",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/06.報告書/old/青葉与信マネジメント株式会社_最終報告.pptx",
-      "summary": "青葉与信マネジメント株式会社_最終報告.pptx（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
+      "summary": "青葉与信マネジメント株式会社_最終報告.pptx（06.報告書）。14スライド / 各スライド冒頭=S0:最終分析報告書 | S1:1. エグゼクティブサマリ ― プロジェクト概要 | S2:2. プロジェクト目的とスコープ | S3:3. 実施方法 ― ワークフロー | S4:4. 分析結果 ― データ構成とモデル評価 | S5:4. 分析結果 ― モデル比較 | S6:5. 業務提言 | S7:5. 業務提言 ― データ改善・組織体制（中〜長期） | S8:6. 実装・運用計画 ― 納品・検収フロー | S9:6. 実装・運用計画 ― 本番化ロードマップ | S10:7. 制約事項と残余リスク | S11:8. 今後の拡張ロードマップ | S12:9. 成果物サマリ・提案との差分管理 | S13:10. 総括と次アクション。",
       "children": [],
       "parent_id": "phase:AYM:06.報告書"
     },
@@ -2316,7 +2316,7 @@
       "code": "AYM",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/06.報告書/青葉与信マネジメント株式会社_最終報告.pptx",
-      "summary": "青葉与信マネジメント株式会社_最終報告.pptx（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
+      "summary": "青葉与信マネジメント株式会社_最終報告.pptx（06.報告書）。15スライド / 各スライド冒頭=S0:最終分析報告書 | S1:1. エグゼクティブサマリ ― プロジェクト概要 | S2:2. プロジェクト目的とスコープ | S3:3. 実施方法 ― ワークフロー | S4:4. 分析結果 ― データ構成とモデル評価 | S5:4. 分析結果 ― モデル比較 | S6:5. 業務提言 ― クイックウィン（短期：直ちに実施推奨） | S7:5. 業務提言 ― モデル運用・ガバナンス（中期） | S8:5. 業務提言 ― データ改善・組織体制（中〜長期） | S9:6. 実装・運用計画 ― 納品・検収フロー | S10:6. 実装・運用計画 ― 本番化ロードマップ | S11:7. 制約事項と残余リスク | S12:8. 今後の拡張ロードマップ | S13:9. 成果物サマリ・提案との差分管理 | S14:10. 総括と次アクション。",
       "children": [],
       "parent_id": "phase:AYM:06.報告書"
     },
@@ -2356,7 +2356,7 @@
       "code": "KAEDE",
       "phase": "00.提案",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/00.提案/提案書.pptx",
-      "summary": "提案書.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書.pptx（00.提案）。19スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:目次 | S2:01 | S3:02 | S4:03 | S5:03 | S6:04 | S7:04 | S8:04 | S9:04 | S10:04 | S11:05 | S12:05 | S13:06 | S14:07。",
       "children": [],
       "parent_id": "phase:KAEDE:00.提案"
     },
@@ -2379,7 +2379,7 @@
       "code": "KAEDE",
       "phase": "01.契約",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/01.契約/契約書_pw-kaede20250902.docx",
-      "summary": "契約書_pw-kaede20250902.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
+      "summary": "契約書_pw-kaede20250902.docx（01.契約）。見出し=['データ分析業務委託契約書', '1. 当事者', '1.1 甲', '1.2 乙', '1.3 乙の実施体制', '2. 目的', '3. 業務範囲', '3.1 対象業務', '3.2 対象データ', '3.3 前提条件', '3.4 対象外業務', '4. 成果物および検収', '4.1 成果物', '4.2 成果物の内容', '4.3 検収', '5. 契約期間', '6. 報酬および支払条件', '6.1 料金体系', '6.2 精算方法', '6.3 工数記録および丸め'] (+12) / 表(2行分)。",
       "children": [],
       "parent_id": "phase:KAEDE:01.契約"
     },
@@ -2402,7 +2402,7 @@
       "code": "KAEDE",
       "phase": "02.計画",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/02.計画/スケジュール.xlsx",
-      "summary": "スケジュール.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
+      "summary": "スケジュール.xlsx（02.計画）。シート=['WBS・タスク管理', 'マイルストーン管理', 'リソース配分', 'チェックポイント']。",
       "children": [],
       "parent_id": "phase:KAEDE:02.計画"
     },
@@ -2427,7 +2427,7 @@
       "code": "KAEDE",
       "phase": "03.データ",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/03.データ/train.csv",
-      "summary": "train.csv（03.データ）。学習データ・カラム説明。",
+      "summary": "train.csv（03.データ）。列=['id', 'Age', 'Gender', 'T_Bil', 'D_Bil', 'ALP', 'ALT_GPT', 'AST_GOT', 'TP', 'Alb', 'AG_ratio', 'disease'](3500行)。",
       "children": [],
       "parent_id": "phase:KAEDE:03.データ"
     },
@@ -2438,7 +2438,7 @@
       "code": "KAEDE",
       "phase": "03.データ",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/03.データ/train.xlsx",
-      "summary": "train.xlsx（03.データ）。学習データ・カラム説明。",
+      "summary": "train.xlsx（03.データ）。シート=['グラフ', 'Pivot', 'train'] / [Pivot]列=['None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None'](213行) / [train]列=['id', 'Age', 'Gender', 'T_Bil', 'D_Bil', 'ALP', 'ALT_GPT', 'AST_GOT', 'TP', 'Alb', 'AG_ratio', 'disease'](3501行) / [Pivot]グループ化=['Gender', 'disease', 'Age'] 集計=['平均 / T_Bil', '平均 / D_Bil', '平均 / ALP', '平均 / ALT_GPT', '平均 / AST_GOT', '平均 / TP', '平均 / Alb', '平均 / AG_ratio']。",
       "children": [],
       "parent_id": "phase:KAEDE:03.データ"
     },
@@ -2449,7 +2449,7 @@
       "code": "KAEDE",
       "phase": "03.データ",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/03.データ/カラム説明.md",
-      "summary": "カラム説明.md（03.データ）。学習データ・カラム説明。",
+      "summary": "カラム説明.md（03.データ）。見出し=['### train.csv']。",
       "children": [],
       "parent_id": "phase:KAEDE:03.データ"
     },
@@ -2498,7 +2498,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_outputs/experiments/leaderboard.csv",
-      "summary": "leaderboard.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "leaderboard.csv（04.分析）。列=['trial_index', 'trial_role', 'planner_stage', 'improves_on', 'trial_goal', 'selection_reason', 'change_summary', 'status', 'model_type', 'use_date_features', 'use_cyclical_time_features', 'random_state', 'test_size', 'split_strategy', 'transform_target', 'task_type', 'primary_metric', 'primary_value', 'secondary_metric', 'secondary_value'](10行)。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2509,7 +2509,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_outputs/metrics.json",
-      "summary": "metrics.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "metrics.json（04.分析）。トップレベルキー=['task_type', 'encoding', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'drop_original_categorical_after_target_encoding', 'tune_class_decision_weights', 'model_type', 'model_params', 'split_strategy', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'row_count', 'feature_count', 'train_rows', 'validation_rows', 'test_rows', 'split_ordering_basis', 'accuracy', 'f1_macro', 'auc_roc', 'brier_score', 'precision_at_top10pct', 'train_metrics', 'validation_metrics', 'class_target_encoding', 'eda_summary', 'feature_selection', 'ordered_feature_columns', 'selected_feature_count', 'excluded_feature_count']。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2520,7 +2520,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_outputs/run_summary.json",
-      "summary": "run_summary.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_summary.json（04.分析）。トップレベルキー=['target_column', 'date_column', 'task_type', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'class_target_encoding_min_unique', 'class_target_encoding_max_unique', 'class_target_encoding_smoothing', 'drop_original_categorical_after_target_encoding', 'tune_class_decision_weights', 'model_type', 'model_params', 'split_strategy', 'split_ordering_basis', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'output_dir', 'selected_feature_count', 'excluded_feature_columns', 'categorical_unique_limit', 'ordered_feature_columns', 'class_target_encoding', 'class_decision_tuning']。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2531,7 +2531,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/README.md",
-      "summary": "README.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "README.md（04.分析）。見出し=['# analysis_project', '## Project structure', '## Setup', '### Option A: Python-only setu', '### Option B: uv setup', '## Run', '# Windows', '## Configuration summary']。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2542,7 +2542,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/configs/project_config.json",
-      "summary": "project_config.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "project_config.json（04.分析）。トップレベルキー=['data_csv', 'column_doc', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'class_target_encoding_min_unique', 'class_target_encoding_max_unique', 'class_target_encoding_smoothing', 'drop_original_categorical_after_target_encoding', 'categorical_unique_limit_override', 'tune_class_decision_weights', 'split_strategy', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'early_stopping_min_delta', 'model_type', 'model_params', 'output_dir', 'random_state', 'test_size', 'feature_plan', 'analysis_spec_path', 'task_type']。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2553,7 +2553,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/data/train.csv",
-      "summary": "train.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "train.csv（04.分析）。列=['id', 'Age', 'Gender', 'T_Bil', 'D_Bil', 'ALP', 'ALT_GPT', 'AST_GOT', 'TP', 'Alb', 'AG_ratio', 'disease'](3500行)。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2564,7 +2564,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/data/カラム説明.md",
-      "summary": "カラム説明.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "カラム説明.md（04.分析）。見出し=['### train.csv']。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2575,7 +2575,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/notebooks/01_eda.ipynb",
-      "summary": "01_eda.ipynb（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "01_eda.ipynb（04.分析）。見出し=['# EDAノートブック', '## 固定EDA計画', '## 1. データ概要', '## 2. 欠損分析', '## 3. 数値特徴量の分布', '## 4. カテゴリ特徴量の分布', '## 5. 目的変数分析', '## 6. 相関分析', '## 7. 日付分析', '## 8. 観察結果サマリ'] / 関数/クラス=configure_japanese_font, load_csv_auto, is_pure_day_number_column。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2586,7 +2586,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/pyproject.toml",
-      "summary": "pyproject.toml（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "pyproject.toml（04.分析）",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2597,7 +2597,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/reports/figures/categorical_distribution_top3.png",
-      "summary": "categorical_distribution_top3.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "categorical_distribution_top3.png（04.分析）",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2608,7 +2608,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/reports/figures/date_feature_trend.png",
-      "summary": "date_feature_trend.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "date_feature_trend.png（04.分析）",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2619,7 +2619,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/reports/figures/feature_correlation_heatmap.png",
-      "summary": "feature_correlation_heatmap.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "feature_correlation_heatmap.png（04.分析）",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2630,7 +2630,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/reports/figures/missing_rate_top20.png",
-      "summary": "missing_rate_top20.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "missing_rate_top20.png（04.分析）",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2641,7 +2641,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/reports/figures/numeric_distribution_top6.png",
-      "summary": "numeric_distribution_top6.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "numeric_distribution_top6.png（04.分析）",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2652,7 +2652,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/reports/figures/target_distribution.png",
-      "summary": "target_distribution.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "target_distribution.png（04.分析）",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2663,7 +2663,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/requirements.txt",
-      "summary": "requirements.txt（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "requirements.txt（04.分析）",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2674,7 +2674,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/scripts/bootstrap_env.py",
-      "summary": "bootstrap_env.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "bootstrap_env.py（04.分析）。関数/クラス=_venv_python, _to_rel, _run, main。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2685,7 +2685,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/scripts/run_train.py",
-      "summary": "run_train.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_train.py（04.分析）。関数/クラス=_metric_value, _is_metric_better, _model_classes, _predict_with_class_weights, _categorical_columns, _add_class_target_encoding, _tune_class_decision_weights, main。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2696,7 +2696,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/src/__init__.py",
-      "summary": "__init__.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "__init__.py（04.分析）",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2707,7 +2707,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/src/common.py",
-      "summary": "common.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "common.py（04.分析）。関数/クラス=load_json, save_json, to_rel, to_int, to_float, as_bool, load_csv_auto, infer_target_column, infer_date_column, infer_task_type, resolve_input_path, resolve_output_dir。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2718,7 +2718,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/src/eda.py",
-      "summary": "eda.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "eda.py（04.分析）。関数/クラス=summarize_dataframe。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2729,7 +2729,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/src/evaluate.py",
-      "summary": "evaluate.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "evaluate.py（04.分析）。関数/クラス=build_metrics_base, evaluate_predictions。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2740,7 +2740,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/src/features.py",
-      "summary": "features.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "features.py（04.分析）。関数/クラス=is_pure_day_number_column, augment_date_features, augment_numeric_interactions, augment_cyclical_time_features, augment_ordered_category_features, is_identifier_like_column, _categorical_columns, group_rare_categories, add_categorical_frequency_features, select_feature_columns, build_preprocessor。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2751,7 +2751,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/src/infer.py",
-      "summary": "infer.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "infer.py（04.分析）。関数/クラス=run_inference。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2762,7 +2762,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/src/modeling.py",
-      "summary": "modeling.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "modeling.py（04.分析）。関数/クラス=build_pipeline。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2773,7 +2773,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/src/preprocess.py",
-      "summary": "preprocess.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "preprocess.py（04.分析）。関数/クラス=split_feature_target, train_test_holdout_split, train_valid_test_split。",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2784,7 +2784,7 @@
       "code": "KAEDE",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/04.分析/analysis_project/uv.lock",
-      "summary": "uv.lock（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "uv.lock（04.分析）",
       "children": [],
       "parent_id": "phase:KAEDE:04.分析"
     },
@@ -2811,7 +2811,7 @@
       "code": "KAEDE",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/05.会議/会議録/会議録_2025-09-02.docx",
-      "summary": "会議録_2025-09-02.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-09-02.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. 次回会議計画'] / 表(8行分)。",
       "children": [],
       "parent_id": "phase:KAEDE:05.会議"
     },
@@ -2822,7 +2822,7 @@
       "code": "KAEDE",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/05.会議/会議録/会議録_2025-09-16.docx",
-      "summary": "会議録_2025-09-16.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-09-16.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. 次回会議計画'] / 表(15行分)。",
       "children": [],
       "parent_id": "phase:KAEDE:05.会議"
     },
@@ -2833,7 +2833,7 @@
       "code": "KAEDE",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/05.会議/会議録/会議録_2025-09-30.docx",
-      "summary": "会議録_2025-09-30.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-09-30.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. クロージング'] / 表(13行分)。",
       "children": [],
       "parent_id": "phase:KAEDE:05.会議"
     },
@@ -2844,7 +2844,7 @@
       "code": "KAEDE",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/05.会議/報告資料/報告資料_2025-09-02.docx",
-      "summary": "報告資料_2025-09-02.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-09-02.docx（05.会議）。見出し=['分析進捗報告書', '1. 報告サマリー', '2. 進捗状況', '3. 主要な分析結果', '4. データ品質と実装状況', '5. リスクと対応策', '6. 次回までの実施事項', '7. 経営/PM向け補足']。",
       "children": [],
       "parent_id": "phase:KAEDE:05.会議"
     },
@@ -2855,7 +2855,7 @@
       "code": "KAEDE",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/05.会議/報告資料/報告資料_2025-09-16.docx",
-      "summary": "報告資料_2025-09-16.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-09-16.docx（05.会議）。見出し=['分析進捗報告書', '1. 報告サマリー', '2. 進捗状況', '3. 主要な分析結果', '4. データ品質と実装状況', '5. リスクと対応策', '6. 次回までの実施事項', '7. 経営/PM向け補足']。",
       "children": [],
       "parent_id": "phase:KAEDE:05.会議"
     },
@@ -2879,7 +2879,7 @@
       "code": "KAEDE",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/06.報告書/医療法人社団 恒一会 かえで総合病院_最終報告.pptx",
-      "summary": "医療法人社団 恒一会 かえで総合病院_最終報告.pptx（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
+      "summary": "医療法人社団 恒一会 かえで総合病院_最終報告.pptx（06.報告書）。18スライド / 各スライド冒頭=S0:最終分析報告書 | S1:1. エグゼクティブサマリ | S2:2. プロジェクト目的とスコープ | S3:3. 実施方法 | S4:4. データ概要と特徴量選定 | S5:5. モデル比較結果 | S6:6. 最終モデル性能指標と中間段階との比較 | S7:7. 分析結果の解釈と仮定 | S8:8. 業務提言（概要） | S9:9. 業務提言 詳細（1/2） | S10:10. 業務提言 詳細（2/2） | S11:11. 実装・運用計画 | S12:12. 制約事項と残余リスク | S13:13. 今後の拡張ロードマップ | S14:14. 成果物サマリ。",
       "children": [],
       "parent_id": "phase:KAEDE:06.報告書"
     },
@@ -2890,7 +2890,7 @@
       "code": "KAEDE",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/06.報告書/医療法人社団 恒一会 かえで総合病院_最終報告_old.pptx",
-      "summary": "医療法人社団 恒一会 かえで総合病院_最終報告_old.pptx（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
+      "summary": "医療法人社団 恒一会 かえで総合病院_最終報告_old.pptx（06.報告書）。18スライド / 各スライド冒頭=S0:最終分析報告書 | S1:ビジネス成果 | S2:2. プロジェクト目的とスコープ | S3:3. 実施方法 | S4:4. データ概要と特徴量選定 | S5:5. モデル比較結果 | S6:6. 最終モデル性能指標と中間段階との比較 | S7:7. 分析結果の解釈と仮定 | S8:8. 業務提言（概要） | S9:9. 業務提言 詳細（1/2） | S10:10. 業務提言 詳細（2/2） | S11:11. 実装・運用計画 | S12:12. 制約事項と残余リスク | S13:13. 今後の拡張ロードマップ | S14:14. 成果物サマリ。",
       "children": [],
       "parent_id": "phase:KAEDE:06.報告書"
     },
@@ -2931,7 +2931,7 @@
       "code": "KSS",
       "phase": "00.提案",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/00.提案/提案書_final.pptx",
-      "summary": "提案書_final.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書_final.pptx（00.提案）。18スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:1. 背景 | S2:2. 目的 | S3:3. スコープ ― 対象範囲 | S4:3. スコープ ― 対象外 | S5:4. 分析アプローチ ― 全体像 | S6:4.1 データ理解・品質確認 / 4.2 探索的データ分析 | S7:4.3 前処理・特徴量設計 | S8:4.4 モデル構築・評価 / 4.5 説明可能性・ガバナンス | S9:5. 実施体制 | S10:6. スケジュール案（6週間） | S11:7. 成果物定義 | S12:8. 費用見積 | S13:9. リスクと対応策（1/2） | S14:9. リスクと対応策（2/2）。",
       "children": [],
       "parent_id": "phase:KSS:00.提案"
     },
@@ -2942,7 +2942,7 @@
       "code": "KSS",
       "phase": "00.提案",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/00.提案/提案書_v1.pptx",
-      "summary": "提案書_v1.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書_v1.pptx（00.提案）。18スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:1. 背景 | S2:2. 目的 | S3:3. スコープ ― 対象範囲 | S4:3. スコープ ― 対象外 | S5:4. 分析アプローチ ― 全体像 | S6:4.1 データ理解・品質確認 / 4.2 探索的データ分析 | S7:4.3 前処理・特徴量設計 | S8:4.4 モデル構築・評価 / 4.5 説明可能性・ガバナンス | S9:5. 実施体制 | S10:6. スケジュール案（6週間） | S11:7. 成果物定義 | S12:8. 費用見積 | S13:9. リスクと対応策（1/2） | S14:9. リスクと対応策（2/2）。",
       "children": [],
       "parent_id": "phase:KSS:00.提案"
     },
@@ -2965,7 +2965,7 @@
       "code": "KSS",
       "phase": "01.契約",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/01.契約/契約書.docx",
-      "summary": "契約書.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
+      "summary": "契約書.docx（01.契約）。見出し=['データ分析業務委託契約書', '1. 当事者', '1.1 甲', '1.2 乙', '1.3 本件担当体制', '2. 目的', '3. 業務範囲', '3.1 対象業務', '3.2 前提条件', '3.3 対象外業務', '4. 成果物および検収', '4.1 成果物', '4.2 成果物の内容', '4.3 納品日', '4.4 検収', '5. 契約期間', '6. 報酬および支払条件', '6.1 契約金額', '6.2 支払条件', '6.3 支払方法'] (+11) / 表(3行分)。",
       "children": [],
       "parent_id": "phase:KSS:01.契約"
     },
@@ -2988,7 +2988,7 @@
       "code": "KSS",
       "phase": "02.計画",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/02.計画/スケジュール.xlsx",
-      "summary": "スケジュール.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
+      "summary": "スケジュール.xlsx（02.計画）。シート=['WBSタスク一覧', 'マイルストーン', '会議体・チェックポイント', 'リソース計画']。",
       "children": [],
       "parent_id": "phase:KSS:02.計画"
     },
@@ -3012,7 +3012,7 @@
       "code": "KSS",
       "phase": "03.データ",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/03.データ/train.csv",
-      "summary": "train.csv（03.データ）。学習データ・カラム説明。",
+      "summary": "train.csv（03.データ）。列=['id', 'age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'y'](27128行)。",
       "children": [],
       "parent_id": "phase:KSS:03.データ"
     },
@@ -3023,7 +3023,7 @@
       "code": "KSS",
       "phase": "03.データ",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/03.データ/カラム説明.md",
-      "summary": "カラム説明.md（03.データ）。学習データ・カラム説明。",
+      "summary": "カラム説明.md（03.データ）",
       "children": [],
       "parent_id": "phase:KSS:03.データ"
     },
@@ -3071,7 +3071,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_outputs/experiments/leaderboard.csv",
-      "summary": "leaderboard.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "leaderboard.csv（04.分析）。列=['trial_index', 'status', 'model_type', 'use_date_features', 'random_state', 'test_size', 'task_type', 'primary_metric', 'primary_value', 'secondary_metric', 'secondary_value'](10行)。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3082,7 +3082,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_outputs/metrics.json",
-      "summary": "metrics.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "metrics.json（04.分析）。トップレベルキー=['task_type', 'encoding', 'target_column', 'date_column', 'use_date_features', 'model_type', 'model_params', 'row_count', 'feature_count', 'train_rows', 'test_rows', 'accuracy', 'f1_macro', 'auc_roc', 'brier_score', 'precision_at_top10pct', 'eda_summary']。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3093,7 +3093,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/README.md",
-      "summary": "README.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "README.md（04.分析）。見出し=['# analysis_project', '## Project structure', '## Setup', '### Option A: Python-only setu', '### Option B: uv setup', '## Run', '# Windows', '## Configuration summary']。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3104,7 +3104,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/configs/project_config.json",
-      "summary": "project_config.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "project_config.json（04.分析）。トップレベルキー=['data_csv', 'column_doc', 'target_column', 'date_column', 'use_date_features', 'model_type', 'model_params', 'output_dir', 'random_state', 'test_size', 'analysis_spec_path']。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3115,7 +3115,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/data/train.csv",
-      "summary": "train.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "train.csv（04.分析）。列=['id', 'age', 'job', 'marital', 'education', 'default', 'balance', 'housing', 'loan', 'contact', 'day', 'month', 'duration', 'campaign', 'pdays', 'previous', 'poutcome', 'y'](27128行)。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3126,7 +3126,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/data/カラム説明.md",
-      "summary": "カラム説明.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "カラム説明.md（04.分析）",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3137,7 +3137,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/notebooks/01_eda.ipynb",
-      "summary": "01_eda.ipynb（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "01_eda.ipynb（04.分析）。見出し=['# EDAノートブック', '## 固定EDA計画', '## 1. データ概要', '## 2. 欠損分析', '## 3. 数値特徴量の分布', '## 4. カテゴリ特徴量の分布', '## 5. 目的変数分析', '## 6. 相関分析', '## 7. 日付分析', '## 8. 観察結果サマリ'] / 関数/クラス=configure_japanese_font, load_csv_auto, is_pure_day_number_column。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3148,7 +3148,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/pyproject.toml",
-      "summary": "pyproject.toml（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "pyproject.toml（04.分析）",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3159,7 +3159,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/reports/figures/categorical_distribution_top3.png",
-      "summary": "categorical_distribution_top3.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "categorical_distribution_top3.png（04.分析）",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3170,7 +3170,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/reports/figures/feature_correlation_heatmap.png",
-      "summary": "feature_correlation_heatmap.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "feature_correlation_heatmap.png（04.分析）",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3181,7 +3181,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/reports/figures/figure_06.png",
-      "summary": "figure_06.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "figure_06.png（04.分析）",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3192,7 +3192,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/reports/figures/missing_rate_top20.png",
-      "summary": "missing_rate_top20.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "missing_rate_top20.png（04.分析）",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3203,7 +3203,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/reports/figures/numeric_distribution_top6.png",
-      "summary": "numeric_distribution_top6.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "numeric_distribution_top6.png（04.分析）",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3214,7 +3214,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/reports/figures/target_distribution.png",
-      "summary": "target_distribution.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "target_distribution.png（04.分析）",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3225,7 +3225,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/requirements.txt",
-      "summary": "requirements.txt（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "requirements.txt（04.分析）",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3236,7 +3236,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/scripts/bootstrap_env.py",
-      "summary": "bootstrap_env.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "bootstrap_env.py（04.分析）。関数/クラス=_venv_python, _to_rel, _run, main。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3247,7 +3247,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/scripts/run_train.py",
-      "summary": "run_train.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_train.py（04.分析）。関数/クラス=main。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3258,7 +3258,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/src/__init__.py",
-      "summary": "__init__.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "__init__.py（04.分析）",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3269,7 +3269,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/src/common.py",
-      "summary": "common.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "common.py（04.分析）。関数/クラス=load_json, save_json, to_rel, to_int, to_float, as_bool, load_csv_auto, infer_target_column, infer_date_column, infer_task_type, resolve_input_path, resolve_output_dir。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3280,7 +3280,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/src/eda.py",
-      "summary": "eda.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "eda.py（04.分析）。関数/クラス=summarize_dataframe。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3291,7 +3291,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/src/evaluate.py",
-      "summary": "evaluate.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "evaluate.py（04.分析）。関数/クラス=build_metrics_base, evaluate_predictions。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3302,7 +3302,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/src/features.py",
-      "summary": "features.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "features.py（04.分析）。関数/クラス=is_pure_day_number_column, augment_date_features, build_preprocessor。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3313,7 +3313,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/src/infer.py",
-      "summary": "infer.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "infer.py（04.分析）。関数/クラス=run_inference。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3324,7 +3324,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/src/modeling.py",
-      "summary": "modeling.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "modeling.py（04.分析）。関数/クラス=build_pipeline。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3335,7 +3335,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/src/preprocess.py",
-      "summary": "preprocess.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "preprocess.py（04.分析）。関数/クラス=split_feature_target, train_test_holdout_split。",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3346,7 +3346,7 @@
       "code": "KSS",
       "phase": "04.分析",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/04.分析/analysis_project/uv.lock",
-      "summary": "uv.lock（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "uv.lock（04.分析）",
       "children": [],
       "parent_id": "phase:KSS:04.分析"
     },
@@ -3373,7 +3373,7 @@
       "code": "KSS",
       "phase": "05.会議",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/05.会議/会議録/会議録_2025-10-01.pdf",
-      "summary": "会議録_2025-10-01.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-10-01.pdf（05.会議）。8ページ / 各ページ冒頭=p1:会議録  | p2:3. 単一正本（本プロジェクト概要書）と進行ルール（週次、版 | p3:認。  | p4:4. 単一正本と進行ルール: 本プロジェクト概要書を単一正本 | p5:ID  | p6:ID  | p7:o 対策: A01/A02/A03 により文書化・版管理を即 | p8:• MS2 EDA 完了チェック: 2025-10-14 —。",
       "children": [],
       "parent_id": "phase:KSS:05.会議"
     },
@@ -3384,7 +3384,7 @@
       "code": "KSS",
       "phase": "05.会議",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/05.会議/会議録/会議録_2025-10-29.pdf",
-      "summary": "会議録_2025-10-29.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-10-29.pdf（05.会議）。9ページ / 各ページ冒頭=p1:会議録  | p2:3. 主要議論  | p3:o 最終評価軸（合意）: AUC、Precision@Top | p4:o duration を用途別に分離（事前判断：非含有、事後 | p5:ID Action  | p6:ID Action  | p7:ID Action  | p8:7. リスクと懸念事項  | p9:o 対応: 用途別モデル分離を実施し、運用ガイドにて明確に制。",
       "children": [],
       "parent_id": "phase:KSS:05.会議"
     },
@@ -3395,7 +3395,7 @@
       "code": "KSS",
       "phase": "05.会議",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/05.会議/会議録/会議録_2025-11-11.pdf",
-      "summary": "会議録_2025-11-11.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-11-11.pdf（05.会議）。9ページ / 各ページ冒頭=p1:会議録  | p2:3. 主要議論  | p3:o prior の合意事項（業務目的、data.csv を正 | p4:2) run 再現手順の実行確認（甲による実行検証または乙に | p5:ID  | p6:ID  | p7:ID  | p8:- A06: Open（期日 2025-10-08 は原表記 | p9:8. クロージング。",
       "children": [],
       "parent_id": "phase:KSS:05.会議"
     },
@@ -3406,7 +3406,7 @@
       "code": "KSS",
       "phase": "05.会議",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/05.会議/報告資料/報告資料_2025-10-01.docx",
-      "summary": "報告資料_2025-10-01.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-10-01.docx（05.会議）。見出し=['分析進捗報告書', '1. 報告サマリー', '2. 進捗状況', '3. キックオフ時点の確認事項', '4. データ品質と実装状況', '5. リスクと対応策', '6. 次回までの実施事項', '7. 経営/PM向け補足']。",
       "children": [],
       "parent_id": "phase:KSS:05.会議"
     },
@@ -3417,7 +3417,7 @@
       "code": "KSS",
       "phase": "05.会議",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/05.会議/報告資料/報告資料_2025-10-29.docx",
-      "summary": "報告資料_2025-10-29.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-10-29.docx（05.会議）。見出し=['分析進捗報告書', '1. 報告サマリー', '2. 進捗状況', '3. 主要な比較結果', '4. データ品質と実装状況', '5. リスクと対応策', '6. 次回までの実施事項', '7. 経営/PM向け補足']。",
       "children": [],
       "parent_id": "phase:KSS:05.会議"
     },
@@ -3440,7 +3440,7 @@
       "code": "KSS",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/京橋信用ソリューションズ株式会社/06.報告書/京橋信用ソリューションズ株式会社_最終報告.pptx",
-      "summary": "京橋信用ソリューションズ株式会社_最終報告.pptx（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
+      "summary": "京橋信用ソリューションズ株式会社_最終報告.pptx（06.報告書）。17スライド / 各スライド冒頭=S0:最終分析報告書 | S1:ビジネス成果 | S2:2. プロジェクト目的とスコープ | S3:3. 実施方法 ─ 分析プロセス | S4:3. プロジェクト体制 | S5:4. 主要分析結果 ─ モデル性能 | S6:Rank | モデル種別 | F1 (macro) | Ac | S7:4. モデル性能比較 ─ チャート | S8:5. 業務提言 ─ 運用方法と閾値設定 | S9:5. 業務提言 ─ ガバナンス・品質管理・公平性 | S10:6. 実装・運用計画 ─ フェーズ | S11:ロール | 担当 | 責任範囲 | S12:7. 制約事項と残余リスク | S13:8. 今後の拡張ロードマップ | S14:成果物 | 状態 | 参照先。",
       "children": [],
       "parent_id": "phase:KSS:06.報告書"
     },
@@ -3481,7 +3481,7 @@
       "code": "MINAMINO",
       "phase": "00.提案",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/00.提案/提案書.pptx",
-      "summary": "提案書.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書.pptx（00.提案）。14スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:エグゼクティブサマリー | S2:1. 背景 | S3:現状の課題 | S4:2. プロジェクト目的 | S5:3. スコープ | S6:4. 分析アプローチ ─ 全体概観 | S7:5. 実施体制 | S8:6. スケジュール案（6週間） | S9:7. 成果物定義 | S10:8. 費用見積 | S11:9. リスクと対応策 | S12:10. 前提条件・除外事項 | S13:11. 次アクション。",
       "children": [],
       "parent_id": "phase:MINAMINO:00.提案"
     },
@@ -3492,7 +3492,7 @@
       "code": "MINAMINO",
       "phase": "00.提案",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/00.提案/糖尿病統計情報.docx",
-      "summary": "糖尿病統計情報.docx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "糖尿病統計情報.docx（00.提案）。表(44行分)。",
       "children": [],
       "parent_id": "phase:MINAMINO:00.提案"
     },
@@ -3515,7 +3515,7 @@
       "code": "MINAMINO",
       "phase": "01.契約",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/01.契約/契約書.docx",
-      "summary": "契約書.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
+      "summary": "契約書.docx（01.契約）。見出し=['データ分析業務委託契約書', '1. 当事者', '2. 目的', '3. 業務範囲', '4. 成果物および検収', '5. 契約期間', '6. 報酬および支払条件', '7. 知的財産権', '8. 秘密保持', '9. 再委託', '10. 解除', '11. 責任範囲', '12. 準拠法および裁判管轄', '13. 署名欄', '甲', '乙', '14. 特約事項（追加対応の扱い）'] / 表(2行分)。",
       "children": [],
       "parent_id": "phase:MINAMINO:01.契約"
     },
@@ -3538,7 +3538,7 @@
       "code": "MINAMINO",
       "phase": "02.計画",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/02.計画/スケジュール.xlsx",
-      "summary": "スケジュール.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
+      "summary": "スケジュール.xlsx（02.計画）。シート=['スケジュール管理表']。",
       "children": [],
       "parent_id": "phase:MINAMINO:02.計画"
     },
@@ -3563,7 +3563,7 @@
       "code": "MINAMINO",
       "phase": "03.データ",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/03.データ/train.csv",
-      "summary": "train.csv（03.データ）。学習データ・カラム説明。",
+      "summary": "train.csv（03.データ）。列=['index', 'Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age', 'Outcome'](3000行)。",
       "children": [],
       "parent_id": "phase:MINAMINO:03.データ"
     },
@@ -3574,7 +3574,7 @@
       "code": "MINAMINO",
       "phase": "03.データ",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/03.データ/train.xlsx",
-      "summary": "train.xlsx（03.データ）。学習データ・カラム説明。",
+      "summary": "train.xlsx（03.データ）。シート=['Sheet1', 'train'] / [train]列=['index', 'Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age', 'Outcome'](3001行)。",
       "children": [],
       "parent_id": "phase:MINAMINO:03.データ"
     },
@@ -3585,7 +3585,7 @@
       "code": "MINAMINO",
       "phase": "03.データ",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/03.データ/カラム説明.md",
-      "summary": "カラム説明.md（03.データ）。学習データ・カラム説明。",
+      "summary": "カラム説明.md（03.データ）。見出し=['### train.csv']。",
       "children": [],
       "parent_id": "phase:MINAMINO:03.データ"
     },
@@ -3635,7 +3635,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_outputs/experiments/leaderboard.csv",
-      "summary": "leaderboard.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "leaderboard.csv（04.分析）。列=['trial_index', 'trial_role', 'planner_stage', 'improves_on', 'trial_goal', 'selection_reason', 'change_summary', 'status', 'model_type', 'use_date_features', 'use_cyclical_time_features', 'random_state', 'test_size', 'split_strategy', 'transform_target', 'task_type', 'primary_metric', 'primary_value', 'secondary_metric', 'secondary_value'](10行)。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3646,7 +3646,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_outputs/metrics.json",
-      "summary": "metrics.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "metrics.json（04.分析）。トップレベルキー=['task_type', 'encoding', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'drop_original_categorical_after_target_encoding', 'tune_class_decision_weights', 'model_type', 'model_params', 'split_strategy', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'row_count', 'feature_count', 'train_rows', 'validation_rows', 'test_rows', 'split_ordering_basis', 'accuracy', 'f1_macro', 'auc_roc', 'brier_score', 'precision_at_top10pct', 'train_metrics', 'validation_metrics', 'eda_summary', 'feature_selection', 'ordered_feature_columns', 'selected_feature_count', 'excluded_feature_count']。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3657,7 +3657,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_outputs/run_summary.json",
-      "summary": "run_summary.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_summary.json（04.分析）。トップレベルキー=['target_column', 'date_column', 'task_type', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'class_target_encoding_min_unique', 'class_target_encoding_max_unique', 'class_target_encoding_smoothing', 'drop_original_categorical_after_target_encoding', 'tune_class_decision_weights', 'model_type', 'model_params', 'split_strategy', 'split_ordering_basis', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'output_dir', 'selected_feature_count', 'excluded_feature_columns', 'categorical_unique_limit', 'ordered_feature_columns', 'class_target_encoding', 'class_decision_tuning']。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3668,7 +3668,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/README.md",
-      "summary": "README.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "README.md（04.分析）。見出し=['# analysis_project', '## Project structure', '## Setup', '### Option A: Python-only setu', '### Option B: uv setup', '## Run', '# Windows', '## Configuration summary']。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3679,7 +3679,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/configs/project_config.json",
-      "summary": "project_config.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "project_config.json（04.分析）。トップレベルキー=['data_csv', 'column_doc', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'class_target_encoding_min_unique', 'class_target_encoding_max_unique', 'class_target_encoding_smoothing', 'drop_original_categorical_after_target_encoding', 'categorical_unique_limit_override', 'tune_class_decision_weights', 'split_strategy', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'early_stopping_min_delta', 'model_type', 'model_params', 'output_dir', 'random_state', 'test_size', 'feature_plan', 'analysis_spec_path', 'task_type']。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3690,7 +3690,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/data/train.csv",
-      "summary": "train.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "train.csv（04.分析）。列=['index', 'Pregnancies', 'Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI', 'DiabetesPedigreeFunction', 'Age', 'Outcome'](3000行)。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3701,7 +3701,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/data/カラム説明.md",
-      "summary": "カラム説明.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "カラム説明.md（04.分析）。見出し=['### train.csv']。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3712,7 +3712,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/notebooks/01_eda.ipynb",
-      "summary": "01_eda.ipynb（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "01_eda.ipynb（04.分析）。見出し=['# EDAノートブック', '## 固定EDA計画', '## 1. データ概要', '## 2. 欠損分析', '## 3. 数値特徴量の分布', '## 4. カテゴリ特徴量の分布', '## 5. 目的変数分析', '## 6. 相関分析', '## 7. 日付分析', '## 8. 観察結果サマリ'] / 関数/クラス=configure_japanese_font, load_csv_auto, is_pure_day_number_column。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3723,7 +3723,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/pyproject.toml",
-      "summary": "pyproject.toml（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "pyproject.toml（04.分析）",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3734,7 +3734,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/reports/figures/categorical_distribution_top3.png",
-      "summary": "categorical_distribution_top3.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "categorical_distribution_top3.png（04.分析）",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3745,7 +3745,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/reports/figures/date_feature_trend.png",
-      "summary": "date_feature_trend.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "date_feature_trend.png（04.分析）",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3756,7 +3756,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/reports/figures/feature_correlation_heatmap.png",
-      "summary": "feature_correlation_heatmap.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "feature_correlation_heatmap.png（04.分析）",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3767,7 +3767,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/reports/figures/missing_rate_top20.png",
-      "summary": "missing_rate_top20.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "missing_rate_top20.png（04.分析）",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3778,7 +3778,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/reports/figures/numeric_distribution_top6.png",
-      "summary": "numeric_distribution_top6.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "numeric_distribution_top6.png（04.分析）",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3789,7 +3789,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/reports/figures/overview_schema.png",
-      "summary": "overview_schema.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "overview_schema.png（04.分析）",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3800,7 +3800,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/reports/figures/target_distribution.png",
-      "summary": "target_distribution.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "target_distribution.png（04.分析）",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3811,7 +3811,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/requirements.txt",
-      "summary": "requirements.txt（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "requirements.txt（04.分析）",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3822,7 +3822,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/scripts/bootstrap_env.py",
-      "summary": "bootstrap_env.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "bootstrap_env.py（04.分析）。関数/クラス=_venv_python, _to_rel, _run, main。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3833,7 +3833,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/scripts/run_train.py",
-      "summary": "run_train.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_train.py（04.分析）。関数/クラス=_metric_value, _is_metric_better, _model_classes, _predict_with_class_weights, _categorical_columns, _add_class_target_encoding, _tune_class_decision_weights, main。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3844,7 +3844,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/src/__init__.py",
-      "summary": "__init__.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "__init__.py（04.分析）",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3855,7 +3855,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/src/common.py",
-      "summary": "common.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "common.py（04.分析）。関数/クラス=load_json, save_json, to_rel, to_int, to_float, as_bool, load_csv_auto, infer_target_column, infer_date_column, infer_task_type, resolve_input_path, resolve_output_dir。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3866,7 +3866,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/src/eda.py",
-      "summary": "eda.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "eda.py（04.分析）。関数/クラス=summarize_dataframe。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3877,7 +3877,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/src/evaluate.py",
-      "summary": "evaluate.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "evaluate.py（04.分析）。関数/クラス=build_metrics_base, evaluate_predictions。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3888,7 +3888,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/src/features.py",
-      "summary": "features.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "features.py（04.分析）。関数/クラス=is_pure_day_number_column, augment_date_features, augment_numeric_interactions, augment_cyclical_time_features, augment_ordered_category_features, is_identifier_like_column, _categorical_columns, group_rare_categories, add_categorical_frequency_features, select_feature_columns, build_preprocessor。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3899,7 +3899,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/src/infer.py",
-      "summary": "infer.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "infer.py（04.分析）。関数/クラス=run_inference。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3910,7 +3910,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/src/modeling.py",
-      "summary": "modeling.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "modeling.py（04.分析）。関数/クラス=build_pipeline。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3921,7 +3921,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/src/preprocess.py",
-      "summary": "preprocess.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "preprocess.py（04.分析）。関数/クラス=split_feature_target, train_test_holdout_split, train_valid_test_split。",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3932,7 +3932,7 @@
       "code": "MINAMINO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/04.分析/analysis_project/uv.lock",
-      "summary": "uv.lock（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "uv.lock（04.分析）",
       "children": [],
       "parent_id": "phase:MINAMINO:04.分析"
     },
@@ -3959,7 +3959,7 @@
       "code": "MINAMINO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/05.会議/会議録/会議録_2025-04-03.pdf",
-      "summary": "会議録_2025-04-03.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-04-03.pdf（05.会議）。6ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:MINAMINO:05.会議"
     },
@@ -3970,7 +3970,7 @@
       "code": "MINAMINO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/05.会議/会議録/会議録_2025-04-24.pdf",
-      "summary": "会議録_2025-04-24.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-04-24.pdf（05.会議）。6ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:MINAMINO:05.会議"
     },
@@ -3981,7 +3981,7 @@
       "code": "MINAMINO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/05.会議/会議録/会議録_2025-05-15.pdf",
-      "summary": "会議録_2025-05-15.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-05-15.pdf（05.会議）。6ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:MINAMINO:05.会議"
     },
@@ -3992,7 +3992,7 @@
       "code": "MINAMINO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/05.会議/報告資料/報告資料_2025-04-03.pdf",
-      "summary": "報告資料_2025-04-03.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-04-03.pdf（05.会議）。5ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:MINAMINO:05.会議"
     },
@@ -4003,7 +4003,7 @@
       "code": "MINAMINO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/05.会議/報告資料/報告資料_2025-04-24.pdf",
-      "summary": "報告資料_2025-04-24.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-04-24.pdf（05.会議）。6ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:MINAMINO:05.会議"
     },
@@ -4026,7 +4026,7 @@
       "code": "MINAMINO",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/06.報告書/医療法人社団 蒼樹会 みなみ野女性医療センター_最終報告.pdf",
-      "summary": "医療法人社団 蒼樹会 みなみ野女性医療センター_最終報告.pdf（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
+      "summary": "医療法人社団 蒼樹会 みなみ野女性医療センター_最終報告.pdf（06.報告書）。15ページ / 各ページ冒頭=p1:株式会社データアステル / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:MINAMINO:06.報告書"
     },
@@ -4067,7 +4067,7 @@
       "code": "SHR",
       "phase": "00.提案",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/00.提案/提案書.pptx",
-      "summary": "提案書.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書.pptx（00.提案）。19スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:1. 背景と課題 | S2:2. プロジェクト目的 | S3:2. 評価観点（PoC・分析企画段階） | S4:3. スコープ | S5:4. 分析アプローチ 全体像 | S6:4.1 データ理解・品質確認 | S7:4.2 前処理方針策定 | S8:4.3 モデル比較 | S9:4.4 リスクセグメンテーションと業務示唆整理 | S10:4.5 ガバナンス・監査対応 | S11:5. 実施体制 | S12:6. スケジュール案（10週間） | S13:7. 成果物定義 | S14:8. 費用見積。",
       "children": [],
       "parent_id": "phase:SHR:00.提案"
     },
@@ -4078,7 +4078,7 @@
       "code": "SHR",
       "phase": "00.提案",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/00.提案/提案書old.pptx",
-      "summary": "提案書old.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書old.pptx（00.提案）。19スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:1. 背景と課題 | S2:2. プロジェクト目的 | S3:2. 評価観点（PoC・分析企画段階） | S4:3. スコープ | S5:4. 分析アプローチ 全体像 | S6:4.1 データ理解・品質確認 | S7:4.2 前処理方針策定 | S8:4.3 モデル比較 | S9:4.4 リスクセグメンテーションと業務示唆整理 | S10:4.5 ガバナンス・監査対応 | S11:5. 実施体制 | S12:6. スケジュール案（10週間） | S13:7. 成果物定義 | S14:8. 費用見積 / 埋め込み画像1件。",
       "children": [],
       "parent_id": "phase:SHR:00.提案"
     },
@@ -4101,7 +4101,7 @@
       "code": "SHR",
       "phase": "01.契約",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/01.契約/契約書.docx",
-      "summary": "契約書.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
+      "summary": "契約書.docx（01.契約）。見出し=['データ分析業務委託契約書', '1. 当事者', '1.1 甲', '1.2 乙', '1.3 乙の実施体制', '2. 目的', '3. 業務範囲', '4. 成果物および検収', '4.1 成果物', '4.2 前提条件', '4.3 レビュー運営', '4.4 検収', '5. 契約期間', '6. 報酬および支払条件', '6.1 契約金額', '6.2 支払条件', '6.3 支払方法', '7. 知的財産権', '8. 秘密保持', '9. 再委託'] (+7) / 表(3行分)。",
       "children": [],
       "parent_id": "phase:SHR:01.契約"
     },
@@ -4124,7 +4124,7 @@
       "code": "SHR",
       "phase": "02.計画",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/02.計画/スケジュール.xlsx",
-      "summary": "スケジュール.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
+      "summary": "スケジュール.xlsx（02.計画）。シート=['WBS', 'マイルストーン', 'リソース計画', 'リスク・ルール']。",
       "children": [],
       "parent_id": "phase:SHR:02.計画"
     },
@@ -4149,7 +4149,7 @@
       "code": "SHR",
       "phase": "03.データ",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/03.データ/train.csv",
-      "summary": "train.csv（03.データ）。学習データ・カラム説明。",
+      "summary": "train.csv（03.データ）。列=['id', 'Attr1', 'Attr2', 'Attr3', 'Attr4', 'Attr5', 'Attr6', 'Attr7', 'Attr8', 'Attr9', 'Attr10', 'Attr11', 'Attr12', 'Attr13', 'Attr14', 'Attr15', 'Attr16', 'Attr17', 'Attr18', 'Attr19', 'Attr20', 'Attr21', 'Attr22', 'Attr23', 'Attr24'] (+41)(7352行)。",
       "children": [],
       "parent_id": "phase:SHR:03.データ"
     },
@@ -4160,7 +4160,7 @@
       "code": "SHR",
       "phase": "03.データ",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/03.データ/train.xlsx",
-      "summary": "train.xlsx（03.データ）。学習データ・カラム説明。",
+      "summary": "train.xlsx（03.データ）。シート=['Sheet5', 'Sheet3', 'Sheet2', 'Sheet1', 'train'] / [train]列=['id', 'Attr1', 'Attr2', 'Attr3', 'Attr4', 'Attr5', 'Attr6', 'Attr7', 'Attr8', 'Attr9', 'Attr10', 'Attr11', 'Attr12', 'Attr13', 'Attr14'] (+51)(7353行)。",
       "children": [],
       "parent_id": "phase:SHR:03.データ"
     },
@@ -4171,7 +4171,7 @@
       "code": "SHR",
       "phase": "03.データ",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/03.データ/カラム説明.md",
-      "summary": "カラム説明.md（03.データ）。学習データ・カラム説明。",
+      "summary": "カラム説明.md（03.データ）。見出し=['## 財務指標 (X1 - X64)', '### Target Variable & Notes']。",
       "children": [],
       "parent_id": "phase:SHR:03.データ"
     },
@@ -4220,7 +4220,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_outputs/experiments/leaderboard.csv",
-      "summary": "leaderboard.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "leaderboard.csv（04.分析）。列=['trial_index', 'status', 'model_type', 'use_date_features', 'random_state', 'test_size', 'task_type', 'primary_metric', 'primary_value', 'secondary_metric', 'secondary_value'](10行)。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4231,7 +4231,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_outputs/metrics.json",
-      "summary": "metrics.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "metrics.json（04.分析）。トップレベルキー=['task_type', 'encoding', 'target_column', 'date_column', 'use_date_features', 'model_type', 'model_params', 'row_count', 'feature_count', 'train_rows', 'test_rows', 'accuracy', 'f1_macro', 'auc_roc', 'brier_score', 'precision_at_top10pct', 'eda_summary']。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4242,7 +4242,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/README.md",
-      "summary": "README.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "README.md（04.分析）。見出し=['# analysis_project', '## Project structure', '## Setup', '### Option A: Python-only setu', '### Option B: uv setup', '## Run', '# Windows', '## Configuration summary']。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4253,7 +4253,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/configs/project_config.json",
-      "summary": "project_config.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "project_config.json（04.分析）。トップレベルキー=['data_csv', 'column_doc', 'target_column', 'date_column', 'use_date_features', 'model_type', 'model_params', 'output_dir', 'random_state', 'test_size', 'analysis_spec_path']。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4264,7 +4264,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/data/train.csv",
-      "summary": "train.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "train.csv（04.分析）。列=['id', 'Attr1', 'Attr2', 'Attr3', 'Attr4', 'Attr5', 'Attr6', 'Attr7', 'Attr8', 'Attr9', 'Attr10', 'Attr11', 'Attr12', 'Attr13', 'Attr14', 'Attr15', 'Attr16', 'Attr17', 'Attr18', 'Attr19', 'Attr20', 'Attr21', 'Attr22', 'Attr23', 'Attr24'] (+41)(7352行)。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4275,7 +4275,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/data/カラム説明.md",
-      "summary": "カラム説明.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "カラム説明.md（04.分析）。見出し=['## 財務指標 (X1 - X64)', '### Target Variable & Notes']。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4286,7 +4286,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/notebooks/01_eda.ipynb",
-      "summary": "01_eda.ipynb（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "01_eda.ipynb（04.分析）。見出し=['# EDAノートブック', '## 固定EDA計画', '## 1. データ概要', '### 基本統計量', '## 2. 欠損分析', '## 3. 数値特徴量の分布', '## 4. カテゴリ特徴量の分布', '## 5. 目的変数分析', '## 6. 相関分析', '## 7. 日付分析', '## 8. 観察結果サマリ'] / 関数/クラス=configure_japanese_font, load_csv_auto, is_pure_day_number_column, find_date_column。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4297,7 +4297,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/notebooks/01_eda_old.ipynb",
-      "summary": "01_eda_old.ipynb（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "01_eda_old.ipynb（04.分析）。見出し=['# EDAノートブック', '## 固定EDA計画', '## 1. データ概要', '### 基本統計量', '## 2. 欠損分析', '## 3. 数値特徴量の分布', '## 4. カテゴリ特徴量の分布', '## 5. 目的変数分析', '## 6. 相関分析', '## 7. 日付分析', '## 8. 観察結果サマリ'] / 関数/クラス=configure_japanese_font, load_csv_auto, is_pure_day_number_column, find_date_column。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4308,7 +4308,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/pyproject.toml",
-      "summary": "pyproject.toml（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "pyproject.toml（04.分析）",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4319,7 +4319,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/reports/figures/categorical_distribution_top3.png",
-      "summary": "categorical_distribution_top3.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "categorical_distribution_top3.png（04.分析）",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4330,7 +4330,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/reports/figures/date_feature_trend.png",
-      "summary": "date_feature_trend.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "date_feature_trend.png（04.分析）",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4341,7 +4341,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/reports/figures/feature_correlation_heatmap.png",
-      "summary": "feature_correlation_heatmap.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "feature_correlation_heatmap.png（04.分析）",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4352,7 +4352,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/reports/figures/missing_rate_top20.png",
-      "summary": "missing_rate_top20.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "missing_rate_top20.png（04.分析）",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4363,7 +4363,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/reports/figures/numeric_distribution_top6.png",
-      "summary": "numeric_distribution_top6.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "numeric_distribution_top6.png（04.分析）",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4374,7 +4374,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/reports/figures/target_distribution.png",
-      "summary": "target_distribution.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "target_distribution.png（04.分析）",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4385,7 +4385,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/requirements.txt",
-      "summary": "requirements.txt（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "requirements.txt（04.分析）",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4396,7 +4396,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/scripts/bootstrap_env.py",
-      "summary": "bootstrap_env.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "bootstrap_env.py（04.分析）。関数/クラス=_venv_python, _to_rel, _run, main。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4407,7 +4407,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/scripts/run_train.py",
-      "summary": "run_train.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_train.py（04.分析）。関数/クラス=main。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4418,7 +4418,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/src/__init__.py",
-      "summary": "__init__.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "__init__.py（04.分析）",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4429,7 +4429,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/src/common.py",
-      "summary": "common.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "common.py（04.分析）。関数/クラス=load_json, save_json, to_rel, to_int, to_float, as_bool, load_csv_auto, infer_target_column, infer_date_column, infer_task_type, resolve_input_path, resolve_output_dir。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4440,7 +4440,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/src/eda.py",
-      "summary": "eda.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "eda.py（04.分析）。関数/クラス=summarize_dataframe。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4451,7 +4451,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/src/evaluate.py",
-      "summary": "evaluate.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "evaluate.py（04.分析）。関数/クラス=build_metrics_base, evaluate_predictions。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4462,7 +4462,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/src/features.py",
-      "summary": "features.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "features.py（04.分析）。関数/クラス=is_pure_day_number_column, augment_date_features, build_preprocessor。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4473,7 +4473,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/src/infer.py",
-      "summary": "infer.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "infer.py（04.分析）。関数/クラス=run_inference。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4484,7 +4484,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/src/modeling.py",
-      "summary": "modeling.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "modeling.py（04.分析）。関数/クラス=build_pipeline。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4495,7 +4495,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/src/preprocess.py",
-      "summary": "preprocess.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "preprocess.py（04.分析）。関数/クラス=split_feature_target, train_test_holdout_split。",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4506,7 +4506,7 @@
       "code": "SHR",
       "phase": "04.分析",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/04.分析/analysis_project/uv.lock",
-      "summary": "uv.lock（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "uv.lock（04.分析）",
       "children": [],
       "parent_id": "phase:SHR:04.分析"
     },
@@ -4535,7 +4535,7 @@
       "code": "SHR",
       "phase": "05.会議",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/05.会議/会議録/会議録_2025-05-13.pdf",
-      "summary": "会議録_2025-05-13.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-05-13.pdf（05.会議）。4ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:SHR:05.会議"
     },
@@ -4546,7 +4546,7 @@
       "code": "SHR",
       "phase": "05.会議",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/05.会議/会議録/会議録_2025-05-27.pdf",
-      "summary": "会議録_2025-05-27.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-05-27.pdf（05.会議）。5ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:SHR:05.会議"
     },
@@ -4557,7 +4557,7 @@
       "code": "SHR",
       "phase": "05.会議",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/05.会議/会議録/会議録_2025-06-17.pdf",
-      "summary": "会議録_2025-06-17.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-06-17.pdf（05.会議）。4ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:SHR:05.会議"
     },
@@ -4568,7 +4568,7 @@
       "code": "SHR",
       "phase": "05.会議",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/05.会議/会議録/会議録_2025-07-15.pdf",
-      "summary": "会議録_2025-07-15.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-07-15.pdf（05.会議）。4ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:SHR:05.会議"
     },
@@ -4579,7 +4579,7 @@
       "code": "SHR",
       "phase": "05.会議",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/05.会議/報告資料/報告資料_2025-05-13.pdf",
-      "summary": "報告資料_2025-05-13.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-05-13.pdf（05.会議）。3ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:SHR:05.会議"
     },
@@ -4590,7 +4590,7 @@
       "code": "SHR",
       "phase": "05.会議",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/05.会議/報告資料/報告資料_2025-05-27.pdf",
-      "summary": "報告資料_2025-05-27.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-05-27.pdf（05.会議）。4ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:SHR:05.会議"
     },
@@ -4601,7 +4601,7 @@
       "code": "SHR",
       "phase": "05.会議",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/05.会議/報告資料/報告資料_2025-06-17.pdf",
-      "summary": "報告資料_2025-06-17.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-06-17.pdf（05.会議）。4ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:SHR:05.会議"
     },
@@ -4624,7 +4624,7 @@
       "code": "SHR",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/06.報告書/白峰信用リスク評価株式会社_最終報告.pptx",
-      "summary": "白峰信用リスク評価株式会社_最終報告.pptx（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
+      "summary": "白峰信用リスク評価株式会社_最終報告.pptx（06.報告書）。19スライド / 各スライド冒頭=S0:最終分析報告書 | S1:目次 | S2:01  エグゼクティブサマリ | S3:02  プロジェクト目的とスコープ | S4:03  実施方法 | S5:04  データ概要と確認済み分析結果 | S6:04  ベースライン評価結果（gradient_boosti | S7:Rank | Model Type | F1 (macro) | S8:04  未解決事項・制約（中間報告時点） | S9:05  業務提言：直近（本番化前・必須事項） | S10:05  業務提言：中期・長期 | S11:06  実装工程（短期・必須） | S12:06  運用体制・KPI | S13:06  本番化スケジュール（概案） | S14:07  制約事項と残余リスク。",
       "children": [],
       "parent_id": "phase:SHR:06.報告書"
     },
@@ -4664,7 +4664,7 @@
       "code": "SOHK",
       "phase": "00.提案",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/00.提案/提案書.pptx",
-      "summary": "提案書.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書.pptx（00.提案）。15スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:1. 背景 | S2:2. 目的 | S3:3. スコープ ― 対象範囲 | S4:3. スコープ ― 対象外 | S5:4. 分析アプローチ ― 全体フロー | S6:5. 実施体制 | S7:5. 会議・報告運営 | S8:6. スケジュール案 | S9:6. マイルストーン詳細 | S10:7. 成果物定義 | S11:8. 費用見積 | S12:9. リスクと対応策 | S13:10. 前提条件と除外事項 | S14:11. 次アクション。",
       "children": [],
       "parent_id": "phase:SOHK:00.提案"
     },
@@ -4687,7 +4687,7 @@
       "code": "SOHK",
       "phase": "01.契約",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/01.契約/契約書.docx",
-      "summary": "契約書.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
+      "summary": "契約書.docx（01.契約）。見出し=['データ分析業務委託契約書', '1. 当事者', '1.1 甲', '1.2 乙', '1.3 乙の実施体制', '2. 目的', '3. 業務範囲', '3.1 対象業務', '3.2 対象外業務', '3.3 会議および報告運営', '4. 成果物および検収', '4.1 成果物', '4.2 成果物の内容', '4.3 提出方法', '4.4 検収', '5. 契約期間', '6. 報酬および支払条件', '6.1 料金モデル', '6.2 単価および見込金額', '6.3 工数記録および精算方法'] (+12) / 表(9行分)。",
       "children": [],
       "parent_id": "phase:SOHK:01.契約"
     },
@@ -4710,7 +4710,7 @@
       "code": "SOHK",
       "phase": "02.計画",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/02.計画/スケジュール.xlsx",
-      "summary": "スケジュール.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
+      "summary": "スケジュール.xlsx（02.計画）。シート=['WBS', 'マイルストーン', 'リソース配分', 'リスク管理']。",
       "children": [],
       "parent_id": "phase:SOHK:02.計画"
     },
@@ -4735,7 +4735,7 @@
       "code": "SOHK",
       "phase": "03.データ",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/03.データ/train.csv",
-      "summary": "train.csv（03.データ）。学習データ・カラム説明。",
+      "summary": "train.csv（03.データ）。列=['id', 'age', 'sex', 'bmi', 'children', 'smoker', 'region', 'charges'](1600行)。",
       "children": [],
       "parent_id": "phase:SOHK:03.データ"
     },
@@ -4746,7 +4746,7 @@
       "code": "SOHK",
       "phase": "03.データ",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/03.データ/train.xlsx",
-      "summary": "train.xlsx（03.データ）。学習データ・カラム説明。",
+      "summary": "train.xlsx（03.データ）。シート=['Sheet1', 'Sheet2', 'train'] / [train]列=['id', 'age', 'sex', 'bmi', 'children', 'smoker', 'region', 'charges'](1601行) / [Pivot]グループ化=['sex', 'smoker', 'region', 'charges'] 集計=['平均 / age', '平均 / bmi'] / [Pivot]グループ化=['children', 'region'] 集計=['合計 / bmi'] / [Pivot]グループ化=['children', 'smoker'] 集計=['合計 / age', '合計 / bmi'] / [Pivot]グループ化=['children'] 集計=['合計 / age', '合計 / bmi']。",
       "children": [],
       "parent_id": "phase:SOHK:03.データ"
     },
@@ -4757,7 +4757,7 @@
       "code": "SOHK",
       "phase": "03.データ",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/03.データ/カラム説明.md",
-      "summary": "カラム説明.md（03.データ）。学習データ・カラム説明。",
+      "summary": "カラム説明.md（03.データ）。見出し=['### train.csv']。",
       "children": [],
       "parent_id": "phase:SOHK:03.データ"
     },
@@ -4804,7 +4804,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_outputs/experiments/leaderboard.csv",
-      "summary": "leaderboard.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "leaderboard.csv（04.分析）。列=['trial_index', 'trial_role', 'improves_on', 'trial_goal', 'status', 'model_type', 'use_date_features', 'random_state', 'test_size', 'task_type', 'primary_metric', 'primary_value', 'secondary_metric', 'secondary_value'](10行)。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4815,7 +4815,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_outputs/metrics.json",
-      "summary": "metrics.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "metrics.json（04.分析）。トップレベルキー=['task_type', 'encoding', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'model_type', 'model_params', 'row_count', 'feature_count', 'train_rows', 'test_rows', 'accuracy', 'f1_macro', 'eda_summary', 'feature_selection', 'selected_feature_count', 'excluded_feature_count']。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4826,7 +4826,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/README.md",
-      "summary": "README.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "README.md（04.分析）。見出し=['# analysis_project', '## Project structure', '## Setup', '### Option A: Python-only setu', '### Option B: uv setup', '## Run', '# Windows', '## Configuration summary']。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4837,7 +4837,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/configs/project_config.json",
-      "summary": "project_config.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "project_config.json（04.分析）。トップレベルキー=['data_csv', 'column_doc', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'model_type', 'model_params', 'output_dir', 'random_state', 'test_size', 'feature_plan', 'analysis_spec_path', 'task_type']。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4848,7 +4848,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/data/train.csv",
-      "summary": "train.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "train.csv（04.分析）。列=['id', 'age', 'sex', 'bmi', 'children', 'smoker', 'region', 'charges'](1600行)。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4859,7 +4859,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/data/カラム説明.md",
-      "summary": "カラム説明.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "カラム説明.md（04.分析）。見出し=['### train.csv']。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4870,7 +4870,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/notebooks/01_eda.ipynb",
-      "summary": "01_eda.ipynb（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "01_eda.ipynb（04.分析）。見出し=['# EDAノートブック', '## 固定EDA計画', '## 1. データ概要', '## 2. 欠損分析', '## 3. 数値特徴量の分布', '## 4. カテゴリ特徴量の分布', '## 5. 目的変数分析', '## 6. 相関分析', '## 7. 日付分析', '## 8. 観察結果サマリ'] / 関数/クラス=configure_japanese_font, load_csv_auto, is_pure_day_number_column。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4881,7 +4881,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/pyproject.toml",
-      "summary": "pyproject.toml（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "pyproject.toml（04.分析）",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4892,7 +4892,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/reports/figures/date_feature_trend.png",
-      "summary": "date_feature_trend.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "date_feature_trend.png（04.分析）",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4903,7 +4903,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/reports/figures/feature_correlation_heatmap.png",
-      "summary": "feature_correlation_heatmap.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "feature_correlation_heatmap.png（04.分析）",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4914,7 +4914,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/reports/figures/missing_rate_top20.png",
-      "summary": "missing_rate_top20.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "missing_rate_top20.png（04.分析）",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4925,7 +4925,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/reports/figures/numeric_distribution_top6.png",
-      "summary": "numeric_distribution_top6.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "numeric_distribution_top6.png（04.分析）",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4936,7 +4936,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/reports/figures/target_distribution.png",
-      "summary": "target_distribution.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "target_distribution.png（04.分析）",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4947,7 +4947,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/requirements.txt",
-      "summary": "requirements.txt（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "requirements.txt（04.分析）",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4958,7 +4958,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/scripts/bootstrap_env.py",
-      "summary": "bootstrap_env.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "bootstrap_env.py（04.分析）。関数/クラス=_venv_python, _to_rel, _run, main。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4969,7 +4969,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/scripts/run_train.py",
-      "summary": "run_train.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_train.py（04.分析）。関数/クラス=main。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4980,7 +4980,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/src/__init__.py",
-      "summary": "__init__.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "__init__.py（04.分析）",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -4991,7 +4991,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/src/common.py",
-      "summary": "common.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "common.py（04.分析）。関数/クラス=load_json, save_json, to_rel, to_int, to_float, as_bool, load_csv_auto, infer_target_column, infer_date_column, infer_task_type, resolve_input_path, resolve_output_dir。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -5002,7 +5002,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/src/eda.py",
-      "summary": "eda.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "eda.py（04.分析）。関数/クラス=summarize_dataframe。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -5013,7 +5013,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/src/evaluate.py",
-      "summary": "evaluate.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "evaluate.py（04.分析）。関数/クラス=build_metrics_base, evaluate_predictions。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -5024,7 +5024,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/src/features.py",
-      "summary": "features.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "features.py（04.分析）。関数/クラス=is_pure_day_number_column, augment_date_features, augment_numeric_interactions, is_identifier_like_column, select_feature_columns, build_preprocessor。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -5035,7 +5035,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/src/infer.py",
-      "summary": "infer.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "infer.py（04.分析）。関数/クラス=run_inference。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -5046,7 +5046,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/src/modeling.py",
-      "summary": "modeling.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "modeling.py（04.分析）。関数/クラス=build_pipeline。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -5057,7 +5057,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/src/preprocess.py",
-      "summary": "preprocess.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "preprocess.py（04.分析）。関数/クラス=split_feature_target, train_test_holdout_split。",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -5068,7 +5068,7 @@
       "code": "SOHK",
       "phase": "04.分析",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/04.分析/analysis_project/uv.lock",
-      "summary": "uv.lock（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "uv.lock（04.分析）",
       "children": [],
       "parent_id": "phase:SOHK:04.分析"
     },
@@ -5095,7 +5095,7 @@
       "code": "SOHK",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/05.会議/会議録/会議録_2025-07-08.docx",
-      "summary": "会議録_2025-07-08.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-07-08.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. 次回会議計画'] / 表(9行分)。",
       "children": [],
       "parent_id": "phase:SOHK:05.会議"
     },
@@ -5106,7 +5106,7 @@
       "code": "SOHK",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/05.会議/会議録/会議録_2025-07-22.docx",
-      "summary": "会議録_2025-07-22.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-07-22.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. 次回会議計画'] / 表(16行分)。",
       "children": [],
       "parent_id": "phase:SOHK:05.会議"
     },
@@ -5117,7 +5117,7 @@
       "code": "SOHK",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/05.会議/会議録/会議録_2025-08-05.docx",
-      "summary": "会議録_2025-08-05.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-08-05.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. クロージング'] / 表(18行分)。",
       "children": [],
       "parent_id": "phase:SOHK:05.会議"
     },
@@ -5128,7 +5128,7 @@
       "code": "SOHK",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/05.会議/報告資料/報告資料_2025-07-08.docx",
-      "summary": "報告資料_2025-07-08.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-07-08.docx（05.会議）。見出し=['分析進捗報告書', '1. 報告サマリー', '2. 進捗状況', '2.1 チェックポイント時点の全体進捗', '2.2 スケジュールとのトレーサビリティ', '2.3 WBS観点の進捗状況', '2.4 タスク件数サマリ', '3. 主要な分析結果', '3.1 現時点で確認できる分析上の主要所見', '3.2 分析前提として重要な確認事項', '3.3 現時点での暫定的な示唆', '4. データ品質と実装状況', '4.1 データ品質の既知情報', '4.2 実装状況', '4.3 実装準備の確認ポイント', '4.4 会議記録・課題管理の状態', '5. リスクと対応策', '5.1 現時点の主要リスク', '5.2 商務・契約面の留意事項', '6. 次回までの実施事項'] (+3) / 表(55行分)。",
       "children": [],
       "parent_id": "phase:SOHK:05.会議"
     },
@@ -5139,7 +5139,7 @@
       "code": "SOHK",
       "phase": "05.会議",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/05.会議/報告資料/報告資料_2025-07-22.docx",
-      "summary": "報告資料_2025-07-22.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-07-22.docx（05.会議）。見出し=['分析進捗報告書', '1. 報告サマリー', '2. 進捗状況', '2.1 チェックポイント時点の全体進捗', '2.2 WBSトレースによる進捗整理', '2.3 アクションアイテムの状況', '2.4 商流・契約条件の確認状況', '3. 主要な分析結果', '3.1 中間報告で開示可能な分析範囲', '3.2 中間時点での比較所見', '3.3 特徴量・前処理に関する中間時点の確認事項', '3.4 主要な暫定示唆', '3.5 留意事項', '4. データ品質と実装状況', '4.1 データ品質の確認状況', '4.2 データ解釈上の前提維持', '4.3 実装状況', '4.4 実装面の未確定事項', '5. リスクと対応策', '5.1 主要リスク'] (+13) / 表(8行分)。",
       "children": [],
       "parent_id": "phase:SOHK:05.会議"
     },
@@ -5162,7 +5162,7 @@
       "code": "SOHK",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/医療法人社団 蒼泉会 ひがし丘総合病院/06.報告書/医療法人社団 蒼泉会 ひがし丘総合病院_最終報告.pdf",
-      "summary": "医療法人社団 蒼泉会 ひがし丘総合病院_最終報告.pdf（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
+      "summary": "医療法人社団 蒼泉会 ひがし丘総合病院_最終報告.pdf（06.報告書）。18ページ / 各ページ冒頭=p1:医療法人社団 蒼泉会 ひがし丘総合病院 | p2:1. エグゼクティブサマリ | p3:1. エグゼクティブサマリ | p4:1. エグゼクティブサマリ | p5:2. プロジェクト目的とスコープ | p6:3. 実施方法 | p7:3. 実施方法 | p8:4. 主要な分析結果 | p9:4. 主要な分析結果 | p10:4. 主要な分析結果 | p11:5. 業務提言 | p12:5. 業務提言 | p13:6. 実装・運用計画 | p14:7. 制約事項と残余リスク | p15:8. 今後の拡張ロードマップ。",
       "children": [],
       "parent_id": "phase:SOHK:06.報告書"
     },
@@ -5204,7 +5204,7 @@
       "code": "TOTO",
       "phase": "00.提案",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/00.提案/データサイエンス市場の未来予測.pdf",
-      "summary": "データサイエンス市場の未来予測.pdf（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "データサイエンス市場の未来予測.pdf（00.提案）。15ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:TOTO:00.提案"
     },
@@ -5215,7 +5215,7 @@
       "code": "TOTO",
       "phase": "00.提案",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/00.提案/データサイエンティスト調査.docx",
-      "summary": "データサイエンティスト調査.docx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "データサイエンティスト調査.docx（00.提案）。見出し=['データサイエンティストの収入水準、労働市場の構造、および技術', '1. 導入：データ駆動型経済におけるデータサイエンティストの', '2. 米国市場における報酬構造の精緻な分析：グローバルベンチ', '2.1. 基本給（Base Salary）の統計的分布と市場', '2.2. 総報酬（Total Compensation）の概', '2.3. 産業別（Industry）の利益構造に基づく報酬格', '3. グローバル市場における労働のアービトラージと地理的格差', '4. 日本市場における報酬構造の深層：伝統的慣行とテクノロジ', '4.1. マクロな市場規模と構造的な人材不足', '4.2. 日本における平均給与水準と階層化された給与レンジ', '4.3. 伝統的製造業の適応事例：トヨタ自動車の採用戦略', '4.4. 産業別（IT、金融、製造等）の採用トレンドと給与水', '4.5. フリーランス市場における単価相場と流動性プレミアム', '5. 経験年数、役職、および職務ドメインによる収入の階層化', '5.1. 経験年数（シニアリティ）による昇給のメカニズム', '5.2. 職務ドメイン別の分化：アナリストからAIエンジニア', '6. 人的資本のシグナリング：学歴および保有資格がもたらすプ', '6.1. 高等教育（修士号・博士号）による生涯賃金の引き上げ', '6.2. 認定資格のエコシステムと日本市場の独自性', '7. 求められる技術スタックの変遷と「生成AI」がもたらすパ'] (+4) / 表(18行分) / 埋め込み画像1件。",
       "children": [],
       "parent_id": "phase:TOTO:00.提案"
     },
@@ -5226,7 +5226,7 @@
       "code": "TOTO",
       "phase": "00.提案",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/00.提案/提案書.pptx",
-      "summary": "提案書.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
+      "summary": "提案書.pptx（00.提案）。16スライド / 各スライド冒頭=S0:データ分析プロジェクト提案書 | S1:1. 背景 | S2:2. 目的 | S3:3. スコープ | S4:4. 分析アプローチ：全体方針 | S5:4. 分析アプローチ：データ処理方針 | S6:4. 分析ステップ | S7:5. 実施体制 | S8:6. スケジュール案 | S9:6. マイルストーン | S10:7. 成果物定義 | S11:8. 費用見積 | S12:9. リスクと対応策 | S13:10. 前提条件と除外事項 | S14:11. 次アクション。",
       "children": [],
       "parent_id": "phase:TOTO:00.提案"
     },
@@ -5249,7 +5249,7 @@
       "code": "TOTO",
       "phase": "01.契約",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/01.契約/契約書.docx",
-      "summary": "契約書.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
+      "summary": "契約書.docx（01.契約）。見出し=['データ分析業務委託契約書', '1. 当事者', '（1）甲', '（2）乙', '2. 目的', '3. 業務範囲', '4. 成果物および検収', '5. 契約期間', '6. 報酬および支払条件', '7. 知的財産権', '8. 秘密保持', '9. 再委託', '10. 解除', '11. 責任範囲', '12. 準拠法および裁判管轄', '13. 署名欄', '甲', '乙', '14. 特約事項（追加対応の扱い）'] / 表(2行分)。",
       "children": [],
       "parent_id": "phase:TOTO:01.契約"
     },
@@ -5272,7 +5272,7 @@
       "code": "TOTO",
       "phase": "02.計画",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/02.計画/スケジュール.xlsx",
-      "summary": "スケジュール.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
+      "summary": "スケジュール.xlsx（02.計画）。シート=['スケジュール']。",
       "children": [],
       "parent_id": "phase:TOTO:02.計画"
     },
@@ -5297,7 +5297,7 @@
       "code": "TOTO",
       "phase": "03.データ",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/03.データ/train.csv",
-      "summary": "train.csv（03.データ）。学習データ・カラム説明。",
+      "summary": "train.csv（03.データ）。列=['id', 'Gender', 'Age', 'Country', 'Education', 'Major', 'Profession', 'Industry', 'Experience', 'target'](11529行)。",
       "children": [],
       "parent_id": "phase:TOTO:03.データ"
     },
@@ -5308,7 +5308,7 @@
       "code": "TOTO",
       "phase": "03.データ",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/03.データ/train.xlsx",
-      "summary": "train.xlsx（03.データ）。学習データ・カラム説明。",
+      "summary": "train.xlsx（03.データ）。シート=['Sheet1', 'Sheet2', 'train'] / [Sheet1]列=['Gender', 'target', 'Age', 'Country', '個数'](2251行) / [train]列=['id', 'Gender', 'Age', 'Country', 'Education', 'Major', 'Profession', 'Industry', 'Experience', 'target'](11530行) / [フィルタ]列インデックス1のフィルタ: 値=['Male'] / [フィルタ]列インデックス3のフィルタ: 値=['India'] / [フィルタ]列インデックス9のフィルタ: 値=['2']。",
       "children": [],
       "parent_id": "phase:TOTO:03.データ"
     },
@@ -5319,7 +5319,7 @@
       "code": "TOTO",
       "phase": "03.データ",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/03.データ/カラム説明.md",
-      "summary": "カラム説明.md（03.データ）。学習データ・カラム説明。",
+      "summary": "カラム説明.md（03.データ）。見出し=['### train.csv']。",
       "children": [],
       "parent_id": "phase:TOTO:03.データ"
     },
@@ -5368,7 +5368,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_outputs/experiments/leaderboard.csv",
-      "summary": "leaderboard.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "leaderboard.csv（04.分析）。列=['trial_index', 'trial_role', 'planner_stage', 'improves_on', 'trial_goal', 'selection_reason', 'change_summary', 'status', 'model_type', 'use_date_features', 'use_cyclical_time_features', 'random_state', 'test_size', 'split_strategy', 'transform_target', 'task_type', 'primary_metric', 'primary_value', 'secondary_metric', 'secondary_value'](10行)。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5379,7 +5379,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_outputs/metrics.json",
-      "summary": "metrics.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "metrics.json（04.分析）。トップレベルキー=['task_type', 'encoding', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'drop_original_categorical_after_target_encoding', 'tune_class_decision_weights', 'model_type', 'model_params', 'split_strategy', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'row_count', 'feature_count', 'train_rows', 'validation_rows', 'test_rows', 'split_ordering_basis', 'accuracy', 'f1_macro', 'train_metrics', 'validation_metrics', 'class_target_encoding', 'eda_summary', 'feature_selection', 'ordered_feature_columns', 'selected_feature_count', 'excluded_feature_count']。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5390,7 +5390,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_outputs/run_summary.json",
-      "summary": "run_summary.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_summary.json（04.分析）。トップレベルキー=['target_column', 'date_column', 'task_type', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'class_target_encoding_min_unique', 'class_target_encoding_max_unique', 'class_target_encoding_smoothing', 'drop_original_categorical_after_target_encoding', 'tune_class_decision_weights', 'model_type', 'model_params', 'split_strategy', 'split_ordering_basis', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'output_dir', 'selected_feature_count', 'excluded_feature_columns', 'categorical_unique_limit', 'ordered_feature_columns', 'class_target_encoding', 'class_decision_tuning']。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5401,7 +5401,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/README.md",
-      "summary": "README.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "README.md（04.分析）。見出し=['# analysis_project', '## Project structure', '## Setup', '### Option A: Python-only setu', '### Option B: uv setup', '## Run', '# Windows', '## Configuration summary']。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5412,7 +5412,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/configs/project_config.json",
-      "summary": "project_config.json（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "project_config.json（04.分析）。トップレベルキー=['data_csv', 'column_doc', 'target_column', 'date_column', 'use_date_features', 'use_numeric_interactions', 'use_cyclical_time_features', 'use_ordered_category_features', 'group_rare_categories', 'rare_category_min_count', 'use_categorical_frequency_features', 'categorical_frequency_min_unique', 'categorical_frequency_max_unique', 'use_class_target_encoding', 'class_target_encoding_min_unique', 'class_target_encoding_max_unique', 'class_target_encoding_smoothing', 'drop_original_categorical_after_target_encoding', 'categorical_unique_limit_override', 'tune_class_decision_weights', 'split_strategy', 'transform_target', 'validation_size', 'early_stopping', 'early_stopping_patience', 'early_stopping_min_delta', 'model_type', 'model_params', 'output_dir', 'random_state', 'test_size', 'feature_plan', 'analysis_spec_path', 'task_type']。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5423,7 +5423,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/data/train.csv",
-      "summary": "train.csv（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "train.csv（04.分析）。列=['id', 'Gender', 'Age', 'Country', 'Education', 'Major', 'Profession', 'Industry', 'Experience', 'target'](11529行)。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5434,7 +5434,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/data/カラム説明.md",
-      "summary": "カラム説明.md（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "カラム説明.md（04.分析）。見出し=['### train.csv']。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5445,7 +5445,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/notebooks/01_eda.ipynb",
-      "summary": "01_eda.ipynb（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "01_eda.ipynb（04.分析）。見出し=['# EDAノートブック', '## 固定EDA計画', '## 1. データ概要', '## 2. 欠損分析', '## 3. 数値特徴量の分布', '## 4. カテゴリ特徴量の分布', '## 5. 目的変数分析', '## 6. 相関分析', '## 7. 日付分析', '## 8. 観察結果サマリ'] / 関数/クラス=configure_japanese_font, load_csv_auto, is_pure_day_number_column, try_parse_date。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5456,7 +5456,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/pyproject.toml",
-      "summary": "pyproject.toml（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "pyproject.toml（04.分析）",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5467,7 +5467,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/reports/figures/categorical_distribution_top3.png",
-      "summary": "categorical_distribution_top3.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "categorical_distribution_top3.png（04.分析）",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5478,7 +5478,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/reports/figures/date_feature_trend.png",
-      "summary": "date_feature_trend.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "date_feature_trend.png（04.分析）",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5489,7 +5489,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/reports/figures/feature_correlation_heatmap.png",
-      "summary": "feature_correlation_heatmap.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "feature_correlation_heatmap.png（04.分析）",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5500,7 +5500,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/reports/figures/missing_rate_top20.png",
-      "summary": "missing_rate_top20.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "missing_rate_top20.png（04.分析）",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5511,7 +5511,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/reports/figures/numeric_distribution_top6.png",
-      "summary": "numeric_distribution_top6.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "numeric_distribution_top6.png（04.分析）",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5522,7 +5522,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/reports/figures/target_distribution.png",
-      "summary": "target_distribution.png（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "target_distribution.png（04.分析）",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5533,7 +5533,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/requirements.txt",
-      "summary": "requirements.txt（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "requirements.txt（04.分析）",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5544,7 +5544,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/scripts/bootstrap_env.py",
-      "summary": "bootstrap_env.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "bootstrap_env.py（04.分析）。関数/クラス=_venv_python, _to_rel, _run, main。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5555,7 +5555,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/scripts/run_train.py",
-      "summary": "run_train.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "run_train.py（04.分析）。関数/クラス=_metric_value, _is_metric_better, _model_classes, _predict_with_class_weights, _categorical_columns, _add_class_target_encoding, _tune_class_decision_weights, main。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5566,7 +5566,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/src/__init__.py",
-      "summary": "__init__.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "__init__.py（04.分析）",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5577,7 +5577,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/src/common.py",
-      "summary": "common.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "common.py（04.分析）。関数/クラス=load_json, save_json, to_rel, to_int, to_float, as_bool, load_csv_auto, infer_target_column, infer_date_column, infer_task_type, resolve_input_path, resolve_output_dir。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5588,7 +5588,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/src/eda.py",
-      "summary": "eda.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "eda.py（04.分析）。関数/クラス=summarize_dataframe。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5599,7 +5599,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/src/evaluate.py",
-      "summary": "evaluate.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "evaluate.py（04.分析）。関数/クラス=build_metrics_base, evaluate_predictions。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5610,7 +5610,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/src/features.py",
-      "summary": "features.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "features.py（04.分析）。関数/クラス=is_pure_day_number_column, augment_date_features, augment_numeric_interactions, augment_cyclical_time_features, augment_ordered_category_features, is_identifier_like_column, _categorical_columns, group_rare_categories, add_categorical_frequency_features, select_feature_columns, build_preprocessor。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5621,7 +5621,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/src/infer.py",
-      "summary": "infer.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "infer.py（04.分析）。関数/クラス=run_inference。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5632,7 +5632,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/src/modeling.py",
-      "summary": "modeling.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "modeling.py（04.分析）。関数/クラス=build_pipeline。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5643,7 +5643,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/src/preprocess.py",
-      "summary": "preprocess.py（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "preprocess.py（04.分析）。関数/クラス=split_feature_target, train_test_holdout_split, train_valid_test_split。",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5654,7 +5654,7 @@
       "code": "TOTO",
       "phase": "04.分析",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/04.分析/analysis_project/uv.lock",
-      "summary": "uv.lock（04.分析）。分析コード・ノートブック・metrics・図表。",
+      "summary": "uv.lock（04.分析）",
       "children": [],
       "parent_id": "phase:TOTO:04.分析"
     },
@@ -5681,7 +5681,7 @@
       "code": "TOTO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/05.会議/会議録/会議録_2025-08-18.docx",
-      "summary": "会議録_2025-08-18.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-08-18.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. 次回会議計画'] / 表(11行分)。",
       "children": [],
       "parent_id": "phase:TOTO:05.会議"
     },
@@ -5692,7 +5692,7 @@
       "code": "TOTO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/05.会議/会議録/会議録_2025-09-08.docx",
-      "summary": "会議録_2025-09-08.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-09-08.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. 次回会議計画'] / 表(16行分)。",
       "children": [],
       "parent_id": "phase:TOTO:05.会議"
     },
@@ -5703,7 +5703,7 @@
       "code": "TOTO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/05.会議/会議録/会議録_2025-09-26.docx",
-      "summary": "会議録_2025-09-26.docx（05.会議）。会議録・中間報告資料。",
+      "summary": "会議録_2025-09-26.docx（05.会議）。見出し=['会議録', '1. 会議情報', '2. 議題', '3. 主要議論', '4. 進捗サマリ', '5. 決定事項', '6. アクションアイテム', '7. リスクと懸念事項', '8. クロージング'] / 表(14行分)。",
       "children": [],
       "parent_id": "phase:TOTO:05.会議"
     },
@@ -5714,7 +5714,7 @@
       "code": "TOTO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/05.会議/報告資料/報告資料_2025-08-18.pdf",
-      "summary": "報告資料_2025-08-18.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-08-18.pdf（05.会議）。7ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:TOTO:05.会議"
     },
@@ -5725,7 +5725,7 @@
       "code": "TOTO",
       "phase": "05.会議",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/05.会議/報告資料/報告資料_2025-09-08.pdf",
-      "summary": "報告資料_2025-09-08.pdf（05.会議）。会議録・中間報告資料。",
+      "summary": "報告資料_2025-09-08.pdf（05.会議）。9ページ / 画像/スキャンページあり。",
       "children": [],
       "parent_id": "phase:TOTO:05.会議"
     },
@@ -5748,7 +5748,7 @@
       "code": "TOTO",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/06.報告書/株式会社東都人材プラットフォーム_最終報告.pptx",
-      "summary": "株式会社東都人材プラットフォーム_最終報告.pptx（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
+      "summary": "株式会社東都人材プラットフォーム_最終報告.pptx（06.報告書）。16スライド / 各スライド冒頭=S0:最終分析報告書 | S1:1. エグゼクティブサマリ | S2:2. プロジェクト目的とスコープ | S3:3. 実施方法 | S4:4. 主要な分析結果 — データ品質・特徴選択 | S5:4. 主要な分析結果 — モデル性能比較 | S6:4. 主要な分析結果 — 解釈・公平性・制約 | S7:5. 業務提言 — 優先度：高 | S8:5. 業務提言 — 優先度：中〜低 | S9:6. 実装・運用計画 | S10:7. 制約事項と残余リスク | S11:8. 今後の拡張ロードマップ | S12:9. 成果物サマリ | S13:10. 提案・契約との差分管理 | S14:付録: 請求明細。",
       "children": [],
       "parent_id": "phase:TOTO:06.報告書"
     }

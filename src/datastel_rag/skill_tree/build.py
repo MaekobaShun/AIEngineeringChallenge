@@ -1,18 +1,21 @@
 """Build a folder-hierarchy skill tree from the share-drive catalog.
 
-Leaf summaries are generic phase-level descriptions only -- deliberately not
-file-specific. An earlier version hand-wrote summaries for the ~7 files that
+Leaf summaries are deterministic structural pointers (sheet/column names,
+heading hierarchy, function names, slide count, ...), computed from each
+file's already-parsed content -- see pointer_summary.py for why this is
+"pointers, not summaries" on purpose. Branch (phase/project/root) nodes keep
+generic role descriptions; the real per-file signal lives at the leaves and
+list_children already surfaces each child's summary when you visit its
+parent, so there's nothing to aggregate upward.
+
+An earlier version hand-wrote summaries for the ~7 files that
 questions_valid.csv's hardest questions happened to need, which is exactly
 the kind of thing the competition rules single out as disqualifying
 ("未知の案件・未知の資料が追加されても同じ処理方針で対応できる汎用的な設計
 が求められる"): it would have inflated the valid30 score using knowledge of
-the eval set, not generalized to test100 or the acceptance-review data.
-
-A real improvement here would be LLM-generated per-file summaries from each
-file's actually-parsed content (via ingest/dispatch.py), which is still
-generic (derived from the file itself, not the question set) -- just not
-built yet. This mirrors the existing directory layout; it does not
-embed/cluster like Corpus2Skill.
+the eval set, not generalized to test100 or the acceptance-review data. This
+mirrors the existing directory layout; it does not embed/cluster like
+Corpus2Skill.
 """
 
 from __future__ import annotations
@@ -22,8 +25,9 @@ from collections import defaultdict
 from pathlib import Path
 
 from datastel_rag import config
-from datastel_rag.catalog.glossary import load_or_build_glossary
+from datastel_rag.catalog.glossary import Glossary, load_or_build_glossary
 from datastel_rag.catalog.scanner import Catalog, load_or_build_catalog
+from datastel_rag.skill_tree.pointer_summary import pointer_summary
 from datastel_rag.skill_tree.tree import DEFAULT_TREE_PATH
 
 _PHASE_HINTS: dict[str, str] = {
@@ -37,12 +41,7 @@ _PHASE_HINTS: dict[str, str] = {
 }
 
 
-def _leaf_summary(rel_path: str, name: str, phase: str) -> str:
-    base = _PHASE_HINTS.get(phase, "")
-    return f"{name}（{phase}）。{base}".strip()
-
-
-def build_tree(catalog: Catalog, code_by_key: dict[str, str]) -> dict:
+def build_tree(catalog: Catalog, glossary: Glossary, code_by_key: dict[str, str]) -> dict:
     nodes: dict[str, dict] = {}
     root_children: list[str] = []
 
@@ -105,7 +104,7 @@ def build_tree(catalog: Catalog, code_by_key: dict[str, str]) -> dict:
                     "code": code,
                     "phase": phase,
                     "rel_path": f.rel_path,
-                    "summary": _leaf_summary(f.rel_path, name, phase),
+                    "summary": pointer_summary(f, catalog, glossary),
                     "children": [],
                     "parent_id": phase_id,
                 }
@@ -115,10 +114,12 @@ def build_tree(catalog: Catalog, code_by_key: dict[str, str]) -> dict:
             "version": "folder_hierarchy_v1",
             "source": "share-drive catalog phases (not Corpus2Skill clustering)",
             "note": (
-                "Generic phase-level leaf summaries only, derived from the folder structure "
-                "-- no per-file or per-question hand-tuning. Used as a navigation fallback "
-                "(list_children) alongside BM25 search_documents in retrieval_mode=hybrid; "
-                "retrieval_mode=skill_nav disables search entirely for isolated ablation testing."
+                "Leaf summaries are deterministic structural pointers (sheet/column names, "
+                "headings, function names, ...) computed from each file's parsed content -- "
+                "not LLM-generated gist summaries, and no per-file/per-question hand-tuning. "
+                "Used as a navigation fallback (list_children) alongside BM25 search_documents "
+                "in retrieval_mode=hybrid; retrieval_mode=skill_nav disables search entirely "
+                "for isolated ablation testing."
             ),
         },
         "nodes": nodes,
@@ -129,7 +130,7 @@ def main() -> None:
     catalog = load_or_build_catalog()
     glossary = load_or_build_glossary()
     code_by_key = {p.full_name: p.code for p in glossary.projects}
-    tree = build_tree(catalog, code_by_key)
+    tree = build_tree(catalog, glossary, code_by_key)
     out = DEFAULT_TREE_PATH
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(tree, ensure_ascii=False, indent=2), encoding="utf-8")

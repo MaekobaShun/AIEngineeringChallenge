@@ -53,6 +53,16 @@ def build_tools(index: SearchIndex, catalog: Catalog, glossary: Glossary, captur
         return _text(text)
 
     @tool(
+        "diff_documents",
+        "2つのファイル(旧版と新版など)のテキストをdifflibで機械的に比較し、行単位の差分を返す。"
+        "「新旧版で実質的な変更点を挙げよ」系の質問では、目視比較だけに頼らず必ずこれを使うこと"
+        "(2つの長い文書を読み比べるだけでは、丸ごと追加されたセクションを見落とすことがある)。",
+        {"rel_path_a": "比較元(例: 旧版)のrel_path", "rel_path_b": "比較先(例: 新版)のrel_path"},
+    )
+    async def diff_documents(args):
+        return _text(core.diff_documents_impl(ctx, args["rel_path_a"], args["rel_path_b"]))
+
+    @tool(
         "resolve_project",
         "質問文に出てくる案件名・略称・別名から、社内用語集で定義されている正式な案件名と主略称を解決する。",
         {"text": "質問文またはその一部(案件名・略称を含む文字列)"},
@@ -109,6 +119,7 @@ def build_tools(index: SearchIndex, catalog: Catalog, glossary: Glossary, captur
     return [
         search_documents,
         get_document,
+        diff_documents,
         resolve_project,
         list_projects,
         expand_glossary_terms,
