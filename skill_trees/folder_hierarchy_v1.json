@@ -2,15 +2,7 @@
   "meta": {
     "version": "folder_hierarchy_v1",
     "source": "share-drive catalog phases (not Corpus2Skill clustering)",
-    "route_policy": "forced_navigate_first",
-    "note": "skill_nav experiment: BM25 search_documents is disabled by toolset switch; prompt forces root→branch navigation. Results are NOT autonomous routing.",
-    "enriched_focus": [
-      "MINAMINO",
-      "KAEDE",
-      "SHR",
-      "TOTO",
-      "AYM"
-    ]
+    "note": "Generic phase-level leaf summaries only, derived from the folder structure -- no per-file or per-question hand-tuning. Used as a navigation fallback (list_children) alongside BM25 search_documents in retrieval_mode=hybrid; retrieval_mode=skill_nav disables search entirely for isolated ablation testing."
   },
   "nodes": {
     "root": {
@@ -1812,7 +1804,7 @@
       "code": "AYM",
       "phase": "02.計画",
       "rel_path": "プロジェクト/青葉与信マネジメント株式会社/02.計画/スケジュール.xlsx",
-      "summary": "プロジェクト計画書(PL)。フェーズとタスクID(Txx)の対応。",
+      "summary": "スケジュール.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
       "children": [],
       "parent_id": "phase:AYM:02.計画"
     },
@@ -2364,7 +2356,7 @@
       "code": "KAEDE",
       "phase": "00.提案",
       "rel_path": "プロジェクト/医療法人社団 恒一会 かえで総合病院/00.提案/提案書.pptx",
-      "summary": "提案書。重視する評価指標(Recall等)や提案内容の記載。",
+      "summary": "提案書.pptx（00.提案）。提案書・参考資料。評価指標や提案スコープの記載が多い。",
       "children": [],
       "parent_id": "phase:KAEDE:00.提案"
     },
@@ -3523,7 +3515,7 @@
       "code": "MINAMINO",
       "phase": "01.契約",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/01.契約/契約書.docx",
-      "summary": "契約書本文。条項番号（例: 第8条）・秘密保持期間・金額条件など。",
+      "summary": "契約書.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
       "children": [],
       "parent_id": "phase:MINAMINO:01.契約"
     },
@@ -3546,7 +3538,7 @@
       "code": "MINAMINO",
       "phase": "02.計画",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/02.計画/スケジュール.xlsx",
-      "summary": "プロジェクト計画書(PL)。マイルストーン・タスクID・日程。",
+      "summary": "スケジュール.xlsx（02.計画）。スケジュール/計画書(PL)。タスクID・マイルストーン・日程。",
       "children": [],
       "parent_id": "phase:MINAMINO:02.計画"
     },
@@ -4034,7 +4026,7 @@
       "code": "MINAMINO",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/医療法人社団 蒼樹会 みなみ野女性医療センター/06.報告書/医療法人社団 蒼樹会 みなみ野女性医療センター_最終報告.pdf",
-      "summary": "最終報告書。プロジェクト目的・スコープ、残余リスクと影響度、成果物の記載あり。『影響度が最も高い残余リスク』系の質問はここを読む。",
+      "summary": "医療法人社団 蒼樹会 みなみ野女性医療センター_最終報告.pdf（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
       "children": [],
       "parent_id": "phase:MINAMINO:06.報告書"
     },
@@ -4632,7 +4624,7 @@
       "code": "SHR",
       "phase": "06.報告書",
       "rel_path": "プロジェクト/白峰信用リスク評価株式会社/06.報告書/白峰信用リスク評価株式会社_最終報告.pptx",
-      "summary": "最終報告書。プロジェクト目的とスコープ、API化の分類(対象/対象外)など。",
+      "summary": "白峰信用リスク評価株式会社_最終報告.pptx（06.報告書）。最終報告。目的/スコープ、残余リスク、結論。",
       "children": [],
       "parent_id": "phase:SHR:06.報告書"
     },
@@ -5257,7 +5249,7 @@
       "code": "TOTO",
       "phase": "01.契約",
       "rel_path": "プロジェクト/株式会社東都人材プラットフォーム/01.契約/契約書.docx",
-      "summary": "契約書(CT)。章立て・本業務の対象データ/前提/制約などの条項。",
+      "summary": "契約書.docx（01.契約）。契約書(CT)。金額・条項・章立て。",
       "children": [],
       "parent_id": "phase:TOTO:01.契約"
     },

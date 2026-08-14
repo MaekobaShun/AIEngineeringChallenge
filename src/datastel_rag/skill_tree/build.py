@@ -1,8 +1,18 @@
 """Build a folder-hierarchy skill tree from the share-drive catalog.
 
-MINAMINO (and a few other experiment targets) get richer hand-written
-summaries; other nodes get filename/phase heuristics. This mirrors the
-existing directory layout -- it does not embed/cluster like Corpus2Skill.
+Leaf summaries are generic phase-level descriptions only -- deliberately not
+file-specific. An earlier version hand-wrote summaries for the ~7 files that
+questions_valid.csv's hardest questions happened to need, which is exactly
+the kind of thing the competition rules single out as disqualifying
+("未知の案件・未知の資料が追加されても同じ処理方針で対応できる汎用的な設計
+が求められる"): it would have inflated the valid30 score using knowledge of
+the eval set, not generalized to test100 or the acceptance-review data.
+
+A real improvement here would be LLM-generated per-file summaries from each
+file's actually-parsed content (via ingest/dispatch.py), which is still
+generic (derived from the file itself, not the question set) -- just not
+built yet. This mirrors the existing directory layout; it does not
+embed/cluster like Corpus2Skill.
 """
 
 from __future__ import annotations
@@ -16,33 +26,6 @@ from datastel_rag.catalog.glossary import load_or_build_glossary
 from datastel_rag.catalog.scanner import Catalog, load_or_build_catalog
 from datastel_rag.skill_tree.tree import DEFAULT_TREE_PATH
 
-# Hand-enriched leaf summaries for the skill_nav smoke set.
-# Keys are path suffixes (matched against rel_path endswith / contains).
-_LEAF_HINTS: dict[str, str] = {
-    "みなみ野女性医療センター_最終報告.pdf": (
-        "最終報告書。プロジェクト目的・スコープ、残余リスクと影響度、成果物の記載あり。"
-        "『影響度が最も高い残余リスク』系の質問はここを読む。"
-    ),
-    "みなみ野女性医療センター/01.契約/契約書.docx": (
-        "契約書本文。条項番号（例: 第8条）・秘密保持期間・金額条件など。"
-    ),
-    "みなみ野女性医療センター/02.計画/スケジュール.xlsx": (
-        "プロジェクト計画書(PL)。マイルストーン・タスクID・日程。"
-    ),
-    "かえで総合病院/00.提案/提案書.pptx": (
-        "提案書。重視する評価指標(Recall等)や提案内容の記載。"
-    ),
-    "白峰信用リスク評価株式会社_最終報告.pptx": (
-        "最終報告書。プロジェクト目的とスコープ、API化の分類(対象/対象外)など。"
-    ),
-    "東都人材プラットフォーム/01.契約/契約書.docx": (
-        "契約書(CT)。章立て・本業務の対象データ/前提/制約などの条項。"
-    ),
-    "青葉与信マネジメント株式会社/02.計画/スケジュール.xlsx": (
-        "プロジェクト計画書(PL)。フェーズとタスクID(Txx)の対応。"
-    ),
-}
-
 _PHASE_HINTS: dict[str, str] = {
     "00.提案": "提案書・参考資料。評価指標や提案スコープの記載が多い。",
     "01.契約": "契約書(CT)。金額・条項・章立て。",
@@ -55,9 +38,6 @@ _PHASE_HINTS: dict[str, str] = {
 
 
 def _leaf_summary(rel_path: str, name: str, phase: str) -> str:
-    for key, hint in _LEAF_HINTS.items():
-        if key in rel_path.replace("\\", "/"):
-            return hint
     base = _PHASE_HINTS.get(phase, "")
     return f"{name}（{phase}）。{base}".strip()
 
@@ -134,12 +114,12 @@ def build_tree(catalog: Catalog, code_by_key: dict[str, str]) -> dict:
         "meta": {
             "version": "folder_hierarchy_v1",
             "source": "share-drive catalog phases (not Corpus2Skill clustering)",
-            "route_policy": "forced_navigate_first",
             "note": (
-                "skill_nav experiment: BM25 search_documents is disabled by toolset switch; "
-                "prompt forces root→branch navigation. Results are NOT autonomous routing."
+                "Generic phase-level leaf summaries only, derived from the folder structure "
+                "-- no per-file or per-question hand-tuning. Used as a navigation fallback "
+                "(list_children) alongside BM25 search_documents in retrieval_mode=hybrid; "
+                "retrieval_mode=skill_nav disables search entirely for isolated ablation testing."
             ),
-            "enriched_focus": ["MINAMINO", "KAEDE", "SHR", "TOTO", "AYM"],
         },
         "nodes": nodes,
     }

@@ -20,6 +20,7 @@ import builtins
 import contextlib
 import io
 import mimetypes
+import os
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -201,6 +202,17 @@ def run_python_impl(ctx: ToolContext, code: str) -> str:
     local_ns: dict = {}
     buf = io.StringIO()
     real_open = builtins.open
+    real_cwd = os.getcwd()
+    # Belt and suspenders against relative-path writes escaping the scratch dir:
+    # builtins.open patching alone doesn't catch every write path -- Path.write_bytes()/
+    # write_text() and pathlib.Path.open() go through io.open()/os-level calls, not the
+    # `builtins.open` name, so they sailed straight past the patch below and once
+    # dumped ~45 PNGs (cropped chart images from a real question) into the pipeline
+    # root as a literal "SCRATCH_DIR" folder. chdir is a process-wide (not per-call)
+    # property, but exec() here is fully synchronous with no `await` inside it, so no
+    # other coroutine can run on this single-threaded asyncio loop while we're inside
+    # it -- safe under the concurrency model this is actually used with.
+    os.chdir(SCRATCH_DIR)
     builtins.open = _make_restricted_open(SCRATCH_DIR, real_open)
     try:
         with contextlib.redirect_stdout(buf):
@@ -209,6 +221,7 @@ def run_python_impl(ctx: ToolContext, code: str) -> str:
         return f"実行エラー: {type(e).__name__}: {e}\n\n--- stdout ---\n{buf.getvalue()}"
     finally:
         builtins.open = real_open
+        os.chdir(real_cwd)
 
     out = buf.getvalue()
     if "result" in local_ns:
