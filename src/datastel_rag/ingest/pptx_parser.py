@@ -18,6 +18,7 @@ from pptx import Presentation
 from pptx.enum.shapes import MSO_SHAPE_TYPE
 from pptx.util import Emu
 
+from datastel_rag.ingest.image_convert import normalize_image_bytes
 from datastel_rag.ingest.models import Block, FormattedRun, ImageAsset, ParsedDocument
 
 _A_NS = "http://schemas.openxmlformats.org/drawingml/2006/main"
@@ -86,11 +87,15 @@ def _table_blocks(table, block_id_prefix: str, location: dict) -> list[Block]:
 
 def _save_image(image, cache_dir: Path, image_id: str) -> str:
     cache_dir.mkdir(parents=True, exist_ok=True)
-    ext = image.ext or "png"
-    digest = hashlib.sha1(image.blob).hexdigest()[:12]
+    # Charts/diagrams pasted into a slide are frequently embedded as WMF/EMF
+    # (vector, GDI-only) rather than a real raster format -- passing that
+    # straight through with a ".png"-looking name is not actually a PNG and
+    # a vision API will reject it. See ingest/image_convert.py.
+    blob, ext = normalize_image_bytes(image.blob, getattr(image, "content_type", None))
+    digest = hashlib.sha1(blob).hexdigest()[:12]
     out_path = cache_dir / f"{image_id.replace('/', '_')}_{digest}.{ext}"
     if not out_path.exists():
-        out_path.write_bytes(image.blob)
+        out_path.write_bytes(blob)
     return str(out_path)
 
 

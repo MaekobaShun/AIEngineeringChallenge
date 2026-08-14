@@ -1,5 +1,6 @@
 """python-docx based parser: paragraphs/headings/tables with run-level
-formatting (bold/italic/underline/strike/highlight/font color).
+formatting (bold/italic/underline/strike/highlight/font color), plus
+embedded inline images (charts/diagrams pasted into the document).
 
 Known gap: .docx has no stored pagination (it's reflowable; page breaks
 depend on the renderer/printer), so we cannot report real page numbers from
@@ -11,10 +12,15 @@ tracked as an open gap, see README.
 
 from __future__ import annotations
 
+import hashlib
+from pathlib import Path
+
 import docx
+from docx.shared import Emu
 from docx.table import Table
 
-from datastel_rag.ingest.models import Block, FormattedRun, ParsedDocument
+from datastel_rag.ingest.image_convert import normalize_image_bytes
+from datastel_rag.ingest.models import Block, FormattedRun, ImageAsset, ParsedDocument
 
 
 def _run_format(run) -> FormattedRun:
@@ -92,7 +98,36 @@ def _iter_body_elements(document):
             yield ("table", next(table_iter))
 
 
-def parse_docx(abs_path: str, source_rel_path: str, project_key: str) -> ParsedDocument:
+def _extract_inline_images(document, cache_dir: Path) -> list[ImageAsset]:
+    """Inline pictures (word/media/*), converting WMF/EMF to PNG -- see
+    ingest/image_convert.py. Skips non-picture inline shapes (e.g. embedded
+    OLE objects) rather than failing the whole document over one of them."""
+    images: list[ImageAsset] = []
+    cache_dir.mkdir(parents=True, exist_ok=True)
+    for i, shape in enumerate(document.inline_shapes):
+        try:
+            blip = shape._inline.graphic.graphicData.pic.blipFill.blip
+            part = document.part.related_parts[blip.embed]
+            blob, ext = normalize_image_bytes(part.blob, part.content_type)
+        except Exception:
+            continue
+        digest = hashlib.sha1(blob).hexdigest()[:12]
+        out_path = cache_dir / f"inline{i}_{digest}.{ext}"
+        if not out_path.exists():
+            out_path.write_bytes(blob)
+        images.append(
+            ImageAsset(
+                image_id=f"inline_shape{i}",
+                location={"inline_shape_index": i},
+                cache_path=str(out_path),
+                width=Emu(shape.width).inches if shape.width else None,
+                height=Emu(shape.height).inches if shape.height else None,
+            )
+        )
+    return images
+
+
+def parse_docx(abs_path: str, source_rel_path: str, project_key: str, image_cache_dir: Path) -> ParsedDocument:
     doc = ParsedDocument(source_rel_path=source_rel_path, project_key=project_key, ext="docx")
     try:
         d = docx.Document(abs_path)
@@ -111,6 +146,11 @@ def parse_docx(abs_path: str, source_rel_path: str, project_key: str) -> ParsedD
         else:
             doc.blocks.extend(_table_blocks(obj, f"table{table_idx}"))
             table_idx += 1
+
+    try:
+        doc.images = _extract_inline_images(d, image_cache_dir)
+    except Exception as e:
+        doc.parse_errors.append(f"image extract failed: {e}")
 
     core = d.core_properties
     doc.meta = {

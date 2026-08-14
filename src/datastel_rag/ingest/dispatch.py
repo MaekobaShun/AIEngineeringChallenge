@@ -66,7 +66,7 @@ def parse_entry(entry: FileEntry, catalog: Catalog, glossary: Glossary, force: b
         ext = entry.ext
         try:
             if ext == "docx":
-                doc = parse_docx(work_path, entry.rel_path, entry.project_key)
+                doc = parse_docx(work_path, entry.rel_path, entry.project_key, image_dir)
             elif ext == "pptx":
                 doc = parse_pptx(work_path, entry.rel_path, entry.project_key, image_dir)
             elif ext == "xlsx":
