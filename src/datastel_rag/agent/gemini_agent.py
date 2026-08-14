@@ -80,6 +80,9 @@ _FD_DIFF_DOCUMENTS = types.FunctionDeclaration(
         "2つのファイル(旧版と新版など)のテキストをdifflibで機械的に比較し、行単位の差分を返す。"
         "「新旧版で実質的な変更点を挙げよ」系の質問では、目視比較だけに頼らず必ずこれを使うこと"
         "(2つの長い文書を読み比べるだけでは、丸ごと追加されたセクションを見落とすことがある)。"
+        "ただし画像内のテキストは比較対象に含まれない。「追加された」と出たブロックが実は旧版でも"
+        "画像として同じ内容が存在していただけ(表や図がテキスト化されただけ)ということがあるため、"
+        "該当箇所付近に旧版側の画像がある場合はview_imageで中身を確認すること。"
     ),
     parameters_json_schema=_schema({"rel_path_a": _STR, "rel_path_b": _STR}, ["rel_path_a", "rel_path_b"]),
 )
@@ -108,6 +111,9 @@ _FD_RUN_PYTHON = types.FunctionDeclaration(
     description=(
         "案件の生データ(csv/tsv/xlsx)に対してpandas/numpyで集計・計算を行う。"
         "read_table(rel_path, sheet=None)でDataFrameを読み込める。print()の出力、または`result`変数の値が結果として返る。"
+        "python-docx/python-pptx等でファイルを直接開く場合は、rel_pathの文字列を自分でパスに組み立てず、"
+        "resolve_path(rel_path)で得た絶対パスを使うこと(共有ドライブの一部フォルダ名はUnicode正規化の都合で"
+        "手打ちの文字列と一致せず、それ以外の方法で開くと見つからずに失敗する)。"
         "画像の切り出し等でファイルを保存したい場合はSCRATCH_DIR配下のパスに書き込むこと(それ以外への書き込みは拒否される)。"
     ),
     parameters_json_schema=_schema({"code": _STR}, ["code"]),

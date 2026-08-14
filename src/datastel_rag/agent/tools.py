@@ -56,7 +56,10 @@ def build_tools(index: SearchIndex, catalog: Catalog, glossary: Glossary, captur
         "diff_documents",
         "2つのファイル(旧版と新版など)のテキストをdifflibで機械的に比較し、行単位の差分を返す。"
         "「新旧版で実質的な変更点を挙げよ」系の質問では、目視比較だけに頼らず必ずこれを使うこと"
-        "(2つの長い文書を読み比べるだけでは、丸ごと追加されたセクションを見落とすことがある)。",
+        "(2つの長い文書を読み比べるだけでは、丸ごと追加されたセクションを見落とすことがある)。"
+        "ただし画像内のテキストは比較対象に含まれない。「追加された」と出たブロックが実は旧版でも"
+        "画像として同じ内容が存在していただけ(表や図がテキスト化されただけ)ということがあるため、"
+        "該当箇所付近に旧版側の画像がある場合はview_imageで中身を確認すること。",
         {"rel_path_a": "比較元(例: 旧版)のrel_path", "rel_path_b": "比較先(例: 新版)のrel_path"},
     )
     async def diff_documents(args):
@@ -94,6 +97,9 @@ def build_tools(index: SearchIndex, catalog: Catalog, glossary: Glossary, captur
         "run_python",
         "案件の生データ(csv/tsv/xlsx)に対してpandas/numpyで集計・計算を行う。"
         "read_table(rel_path, sheet=None)でDataFrameを読み込める。print()の出力、または`result`変数の値が結果として返る。"
+        "python-docx/python-pptx等でファイルを直接開く場合は、rel_pathの文字列を自分でパスに組み立てず、"
+        "resolve_path(rel_path)で得た絶対パスを使うこと(共有ドライブの一部フォルダ名はUnicode正規化の都合で"
+        "手打ちの文字列と一致せず、それ以外の方法で開くと見つからずに失敗する)。"
         "画像の切り出し等でファイルを保存したい場合はSCRATCH_DIR配下のパスに書き込むこと(それ以外への書き込みは拒否される)。",
         {"code": "実行するPythonコード"},
     )

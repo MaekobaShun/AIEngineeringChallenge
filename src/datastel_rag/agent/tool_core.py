@@ -127,9 +127,18 @@ def get_document_impl(ctx: ToolContext, rel_path: str) -> tuple[str, list[str]]:
 def diff_documents_impl(ctx: ToolContext, rel_path_a: str, rel_path_b: str) -> str:
     """Line-level diff between two documents' extracted text blocks (e.g. an
     old vs new version of the same file). Deterministic (difflib), not the
-    model eyeballing two long documents itself -- confirmed in practice that
-    approach misses whole added sections (an entire new subsection in a
-    proposal deck was overlooked this way and answered "no changes")."""
+    model eyeballing two long documents itself.
+
+    Caveat confirmed in practice: this only diffs extracted text, so a block
+    that looks "added" may just be a picture (e.g. an embedded chart/table
+    image) in the old version being re-rendered as native text/shapes in the
+    new one -- same content, different format, not a substantive change. One
+    real case: text diff showed a "4.1-4.5 breakdown" table as newly added,
+    but the old file's slide had the identical table baked into a PICTURE
+    shape the whole time (confirmed by opening that image directly) -- so the
+    real answer was "no substantive change", not "section added". Always
+    check for a same-location image on the old side via view_image before
+    trusting an apparent addition."""
     doc_a = _get_parsed_document(ctx, rel_path_a)
     if doc_a is None:
         return f"ファイルが見つかりません: {rel_path_a}"
@@ -228,12 +237,29 @@ def run_python_impl(ctx: ToolContext, code: str) -> str:
             return pd.read_excel(entry.abs_path, sheet_name=sheet if sheet is not None else 0)
         raise ValueError(f"read_tableが対応していない拡張子です: {entry.ext}")
 
+    def resolve_path(rel_path: str) -> str:
+        """The real, OS-openable absolute path for any file in the catalog --
+        the share drive was zipped on macOS, so directory names with dakuten/
+        handakuten kana (e.g. 共有ドライブ) are stored NFD-decomposed on disk.
+        A hand-typed path literal in generated code is normally NFC and
+        silently fails to match (PackageNotFoundError / FileNotFoundError),
+        even though the file is right there -- confirmed live: an agent's own
+        pptx.Presentation(hardcoded_path) calls failed this way on every
+        attempt while investigating a diff_documents result, and it never
+        surfaced as anything other than empty/no-diff output. Always go
+        through this (or read_table) instead of typing a path yourself."""
+        entry = ctx.catalog.find_by_rel_path(rel_path)
+        if entry is None:
+            raise FileNotFoundError(rel_path)
+        return entry.abs_path
+
     SCRATCH_DIR.mkdir(parents=True, exist_ok=True)
 
     global_ns = {
         "pd": pd,
         "np": np,
         "read_table": read_table,
+        "resolve_path": resolve_path,
         "SCRATCH_DIR": str(SCRATCH_DIR),
     }
     local_ns: dict = {}
